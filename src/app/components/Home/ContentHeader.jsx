@@ -5,7 +5,7 @@ import nextIcon from "/public/icons/nextIcon.png";
 
 export default function ContentHeader({ headerText, subText }) {
   return (
-    <div className="flex flex-col justify-start my-6">
+    <div className="flex flex-col justify-start my-7">
       <div className="flex flex-row justify-between items-center">
         <h2 className="text-black font-extrabold text-[1.6rem]">
           {headerText}

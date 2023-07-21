@@ -1,6 +1,7 @@
 import ContentGallery from "./components/Home/ContentGallery";
 import ContentHeader from "./components/Home/ContentHeader";
 import FestivalCarousel from "./components/Home/FestivalCarousel";
+import ShopCarousel from "./components/Home/ShopCarousel";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         headerText="오늘의 인기 상점"
         subText="나도 인기 상품 즐겨보기"
       />
+      <ShopCarousel />
       <ContentHeader
         headerText="시장 더 즐기기"
         subText="시장을 더 재밌게 즐기는 방법들"

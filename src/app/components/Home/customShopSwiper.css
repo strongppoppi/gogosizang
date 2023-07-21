@@ -1,0 +1,13 @@
+.swiper-slide {
+  width: 56%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #111213;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1.5rem;
+  font-weight: 900;
+}

@@ -1,45 +1,22 @@
+import ContentGallery from "./components/Home/ContentGallery";
+import ContentHeader from "./components/Home/ContentHeader";
+
 export default function Home() {
   return (
-    <div className="flex-col grow overflow-y-scroll">
-      <h2 className="font-extrabold">홈 페이지</h2>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
-      <h4>스크롤이 어떻게 될까?</h4>
+    <div className="flex-col grow overflow-y-scroll px-4">
+      <ContentHeader
+        headerText="오늘의 인기 상점"
+        subText="나도 인기 상품 즐겨보기"
+      />
+      <ContentHeader
+        headerText="시장 더 즐기기"
+        subText="시장을 더 재밌게 즐기는 방법들"
+      />
+      <ContentGallery />
+      <ContentHeader
+        headerText="전국시장 축제 소식"
+        subText="우리 동네의 즐거운 일들"
+      />
     </div>
   );
 }

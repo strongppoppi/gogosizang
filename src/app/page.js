@@ -1,5 +1,6 @@
 import ContentGallery from "./components/Home/ContentGallery";
 import ContentHeader from "./components/Home/ContentHeader";
+import FestivalCarousel from "./components/Home/FestivalCarousel";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         headerText="전국시장 축제 소식"
         subText="우리 동네의 즐거운 일들"
       />
+      <FestivalCarousel />
     </div>
   );
 }

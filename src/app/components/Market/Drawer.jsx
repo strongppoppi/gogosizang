@@ -105,7 +105,9 @@ export default function Drawer({ children }) {
                 >
                     <div className="w-24 h-1 rounded-full bg-gray-200 mt-2 mb-28" />
                 </div>
-                {children}
+                <div className='overflow-y-scroll'>
+                    {children}
+                </div>
             </div>
         </div>
     );

@@ -1,0 +1,19 @@
+.swiper-button-next,
+.swiper-button-prev {
+  color: #111213;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.swiper-pagination-bullet {
+  background-color: #dadce2;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff7455;
+}

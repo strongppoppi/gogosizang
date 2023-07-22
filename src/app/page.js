@@ -9,11 +9,13 @@ export default function Home() {
       <ContentHeader
         headerText="오늘의 인기 상점"
         subText="나도 인기 상품 즐겨보기"
+        linkPath="/popular"
       />
       <ShopCarousel />
       <ContentHeader
         headerText="시장 더 즐기기"
         subText="시장을 더 재밌게 즐기는 방법들"
+        linkPath="/editor"
       />
       <ContentGallery />
       <ContentHeader

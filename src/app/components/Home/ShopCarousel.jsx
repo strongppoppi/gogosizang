@@ -7,6 +7,7 @@ import "swiper/css";
 import "./customShopSwiper.css";
 
 import defaultImage from "/public/images/defaultImage.png";
+import ShopCard from "./ShopCard";
 
 export default function ShopCarousel() {
   return (
@@ -20,27 +21,27 @@ export default function ShopCarousel() {
       >
         <SwiperSlide>
           <div className="block">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="block">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="block">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="block">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="block">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
       </Swiper>

@@ -9,7 +9,7 @@ export default function ContentCard() {
   };
 
   return (
-    <Link href="/">
+    <Link href="/editor/1">
       <div className="flex flex-col justify-start items-center space-y-2 text-left">
         <Image
           src={defaultImage}

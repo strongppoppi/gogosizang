@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/pagination";
 import "./customShopSwiper.css";
 
 import defaultImage from "/public/images/defaultImage.png";
+import ShopCard from "./ShopCard";
 
 export default function ShopCarousel() {
   return (
@@ -16,37 +15,33 @@ export default function ShopCarousel() {
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={15}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
         mousewheel={true}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-          <div className="block mb-8">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+          <div className="block">
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="block mb-8">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+          <div className="block">
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="block mb-8">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+          <div className="block">
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="block mb-8">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+          <div className="block">
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="block mb-8">
-            <Image src={defaultImage} layout="responsive" alt="기본 이미지" />
+          <div className="block">
+            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
           </div>
         </SwiperSlide>
       </Swiper>

@@ -1,15 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./customSwiper.css";
+import "./customFestivalSwiper.css";
 
-import defaultImage from "/public/images/defaultImage.png";
+import FestivalCard from "./FestivalCard";
 
 export default function FestivalCarousel() {
   return (
@@ -25,33 +24,18 @@ export default function FestivalCarousel() {
         onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
-          <div className="flex flex-col justify-center items-center pb-8">
-            <Image
-              src={defaultImage}
-              width={250}
-              height={250}
-              alt="기본 이미지"
-            />
+          <div className="flex flex-col justify-center items-center mb-8">
+            <FestivalCard />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col justify-center items-center pb-8">
-            <Image
-              src={defaultImage}
-              width={250}
-              height={250}
-              alt="기본 이미지"
-            />
+          <div className="flex flex-col justify-center items-center mb-8">
+            <FestivalCard />
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col justify-center items-center pb-8">
-            <Image
-              src={defaultImage}
-              width={250}
-              height={250}
-              alt="기본 이미지"
-            />
+          <div className="flex flex-col justify-center items-center mb-8">
+            <FestivalCard />
           </div>
         </SwiperSlide>
       </Swiper>

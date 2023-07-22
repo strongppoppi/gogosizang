@@ -103,9 +103,11 @@ export default function Drawer({ children }) {
                     onTouchStart={handleTouchStart}
                     className="w-full h-8 flex justify-center"
                 >
-                    <div className="w-24 h-1 rounded-full bg-gray-200 mt-2" />
+                    <div className="w-24 h-1 rounded-full bg-gray-200 mt-2 mb-28" />
                 </div>
-                {children}
+                <div className='overflow-y-scroll'>
+                    {children}
+                </div>
             </div>
         </div>
     );

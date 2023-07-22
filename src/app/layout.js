@@ -2,6 +2,7 @@
 
 import "./globals.css";
 import React, { useState, useEffect } from "react";
+import Script from "next/script";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
 
@@ -28,6 +29,12 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="kr">
+      <head>
+        <Script
+          strategy="beforeInteractive"
+          src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+        />
+      </head>
       <body className={Pretendard.className}>
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />

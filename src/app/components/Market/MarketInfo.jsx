@@ -38,7 +38,6 @@ export default function MarketInfo({ marketIndex }) {
                             'x-cors-api-key': 'temp_8897981b5a3c25edbe0d8d042cf0b42d'
                         }
                     });
-                    console.log(res);
                     setMarketData(res.data.response.body.items[0]);
                 } catch (error) {
                     console.log(error);
@@ -68,15 +67,15 @@ export default function MarketInfo({ marketIndex }) {
 
 
     return (
-        <div className="w-90">
+        <>
             {marketData ?
-                <>
-                    <div className="w-full h-40 rounded-xl flex justify-center items-center overflow-hidden mb-4">
+                <div className="w-11/12">
+                    <div className="w-full h-40 relative rounded-2xl flex justify-center items-center overflow-hidden mb-4">
                         <Image
                             src={defaultImage}
                             alt="시장 이미지"
-                            width={350}
-                            height={160}
+                            fill={true}
+                            className="object-cover"
                         />
                     </div>
                     <h1 className="text-2xl font-bold text-black mb-3">{marketData.mrktNm}</h1>
@@ -118,14 +117,14 @@ export default function MarketInfo({ marketIndex }) {
                         <div className="grow" />
                         <div className="rounded px-2.5 py-1 bg-positive text-sm font-normal text-white">영업중</div>
                     </div>
-                    <div className="flex flex-row items-center p-3 rounded-lg bg-gray-100">
+                    <div className="flex flex-row items-center p-3 rounded-lg bg-gray-100 mb-6">
                         <Image src={carIcon} width={24} height={24} alt="아이콘" />
                         <h3 className="text-base font-normal text-black ml-2.5">주차장</h3>
                         <div className="w-px h-6 bg-gray-400 mx-3" />
                         <h3 className="text-base font-normal text-black mr-1">{marketData.prkplceYn === "Y" ? "있음" : "없음"}</h3>
                     </div>
-                </> :
+                </div> :
                 skeleton}
-        </div>
+        </>
     )
 }

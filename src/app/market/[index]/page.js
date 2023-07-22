@@ -11,9 +11,7 @@ export default function MarketPage({params}) {
       <h4>시장 상세 페이지</h4>
       <Drawer>
         <MarketInfo marketIndex={marketIndex}/>
-        <InfoTab>
-          tab content
-        </InfoTab>
+        <InfoTab marketIndex={marketIndex}/>
       </Drawer>
     </div>
   );

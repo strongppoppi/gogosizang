@@ -16,7 +16,7 @@ export default function BottomTab() {
 
   return (
     <footer>
-      <div className="flex flex-row justify-around mb-6 border-t-2 py-4">
+      <div className="flex flex-row justify-around border-t-2 py-4">
         <Link href="/" className="grow justify-center items-center">
           <div className="flex-col justify-center items-center text-center space-y-1">
             <div

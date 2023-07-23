@@ -23,7 +23,7 @@ export default function MarketModal({ marketKey }) {
                         <Image src={marketicon} alt="아이콘" width={24} height={24} />
                         <h5 className="text-lg font-medium text-black ml-1">{marketData.mrktNm}</h5>
                     </div>
-                    <div className="flex flex-row justify-start items-center">
+                    <div className="flex flex-row justify-start items-start">
                         <Image src={markericon} alt="아이콘" width={24} height={24} />
                         <h5 className="text-base font-normal text-gray-600 ml-1">{marketData.rdnmadr || marketData.lnmadr}</h5>
                     </div>

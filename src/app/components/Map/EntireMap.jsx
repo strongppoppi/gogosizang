@@ -23,6 +23,8 @@ export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, 
           center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
           zoomControl: false,
         });
+        setNaverMap(mapRef);
+        console.log(mapRef);
       });
     } else {
       window.alert("현재 위치를 알 수 없어 기본 위치로 지정합니다.");
@@ -36,8 +38,9 @@ export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, 
         center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
         zoomControl: true,
       });
+      setNaverMap(mapRef);
+      console.log(mapRef);
     }
-    setNaverMap(mapRef);
   }, [setNaverMap]);
 
   return (

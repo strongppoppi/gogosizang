@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import markets from "public/data/markets.json";
 import EntireMap from "../components/Map/EntireMap";
 import MarketModal from "../components/Map/MarketModal";
 import MyLocationBtn from "../components/Map/MyLocationBtn";
@@ -26,7 +25,6 @@ export default function MapPage() {
           url: 'icons/marker_main.png',
           size: new naver.maps.Size(42, 52),
           origin: new naver.maps.Point(0, 0),
-          anchor: new naver.maps.Point(25, 26)
         });
       }
 
@@ -34,7 +32,6 @@ export default function MapPage() {
           url: 'icons/marker_black.png',
           size: new naver.maps.Size(42, 52),
           origin: new naver.maps.Point(0, 0),
-          anchor: new naver.maps.Point(25, 26)
         });
 
       setBeforeMarket(selectedMarket);

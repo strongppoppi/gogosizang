@@ -29,7 +29,7 @@ export default function MarketInfo({ marketKey }) {
     });
 
     // 파베에서 불러오거나 따로 구해야 하는 데이터
-    var subwayLine = 5;
+    var subwayLine = 0;
     var station = "지하철역";
     var stationsDistance = "0m";
     var openTime = "00:00";
@@ -48,8 +48,15 @@ export default function MarketInfo({ marketKey }) {
 
     // 로딩 중 보여질 UI
     var skeleton = (
-        <div className="w-full">
-            Loading...
+        <div className="w-11/12">
+            <div className="w-40 h-8 rounded-lg bg-gray-100 mb-3" />
+            <div className="w-80 h-6 rounded-lg bg-gray-100 mb-2" />
+            <div className="w-64 h-6 rounded-lg bg-gray-100 mb-5" />
+            <div className="w-full h-14 mb-4 flex flex-row justify-center border-y border-solid border-gray-200">
+                <div className="w-px h-full bg-gray-200" />
+            </div>
+            <div className="h-12 flex flex-row items-center p-3 rounded-lg bg-gray-100 mb-3" />
+            <div className="h-12 flex flex-row items-center p-3 rounded-lg bg-gray-100 mb-6" />
         </div>
     );
 
@@ -82,12 +89,19 @@ export default function MarketInfo({ marketKey }) {
                                 <h3 className="text-sm font-normal text-black">홈페이지</h3>
                             </div>}
                         <div className="w-px h-full bg-gray-200" />
-                        <div className="flex-1 flex flex-col justify-center items-center py-1">
-                            <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                            <h3 className="text-sm font-normal text-black">전화</h3>
-                        </div>
+                        {marketApiData.phoneNumber !== "" ?
+                            <a href={`tel:${marketApiData.phoneNumber}`} className="flex-1 flex justify-center items-center">
+                                <div className="flex-1 flex flex-col justify-center items-center py-1">
+                                    <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
+                                    <h3 className="text-sm font-normal text-black">전화</h3>
+                                </div>
+                            </a> :
+                            <div className="flex-1 flex flex-col justify-center items-center py-1" style={{ opacity: 0.5 }}>
+                                <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-sm font-normal text-black">전화</h3>
+                            </div>}
                     </div>
-                    <div className="flex flex-row items-center p-3 rounded-lg bg-gray-100 mb-3">
+                    <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-3">
                         <Image src={clockIcon} width={24} height={24} alt="아이콘" />
                         <h3 className="text-base font-normal text-black ml-2.5">영업 시간</h3>
                         <div className="w-px h-6 bg-gray-400 mx-3" />
@@ -96,7 +110,7 @@ export default function MarketInfo({ marketKey }) {
                         <div className="grow" />
                         <div className="rounded px-2.5 py-1 bg-positive text-sm font-normal text-white">영업중</div>
                     </div>
-                    <div className="flex flex-row items-center p-3 rounded-lg bg-gray-100 mb-6">
+                    <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-6">
                         <Image src={carIcon} width={24} height={24} alt="아이콘" />
                         <h3 className="text-base font-normal text-black ml-2.5">주차장</h3>
                         <div className="w-px h-6 bg-gray-400 mx-3" />

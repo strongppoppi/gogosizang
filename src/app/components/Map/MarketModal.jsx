@@ -30,6 +30,6 @@ export default function MarketModal({ marketKey }) {
                 </div>
                 <Image src={chevronright} alt="아이콘" width={42} height={42} />
             </div>
-        </Link >
+        </Link>
     );
 }

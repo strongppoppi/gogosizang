@@ -32,7 +32,7 @@ export default function MapPage() {
       />
       {isSearchBarClicked ? null : (
         <div className="w-11/12 absolute bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col">
-          <MarketModal marketKey={800} />
+          <MarketModal marketKey={selectedMarket} />
           <div className="flex flex-row justify-between mt-4">
             <NearbyMarketBtn />
             <MyLocationBtn />

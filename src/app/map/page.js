@@ -24,7 +24,7 @@ export default function MapPage() {
       {isSearchBarClicked ? (
         <SearchResultModal toggleSearchBar={toggleSearchBar} />
       ) : (
-        <EntireMap naverMap={naverMap} setNaverMap={setNaverMap}/>
+        <EntireMap naverMap={naverMap} setNaverMap={setNaverMap} markers={markers} setMarkers={setMarkers} setSelectedMarket={setSelectedMarket}/>
       )}
       <SearchBar
         isSearchBarClicked={isSearchBarClicked}

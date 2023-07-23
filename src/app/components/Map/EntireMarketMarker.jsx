@@ -18,7 +18,7 @@ export default function EntireMarketMarker({ naverMap, markers, setMarkers, setS
 
             const addMarkers = (markets) => {
                 console.log("addMarkers");
-                var newMarkers = [...markers];   //기존 마커 + 새로 추가할 마커 배열
+                var newMarkers = { ...markers };   //기존 마커 + 새로 추가할 마커 배열
                 for (const [key, market] of Object.entries(markets)) {
                     var marker = new naver.maps.Marker({
                         position: new naver.maps.LatLng(market.latitude, market.longitude),
@@ -31,9 +31,10 @@ export default function EntireMarketMarker({ naverMap, markers, setMarkers, setS
                         }
                     });
                     naver.maps.Event.addListener(marker, 'click', getClickHandler(key));
-                    newMarkers.push(marker);
+                    newMarkers[key] = marker;
                 }
                 setMarkers(newMarkers);
+                console.log(newMarkers);
             };
             addMarkers(markets);  //markets.json에서 latitude, longitude 가져와서 마커 추가 (API 사용X)
         }

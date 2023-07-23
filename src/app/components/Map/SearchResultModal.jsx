@@ -11,21 +11,6 @@ export default function SearchResultModal({ toggleSearchBar }) {
   const [searchTerm, setSearchTerm] = useState(""); // 검색값 변화 감지
   const [searchedData, setSearchedData] = useState([]); // 검색 결과 목록
 
-  const getAddress = async (latitude, longitude) => {
-    try {
-      const result = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.NEXT_PUBLIC_GOOGLE_GEO_KEY}`
-      );
-
-      const address =
-        result.data.results[0]?.formatted_address || "주소 정보 없음";
-      return address;
-    } catch (error) {
-      console.log(error);
-      return "주소 정보 없음";
-    }
-  };
-
   useEffect(() => {
     // 검색 결과 반환 함수
     const handleSearch = async () => {
@@ -34,27 +19,11 @@ export default function SearchResultModal({ toggleSearchBar }) {
         return;
       }
 
-      const data = marketsLocation.filter((item) =>
-        item.mrktNm.includes(searchTerm)
-      );
+      const data = Object.values(marketsLocation).filter((item) => item.mrktNm.includes(searchTerm));
 
-      // 'getAddress' 함수를 모든 검색 결과에 대해 호출하여 주소 정보 가져 옴
-      const addressPromises = data
-        .slice(0, 4)
-        .map((item) => getAddress(item.latitude, item.longitude));
+      const newData = data.slice(0, 4);
 
-      // 'addressPromises' 배열 내 모든 주소 정보를 가져올 때까지 기다림
-      const addresses = await Promise.all(addressPromises);
-
-      // 주소 정보를 검색 결과 데이터와 함께 처리
-      const searchDataWithAddress = data.slice(0, 4).map((item, index) => ({
-        ...item,
-        address: addresses[index], // 주소 정보를 검색 결과 항목에 추가
-      }));
-
-      console.log("주소 포함", searchDataWithAddress);
-
-      setSearchedData(searchDataWithAddress);
+      setSearchedData(newData);
     };
 
     handleSearch();
@@ -84,7 +53,7 @@ export default function SearchResultModal({ toggleSearchBar }) {
       <div className="w-full flex flex-col justify-center items-center">
         {searchedData.slice(0, 4).map((item, index) => (
           <div
-            key={index}
+            key={item.key}
             className="w-full flex flex-col px-2 py-3 border-b border-gray-200"
           >
             <div className="flex flex-row justify-between items-center mb-0.5">
@@ -99,7 +68,7 @@ export default function SearchResultModal({ toggleSearchBar }) {
               <div className="flex flex-row space-x-0.5">
                 <Image src={pinIcon} width={24} height={16} alt="핀 아이콘" />
                 <p className="text-gray-500 text-base font-regular tracking-tight whitespace-normal overflow-hidden line-clamp-1">
-                  {item.address}
+                  {item.rdnmadr !== "" ? item.rdnmadr: item.lnmadr}
                 </p>
               </div>
               <p className="text-gray-700 text-sm font-regular tracking-tight">

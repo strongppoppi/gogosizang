@@ -67,6 +67,7 @@ export default function MapPage() {
               naverMap={naverMap}
               markers={markers}
               myCurrentLocation={myCurrentLocation}
+              setSelectedMarket={setSelectedMarket}
             />
             <MyLocationBtn
               naverMap={naverMap}

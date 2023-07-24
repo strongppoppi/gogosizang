@@ -8,10 +8,10 @@ export default function NearbyMarketBtn({
   naverMap,
   markers,
   myCurrentLocation,
+  setSelectedMarket,
 }) {
   let currentLatitude = myCurrentLocation[0];
   let currentLongitude = myCurrentLocation[1];
-  let nearestMarkerKey = null;
 
   // 함수: 두 좌표 간 거리 구하기
   const getDistance = (lat1, lon1, lat2, lon2) => {
@@ -22,14 +22,14 @@ export default function NearbyMarketBtn({
 
   // 함수: 가장 가까운 마커 찾기
   const findNearestMarker = (markers, currentLatitude, currentLongitude) => {
-    let nearestMarker = null; // Initialize nearestMarker to null
+    let nearestMarker = null;
+    let nearestMarkerKey = null;
     let minDistance = Number.MAX_VALUE;
 
-    // Iterate through each property of the markers object
     for (const markerId in markers) {
       const marker = markers[markerId];
-      const markerLatitude = marker.position.y; // Get the latitude from the marker
-      const markerLongitude = marker.position.x; // Get the longitude from the marker
+      const markerLatitude = marker.position.y;
+      const markerLongitude = marker.position.x;
 
       const distance = getDistance(
         currentLatitude,
@@ -45,23 +45,27 @@ export default function NearbyMarketBtn({
       }
     }
 
-    return nearestMarker;
+    return [nearestMarker, nearestMarkerKey];
   };
 
   // 버튼 클릭 시
   const handleButton = async () => {
-    var nearestMarker = await findNearestMarker(
+    var marker = await findNearestMarker(
       markers,
       currentLatitude,
       currentLongitude
     );
-    console.log("가장 가까운 시장 마커: ", nearestMarker, nearestMarkerKey);
+    console.log("가장 가까운 시장 마커: ", marker);
+    var nearestMarker = marker[0];
+    var nearestMarkerKey = marker[1];
+
     if (naverMap) {
       var newCenter = new naver.maps.LatLng(
         nearestMarker.position.y,
         nearestMarker.position.x
       );
       naverMap.setCenter(newCenter);
+      setSelectedMarket(nearestMarkerKey);
     }
   };
 

@@ -18,7 +18,7 @@ export default function MyLocationBtn({ naverMap, setMyCurrentLocation }) {
         currentPosition[0],
         currentPosition[1]
       );
-      naverMap.setCenter(newCenter);
+      naverMap.panTo(newCenter, { duration: 200, easing: "easeInCubic" });
 
       console.log("현 위치: ", currentPosition);
       setMyCurrentLocation(currentPosition);

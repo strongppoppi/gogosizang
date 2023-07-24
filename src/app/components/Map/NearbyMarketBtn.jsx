@@ -64,7 +64,7 @@ export default function NearbyMarketBtn({
         nearestMarker.position.y,
         nearestMarker.position.x
       );
-      naverMap.setCenter(newCenter);
+      naverMap.panTo(newCenter, { duration: 200, easing: "easeInCubic" });
       setSelectedMarket(nearestMarkerKey);
     }
   };

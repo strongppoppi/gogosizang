@@ -64,6 +64,7 @@ export default function MapPage() {
         <SearchResultModal
           toggleSearchBar={toggleSearchBar}
           setSelectedMarket={setSelectedMarket}
+          naverMap={naverMap}
         />
       ) : (
         <div className="w-11/12 absolute bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col">

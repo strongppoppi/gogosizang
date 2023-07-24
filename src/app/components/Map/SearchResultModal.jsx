@@ -10,6 +10,7 @@ import pinIcon from "/public/icons/pinIcon-500.png";
 export default function SearchResultModal({
   toggleSearchBar,
   setSelectedMarket,
+  naverMap,
 }) {
   const [searchTerm, setSearchTerm] = useState(""); // 검색값 변화 감지
   const [searchedData, setSearchedData] = useState([]); // 검색 결과 목록
@@ -23,6 +24,13 @@ export default function SearchResultModal({
       }
     }
     await setSelectedMarket(targetKey);
+    naverMap.panTo(
+      new naver.maps.LatLng(
+        marketsLocation[targetKey].latitude,
+        marketsLocation[targetKey].longitude
+      ),
+      { duration: 1500, easing: "easeInCubic" }
+    );
     toggleSearchBar();
   };
 

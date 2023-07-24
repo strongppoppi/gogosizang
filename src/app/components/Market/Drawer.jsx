@@ -96,7 +96,6 @@ export default function Drawer({ children }) {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             className="w-screen h-full absolute z-30"
-            style={{ height: windowHeight.current }}
         >
             <div
                 ref={dragRef}

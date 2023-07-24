@@ -27,7 +27,6 @@ export default function EntireMarketMarker({ naverMap, markers, setMarkers, setS
                             url: 'icons/marker_main.png',
                             size: new naver.maps.Size(42, 52),
                             origin: new naver.maps.Point(0, 0),
-                            anchor: new naver.maps.Point(25, 26)
                         }
                     });
                     naver.maps.Event.addListener(marker, 'click', getClickHandler(key));

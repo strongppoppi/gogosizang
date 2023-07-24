@@ -9,8 +9,9 @@ export default function NearbyMarketBtn({
   markers,
   myCurrentLocation,
 }) {
-  let currentLatitude = myCurrentLocation.latitude;
-  let currentLongitude = myCurrentLocation.longitude;
+  let currentLatitude = myCurrentLocation[0];
+  let currentLongitude = myCurrentLocation[1];
+  let nearestMarkerKey = null;
 
   // 함수: 두 좌표 간 거리 구하기
   const getDistance = (lat1, lon1, lat2, lon2) => {
@@ -21,15 +22,16 @@ export default function NearbyMarketBtn({
 
   // 함수: 가장 가까운 마커 찾기
   const findNearestMarker = (markers, currentLatitude, currentLongitude) => {
-    var nearestMarker = markers[0];
-    var minDistance = Number.MAX_VALUE;
+    let nearestMarker = null; // Initialize nearestMarker to null
+    let minDistance = Number.MAX_VALUE;
 
-    for (var i = 0; i < markers.length; i++) {
-      var marker = markers[i];
-      var markerLatitude = marker.position.y;
-      var markerLongitude = marker.position.x;
+    // Iterate through each property of the markers object
+    for (const markerId in markers) {
+      const marker = markers[markerId];
+      const markerLatitude = marker.position.y; // Get the latitude from the marker
+      const markerLongitude = marker.position.x; // Get the longitude from the marker
 
-      var distance = getDistance(
+      const distance = getDistance(
         currentLatitude,
         currentLongitude,
         markerLatitude,
@@ -39,6 +41,7 @@ export default function NearbyMarketBtn({
       if (distance < minDistance) {
         minDistance = distance;
         nearestMarker = marker;
+        nearestMarkerKey = markerId;
       }
     }
 
@@ -52,13 +55,12 @@ export default function NearbyMarketBtn({
       currentLatitude,
       currentLongitude
     );
-    console.log("가장 가까운 시장 마커: ", nearestMarker);
+    console.log("가장 가까운 시장 마커: ", nearestMarker, nearestMarkerKey);
     if (naverMap) {
       var newCenter = new naver.maps.LatLng(
         nearestMarker.position.y,
         nearestMarker.position.x
       );
-
       naverMap.setCenter(newCenter);
     }
   };

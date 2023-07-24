@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import icon from "/public/icons/gps.png";
 
-<<<<<<< Updated upstream
 export default function MyLocationBtn({ naverMap, setMyCurrentLocation }) {
   let myLocation = "";
 
@@ -21,6 +20,7 @@ export default function MyLocationBtn({ naverMap, setMyCurrentLocation }) {
       );
       naverMap.setCenter(newCenter);
 
+      console.log("현 위치: ", currentPosition);
       setMyCurrentLocation(currentPosition);
     });
   };
@@ -30,13 +30,6 @@ export default function MyLocationBtn({ naverMap, setMyCurrentLocation }) {
       onClick={() => handleButton()}
       className="w-12 h-12 rounded-lg shadow-md bg-white flex justify-center items-center"
     >
-=======
-export default function MyLocationBtn({ naverMap }) {
-  const handleButton = () => {};
-
-  return (
-    <button className="w-12 h-12 rounded-lg shadow-md bg-white flex justify-center items-center">
->>>>>>> Stashed changes
       <Image src={icon} width={24} height={24} alt="아이콘" />
     </button>
   );

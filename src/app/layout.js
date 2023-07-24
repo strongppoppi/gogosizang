@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
   const pathName = usePathname();
   const isHome = pathName === "/";
   const [isLoading, setIsLoading] = useState(isHome);
+  const windowHeight = window.innerHeight;
 
   useEffect(() => {
     if (isLoading) return;
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col" style={{ height: windowHeight }}>
             {children}
             <BottomTab />
           </div>

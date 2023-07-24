@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 import EntireMap from "../components/Map/EntireMap";
+import EntireMarketMarker from "../components/Map/EntireMarketMarker";
 import MarketModal from "../components/Map/MarketModal";
 import MyLocationBtn from "../components/Map/MyLocationBtn";
 import NearbyMarketBtn from "../components/Map/NearbyMarketBtn";
@@ -49,15 +50,19 @@ export default function MapPage() {
           setSelectedMarket={setSelectedMarket}
         />
       ) : (
-        <EntireMap
-          naverMap={naverMap}
-          setNaverMap={setNaverMap}
-          markers={markers}
-          setMarkers={setMarkers}
-          selectedMarket={selectedMarket}
-          setSelectedMarket={setSelectedMarket}
-          setMyCurrentLocation={setMyCurrentLocation}
-        />
+        <>
+          <EntireMap
+            setNaverMap={setNaverMap}
+            setMyCurrentLocation={setMyCurrentLocation}
+          />
+          {Object.entries(markers).length === 0 && 
+            <EntireMarketMarker
+              naverMap={naverMap}
+              markers={markers}
+              setMarkers={setMarkers}
+              setSelectedMarket={setSelectedMarket}
+            />}
+        </>
       )}
       <SearchBar
         isSearchBarClicked={isSearchBarClicked}

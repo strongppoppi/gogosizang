@@ -17,9 +17,10 @@ export default function MapPage() {
   const [myCurrentLocation, setMyCurrentLocation] = useState([]); // 내 위치 정보 불러오기
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
-  // 선택한 마커 검은색으로
   useEffect(() => {
-    if (selectedMarket) {
+    if (selectedMarket && selectedMarket != beforeMarket) {
+
+      // 선택한 마커 검은색으로
       if (beforeMarket) {
         markers[beforeMarket].setIcon({
           url: "icons/marker_main.png",
@@ -33,6 +34,10 @@ export default function MapPage() {
         size: new naver.maps.Size(42, 52),
         origin: new naver.maps.Point(0, 0),
       });
+
+      // 선택한 마커 위치로 이동
+      var newCenter = markers[selectedMarket].getPosition();
+      naverMap.panTo(newCenter);
 
       setBeforeMarket(selectedMarket);
     }

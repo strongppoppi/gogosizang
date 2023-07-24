@@ -1,10 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-export default function EntireMap({
-  setNaverMap,
-  setMyCurrentLocation,
-}) {
+export default function EntireMap({ setNaverMap, setMyCurrentLocation }) {
   useEffect(() => {
     let mapRef = null;
     let myLocation = "";
@@ -22,16 +19,12 @@ export default function EntireMap({
 
         // Naver Map 생성
         mapRef = new naver.maps.Map("map", {
-          center: new naver.maps.LatLng(
-            currentPosition[0],
-            currentPosition[1]
-          ),
+          center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
           zoomControl: false,
           scaleControl: false,
           logoControl: false,
           mapDataControl: false,
         });
-
         setMyCurrentLocation(currentPosition);
         setNaverMap(mapRef);
       });
@@ -52,12 +45,9 @@ export default function EntireMap({
         logoControl: false,
         mapDataControl: false,
       });
-
       setNaverMap(mapRef);
     }
   }, [setNaverMap]);
 
-  return (
-    <div id="map" className="w-full h-full"></div>
-  );
+  return <div id="map" className="w-full h-full"></div>;
 }

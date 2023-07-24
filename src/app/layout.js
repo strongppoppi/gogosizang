@@ -28,9 +28,9 @@ export default function RootLayout({ children }) {
     if (isLoading) return;
   }, [isLoading]);
 
-  useEffect(() => {
-        windowHeight.current = window.innerHeight;
-    }, []);
+  // useEffect(() => {
+  //   windowHeight.current = window.innerHeight;
+  // }, []);
 
   return (
     <html lang="kr">
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (
-          <div className="flex flex-col" style={{ height: windowHeight.current }}>
+          <div className="flex flex-col h-[calc(100dvh)]">
             {children}
             <BottomTab />
           </div>

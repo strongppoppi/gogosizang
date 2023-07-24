@@ -1,20 +1,24 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export default function Drawer({ children }) {
     const [visibleHeight, setVisibleHeight] = useState(70);
     const [isDragging, setIsDragging] = useState(false);
     const dragRef = useRef(null);
     const startDragY = useRef(0);
-    const windowHeight = window.innerHeight;
+    const windowHeight = useRef(70);
+
+    useEffect(() => {
+        windowHeight.current = window.innerHeight;
+    }, []);
 
     // 클릭 시 드로어 열림/닫힘
     const handleClick = () => {
-        if (visibleHeight == windowHeight) {
+        if (visibleHeight == windowHeight.current) {
             changeHeight(70);
         } else if (visibleHeight == 70) {
-            changeHeight(windowHeight);
+            changeHeight(windowHeight.current);
         }
     }
 
@@ -27,15 +31,15 @@ export default function Drawer({ children }) {
     const handleMouseMove = (event) => {
         if (isDragging) {
             const offsetY = event.clientY - startDragY.current;
-            setVisibleHeight(Math.min(visibleHeight - offsetY, windowHeight));
+            setVisibleHeight(Math.min(visibleHeight - offsetY, windowHeight.current));
             startDragY.current = event.clientY;
         }
     };
 
     const handleMouseUp = () => {
         if (isDragging) {
-            if (visibleHeight > windowHeight / 2) {
-                changeHeight(windowHeight);
+            if (visibleHeight > windowHeight.current / 2) {
+                changeHeight(windowHeight.current);
             } else {
                 changeHeight(70);
             }
@@ -59,8 +63,8 @@ export default function Drawer({ children }) {
 
     const handleTouchEnd = () => {
         if (isDragging) {
-            if (visibleHeight > windowHeight / 2) {
-                changeHeight(windowHeight);
+            if (visibleHeight > windowHeight.current / 2) {
+                changeHeight(windowHeight.current);
             } else {
                 changeHeight(70);
             }

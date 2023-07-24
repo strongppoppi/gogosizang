@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { firebaseDatabase } from "../../../../firebase-config";
 import { ref, get } from "firebase/database";
 import Image from "next/image";
@@ -18,15 +18,19 @@ export default function MarketInfo({ marketKey }) {
 
     const apiDataRef = ref(firebaseDatabase, `market_api/${marketKey}`);
 
-    get(apiDataRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            setMarketApiData(snapshot.val());
-        } else {
-            console.log("No data available");
+    useEffect(() => {
+        if (!marketApiData) {
+            get(apiDataRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    setMarketApiData(snapshot.val());
+                } else {
+                    console.log("No data available");
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
         }
-    }).catch((error) => {
-        console.log(error);
-    });
+    }, []);
 
     // 파베에서 불러오거나 따로 구해야 하는 데이터
     var subwayLine = 0;

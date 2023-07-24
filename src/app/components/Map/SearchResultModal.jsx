@@ -52,7 +52,7 @@ export default function SearchResultModal({
   }, [searchTerm]);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full bg-white z-50">
+    <div className="absolute top-0 left-0 w-full h-full bg-white z-10">
       <div className="flex-col grow px-4">
         <div className="mt-6">
           <button className="mb-0.5" onClick={() => toggleSearchBar()}>

@@ -2,7 +2,13 @@
 import { useEffect } from "react";
 import EntireMarketMarker from "./EntireMarketMarker";
 
-export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, setSelectedMarket }) {
+export default function EntireMap({
+  naverMap,
+  setNaverMap,
+  markers,
+  setMarkers,
+  setSelectedMarket,
+}) {
   useEffect(() => {
     let mapRef = null;
     let myLocation = "";
@@ -39,14 +45,22 @@ export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, 
         zoomControl: true,
       });
       setNaverMap(mapRef);
+<<<<<<< Updated upstream
       console.log(mapRef);
+=======
+>>>>>>> Stashed changes
     }
   }, [setNaverMap]);
 
   return (
     <>
       <div id="map" className="w-full h-full"></div>
-      <EntireMarketMarker naverMap={naverMap} markers={markers} setMarkers={setMarkers} setSelectedMarket={setSelectedMarket} />
+      <EntireMarketMarker
+        naverMap={naverMap}
+        markers={markers}
+        setMarkers={setMarkers}
+        setSelectedMarket={setSelectedMarket}
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import "./globals.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import localFont from "next/font/local";
 import { usePathname } from "next/navigation";
@@ -22,10 +22,15 @@ export default function RootLayout({ children }) {
   const pathName = usePathname();
   const isHome = pathName === "/";
   const [isLoading, setIsLoading] = useState(isHome);
+  const windowHeight = useRef(0);
 
   useEffect(() => {
     if (isLoading) return;
   }, [isLoading]);
+
+  useEffect(() => {
+        windowHeight.current = window.innerHeight;
+    }, []);
 
   return (
     <html lang="kr">
@@ -39,7 +44,7 @@ export default function RootLayout({ children }) {
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col" style={{ height: windowHeight.current }}>
             {children}
             <BottomTab />
           </div>

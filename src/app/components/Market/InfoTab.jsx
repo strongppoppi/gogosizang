@@ -30,7 +30,7 @@ export default function InfoTab({ marketKey }) {
                         <ActiveTab onClick={onRightTabClick}>상점 정보</ActiveTab>
                     </>}
             </div>
-            <div className="w-full h-4 bg-white z-20 -mt-0.5 -mb-4" />
+            <div className="w-full h-4 bg-white z-50 -mt-0.5 -mb-4" />
             <div className="w-full h-auto bg-white pt-4" style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}>
                 {leftTab ?
                     <MarketTab marketKey={marketKey} /> :
@@ -45,7 +45,7 @@ function ActiveTab({ children, onClick }) {
     return (
         <div
             onClick={onClick}
-            className="h-11 grow rounded-t-2xl z-10 flex justify-center items-center bg-white text-lg font-medium text-black pt-1.5"
+            className="h-11 grow rounded-t-2xl z-40 flex justify-center items-center bg-white text-lg font-medium text-black pt-1.5"
             style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}>
             {children}
         </div>

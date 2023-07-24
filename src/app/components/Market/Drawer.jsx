@@ -95,11 +95,12 @@ export default function Drawer({ children }) {
             onMouseUp={handleMouseUp}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="w-screen h-screen"
+            className="w-screen z-30"
+            style={{ height: windowHeight.current }}
         >
             <div
                 ref={dragRef}
-                style={{ height: `${visibleHeight}px`, boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
+                style={{ height: visibleHeight, boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
                 className="absolute bottom-0 w-full rounded-t-3xl bg-white flex flex-col items-center overflow-hidden"
             >
                 <div onClick={handleClick}

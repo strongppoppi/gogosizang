@@ -95,7 +95,7 @@ export default function Drawer({ children }) {
             onMouseUp={handleMouseUp}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="w-screen z-30"
+            className="w-screen h-full absolute z-30"
             style={{ height: windowHeight.current }}
         >
             <div

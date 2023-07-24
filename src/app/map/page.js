@@ -44,31 +44,28 @@ export default function MapPage() {
 
   return (
     <div className="flex-col grow">
+      <EntireMap
+        setNaverMap={setNaverMap}
+        setMyCurrentLocation={setMyCurrentLocation}
+      />
+      {Object.entries(markers).length === 0 && (
+        <EntireMarketMarker
+          naverMap={naverMap}
+          markers={markers}
+          setMarkers={setMarkers}
+          setSelectedMarket={setSelectedMarket}
+        />
+      )}
+      <SearchBar
+        isSearchBarClicked={isSearchBarClicked}
+        toggleSearchBar={toggleSearchBar}
+      />
       {isSearchBarClicked ? (
         <SearchResultModal
           toggleSearchBar={toggleSearchBar}
           setSelectedMarket={setSelectedMarket}
         />
       ) : (
-        <>
-          <EntireMap
-            setNaverMap={setNaverMap}
-            setMyCurrentLocation={setMyCurrentLocation}
-          />
-          {Object.entries(markers).length === 0 && 
-            <EntireMarketMarker
-              naverMap={naverMap}
-              markers={markers}
-              setMarkers={setMarkers}
-              setSelectedMarket={setSelectedMarket}
-            />}
-        </>
-      )}
-      <SearchBar
-        isSearchBarClicked={isSearchBarClicked}
-        toggleSearchBar={toggleSearchBar}
-      />
-      {isSearchBarClicked ? null : (
         <div className="w-11/12 absolute bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col">
           <MarketModal marketKey={selectedMarket} />
           <div className="flex flex-row justify-between mt-4">

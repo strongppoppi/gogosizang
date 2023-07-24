@@ -13,7 +13,7 @@ export const Pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
 });
 
-export const metadata = {
+const metadata = {
   title: "시장가장",
   description: "Published by 최강맹수뽀삐",
 };

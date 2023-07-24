@@ -7,9 +7,24 @@ import icon from "/public/icons/search_grey.png";
 import backIcon from "/public/icons/backIcon.png";
 import pinIcon from "/public/icons/pinIcon-500.png";
 
-export default function SearchResultModal({ toggleSearchBar }) {
+export default function SearchResultModal({
+  toggleSearchBar,
+  setSelectedMarket,
+}) {
   const [searchTerm, setSearchTerm] = useState(""); // 검색값 변화 감지
   const [searchedData, setSearchedData] = useState([]); // 검색 결과 목록
+
+  const handleResultButton = async (name) => {
+    let targetKey;
+    for (const key in marketsLocation) {
+      if (marketsLocation[key].mrktNm === name) {
+        targetKey = key;
+        break;
+      }
+    }
+    await setSelectedMarket(targetKey);
+    toggleSearchBar();
+  };
 
   useEffect(() => {
     // 검색 결과 반환 함수
@@ -19,7 +34,9 @@ export default function SearchResultModal({ toggleSearchBar }) {
         return;
       }
 
-      const data = Object.values(marketsLocation).filter((item) => item.mrktNm.includes(searchTerm));
+      const data = Object.values(marketsLocation).filter((item) =>
+        item.mrktNm.includes(searchTerm)
+      );
 
       const newData = data.slice(0, 4);
 
@@ -52,30 +69,33 @@ export default function SearchResultModal({ toggleSearchBar }) {
       </h4>
       <div className="w-full flex flex-col justify-center items-center">
         {searchedData.slice(0, 4).map((item, index) => (
-          <div
-            key={item.key}
-            className="w-full flex flex-col px-2 py-3 border-b border-gray-200"
+          <button
+            className="w-full"
+            key={Object.keys(searchedData)[index]}
+            onClick={() => handleResultButton(item.mrktNm)}
           >
-            <div className="flex flex-row justify-between items-center mb-0.5">
-              <p className="text-gray-800 text-[1.1rem] font-medium tracking-tight">
-                {item.mrktNm}
-              </p>
-              <p className="text-gray-700 text-sm font-regular tracking-tight">
-                시장
-              </p>
-            </div>
-            <div className="flex flex-row justify-between items-center">
-              <div className="flex flex-row space-x-0.5">
-                <Image src={pinIcon} width={24} height={16} alt="핀 아이콘" />
-                <p className="text-gray-500 text-base font-regular tracking-tight whitespace-normal overflow-hidden line-clamp-1">
-                  {item.rdnmadr !== "" ? item.rdnmadr: item.lnmadr}
+            <div className="w-full flex flex-col px-2 py-3 border-b border-gray-200">
+              <div className="flex flex-row justify-between items-center mb-0.5">
+                <p className="text-gray-800 text-[1.1rem] font-medium tracking-tight">
+                  {item.mrktNm}
+                </p>
+                <p className="text-gray-700 text-sm font-regular tracking-tight">
+                  시장
                 </p>
               </div>
-              <p className="text-gray-700 text-sm font-regular tracking-tight">
-                11km
-              </p>
+              <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-row space-x-0.5">
+                  <Image src={pinIcon} width={24} height={16} alt="핀 아이콘" />
+                  <p className="text-gray-500 text-base font-regular tracking-tight whitespace-normal overflow-hidden line-clamp-1">
+                    {item.rdnmadr !== "" ? item.rdnmadr : item.lnmadr}
+                  </p>
+                </div>
+                <p className="text-gray-700 text-sm font-regular tracking-tight">
+                  11km
+                </p>
+              </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>

@@ -1,6 +1,9 @@
 "use client";
 import { useEffect } from "react";
+
 import EntireMarketMarker from "./EntireMarketMarker";
+
+import marketsLocation from "/public/data/markets.json";
 
 export default function EntireMap({
   naverMap,
@@ -9,6 +12,7 @@ export default function EntireMap({
   setMarkers,
   setSelectedMarket,
   setMyCurrentLocation,
+  selectedMarket,
 }) {
   useEffect(() => {
     let mapRef = null;
@@ -26,13 +30,29 @@ export default function EntireMap({
         let currentPosition = [myLocation.latitude, myLocation.longitude];
 
         // Naver Map 생성
-        mapRef = new naver.maps.Map("map", {
-          center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
-          zoomControl: false,
-          scaleControl: false,
-          logoControl: false,
-          mapDataControl: false,
-        });
+        if (selectedMarket) {
+          mapRef = new naver.maps.Map("map", {
+            center: new naver.maps.LatLng(
+              marketsLocation[selectedMarket].latitude,
+              marketsLocation[selectedMarket].longitude
+            ),
+            zoomControl: false,
+            scaleControl: false,
+            logoControl: false,
+            mapDataControl: false,
+          });
+        } else {
+          mapRef = new naver.maps.Map("map", {
+            center: new naver.maps.LatLng(
+              currentPosition[0],
+              currentPosition[1]
+            ),
+            zoomControl: false,
+            scaleControl: false,
+            logoControl: false,
+            mapDataControl: false,
+          });
+        }
         setMyCurrentLocation(currentPosition);
         setNaverMap(mapRef);
       });
@@ -46,13 +66,29 @@ export default function EntireMap({
       setMyCurrentLocation(currentPosition);
 
       // Naver Map 생성
-      mapRef = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
-        zoomControl: true,
-      });
+      if (selectedMarket) {
+        mapRef = new naver.maps.Map("map", {
+          center: new naver.maps.LatLng(
+            marketsLocation[selectedMarket].latitude,
+            marketsLocation[selectedMarket].longitude
+          ),
+          zoomControl: false,
+          scaleControl: false,
+          logoControl: false,
+          mapDataControl: false,
+        });
+      } else {
+        mapRef = new naver.maps.Map("map", {
+          center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
+          zoomControl: false,
+          scaleControl: false,
+          logoControl: false,
+          mapDataControl: false,
+        });
+      }
       setNaverMap(mapRef);
     }
-  }, [setNaverMap]);
+  }, [setNaverMap, selectedMarket]);
 
   return (
     <>

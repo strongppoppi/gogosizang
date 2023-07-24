@@ -44,13 +44,17 @@ export default function MapPage() {
   return (
     <div className="flex-col grow">
       {isSearchBarClicked ? (
-        <SearchResultModal toggleSearchBar={toggleSearchBar} />
+        <SearchResultModal
+          toggleSearchBar={toggleSearchBar}
+          setSelectedMarket={setSelectedMarket}
+        />
       ) : (
         <EntireMap
           naverMap={naverMap}
           setNaverMap={setNaverMap}
           markers={markers}
           setMarkers={setMarkers}
+          selectedMarket={selectedMarket}
           setSelectedMarket={setSelectedMarket}
           setMyCurrentLocation={setMyCurrentLocation}
         />

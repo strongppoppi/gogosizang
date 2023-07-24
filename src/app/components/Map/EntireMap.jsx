@@ -2,7 +2,14 @@
 import { useEffect } from "react";
 import EntireMarketMarker from "./EntireMarketMarker";
 
-export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, setSelectedMarket }) {
+export default function EntireMap({
+  naverMap,
+  setNaverMap,
+  markers,
+  setMarkers,
+  setSelectedMarket,
+  setMyCurrentLocation,
+}) {
   useEffect(() => {
     let mapRef = null;
     let myLocation = "";
@@ -22,9 +29,12 @@ export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, 
         mapRef = new naver.maps.Map("map", {
           center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
           zoomControl: false,
+          scaleControl: false,
+          logoControl: false,
+          mapDataControl: false,
         });
+        setMyCurrentLocation(currentPosition);
         setNaverMap(mapRef);
-        console.log(mapRef);
       });
     } else {
       window.alert("현재 위치를 알 수 없어 기본 위치로 지정합니다.");
@@ -33,20 +43,26 @@ export default function EntireMap({ naverMap, setNaverMap, markers, setMarkers, 
       // 현재 위치 추적
       let currentPosition = [myLocation.latitude, myLocation.longitude];
 
+      setMyCurrentLocation(currentPosition);
+
       // Naver Map 생성
       mapRef = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(currentPosition[0], currentPosition[1]),
         zoomControl: true,
       });
       setNaverMap(mapRef);
-      console.log(mapRef);
     }
   }, [setNaverMap]);
 
   return (
     <>
       <div id="map" className="w-full h-full"></div>
-      <EntireMarketMarker naverMap={naverMap} markers={markers} setMarkers={setMarkers} setSelectedMarket={setSelectedMarket} />
+      <EntireMarketMarker
+        naverMap={naverMap}
+        markers={markers}
+        setMarkers={setMarkers}
+        setSelectedMarket={setSelectedMarket}
+      />
     </>
   );
 }

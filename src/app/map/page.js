@@ -9,30 +9,29 @@ import SearchBar from "../components/Map/SearchBar";
 import SearchResultModal from "../components/Map/SearchResultModal";
 
 export default function MapPage() {
-  const [naverMap, setNaverMap] = useState(null);   //네이버 지도 instance(?)
-  const [markers, setMarkers] = useState({});     //현재 naverMap에 추가된 marker들
-  const [selectedMarket, setSelectedMarket] = useState(null);   //선택된 시장(마커)의 key(index)
+  const [naverMap, setNaverMap] = useState(null); //네이버 지도 instance(?)
+  const [markers, setMarkers] = useState({}); //현재 naverMap에 추가된 marker들
+  const [selectedMarket, setSelectedMarket] = useState(null); //선택된 시장(마커)의 key(index)
   const [beforeMarket, setBeforeMarket] = useState(null);
-  const [myCurrentLocation, setMyCurrentLocation] = useState({}); // 내 위치 정보 불러오기
+  const [myCurrentLocation, setMyCurrentLocation] = useState([]); // 내 위치 정보 불러오기
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
 
   // 선택한 마커 검은색으로
-  useEffect(()=> {
+  useEffect(() => {
     if (selectedMarket) {
-      
       if (beforeMarket) {
         markers[beforeMarket].setIcon({
-          url: 'icons/marker_main.png',
+          url: "icons/marker_main.png",
           size: new naver.maps.Size(42, 52),
           origin: new naver.maps.Point(0, 0),
         });
       }
 
       markers[selectedMarket].setIcon({
-          url: 'icons/marker_black.png',
-          size: new naver.maps.Size(42, 52),
-          origin: new naver.maps.Point(0, 0),
-        });
+        url: "icons/marker_black.png",
+        size: new naver.maps.Size(42, 52),
+        origin: new naver.maps.Point(0, 0),
+      });
 
       setBeforeMarket(selectedMarket);
     }
@@ -47,7 +46,14 @@ export default function MapPage() {
       {isSearchBarClicked ? (
         <SearchResultModal toggleSearchBar={toggleSearchBar} />
       ) : (
-        <EntireMap naverMap={naverMap} setNaverMap={setNaverMap} markers={markers} setMarkers={setMarkers} setSelectedMarket={setSelectedMarket}/>
+        <EntireMap
+          naverMap={naverMap}
+          setNaverMap={setNaverMap}
+          markers={markers}
+          setMarkers={setMarkers}
+          setSelectedMarket={setSelectedMarket}
+          setMyCurrentLocation={setMyCurrentLocation}
+        />
       )}
       <SearchBar
         isSearchBarClicked={isSearchBarClicked}
@@ -57,8 +63,16 @@ export default function MapPage() {
         <div className="w-11/12 absolute bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col">
           <MarketModal marketKey={selectedMarket} />
           <div className="flex flex-row justify-between mt-4">
-            <NearbyMarketBtn />
-            <MyLocationBtn />
+            <NearbyMarketBtn
+              naverMap={naverMap}
+              markers={markers}
+              myCurrentLocation={myCurrentLocation}
+              setSelectedMarket={setSelectedMarket}
+            />
+            <MyLocationBtn
+              naverMap={naverMap}
+              setMyCurrentLocation={setMyCurrentLocation}
+            />
           </div>
         </div>
       )}

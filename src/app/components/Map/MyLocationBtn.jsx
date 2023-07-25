@@ -28,7 +28,7 @@ export default function MyLocationBtn({ naverMap, setMyCurrentLocation }) {
   return (
     <button
       onClick={() => handleButton()}
-      className="w-12 h-12 rounded-lg shadow-md bg-white flex justify-center items-center"
+      className="w-12 h-12 rounded-lg shadow-md bg-white flex justify-center items-center absolute bottom-[110px] right-5"
     >
       <Image src={icon} width={24} height={24} alt="아이콘" />
     </button>

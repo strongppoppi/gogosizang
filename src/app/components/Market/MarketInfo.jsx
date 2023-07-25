@@ -70,16 +70,16 @@ export default function MarketInfo({ marketKey }) {
         <>
             {marketApiData ?
                 <div className="w-11/12">
-                    <h1 className="text-2xl font-bold text-black mb-3">{marketApiData.mrktNm}</h1>
+                    <h1 className="text-[25px] font-bold text-black mb-3">{marketApiData.mrktNm}</h1>
                     <div className="flex flex-row items-center mb-2">
                         <Image src={markerIcon} alt="아이콘" width={24} height={24} />
-                        <h4 className="text-base font-normal text-black ml-0.5">{marketApiData.rdnmadr}</h4>
+                        <h4 className="text-[15px] font-normal text-black ml-0.5">{marketApiData.rdnmadr}</h4>
                     </div>
                     <div className="flex flex-row items-center mb-5">
-                        <div className="rounded-full px-2 py-0.5 bg-main text-sm font-normal text-white ml-6">
+                        <div className="rounded-full px-2 py-0.5 bg-main text-[13px] font-normal text-white ml-6">
                             {`${subwayLine}호선`}
                         </div>
-                        <h4 className="text-sm font-normal text-gray-700 ml-1">{`${station}(으)로부터 ${stationsDistance}`}</h4>
+                        <h4 className="text-[13px] font-normal text-gray-700 ml-1">{`${station}(으)로부터 ${stationsDistance}`}</h4>
                     </div>
                     <div className="w-full h-14 mb-4 flex flex-row border-y border-solid border-gray-200">
                         {isValidURL(marketApiData.homepageUrl) ?
@@ -87,24 +87,24 @@ export default function MarketInfo({ marketKey }) {
                                 className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center py-1">
                                     <Image src={computerIcon} width={24} height={24} alt="아이콘" />
-                                    <h3 className="text-sm font-normal text-black">홈페이지</h3>
+                                    <h3 className="text-[13px] font-normal text-black">홈페이지</h3>
                                 </div>
                             </a> :
                             <div className="flex-1 flex flex-col justify-center items-center py-1" style={{ opacity: 0.5 }}>
                                 <Image src={computerIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-sm font-normal text-black">홈페이지</h3>
+                                <h3 className="text-13px] font-normal text-black">홈페이지</h3>
                             </div>}
                         <div className="w-px h-full bg-gray-200" />
                         {marketApiData.phoneNumber !== "" ?
                             <a href={`tel:${marketApiData.phoneNumber}`} className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center py-1">
                                     <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                                    <h3 className="text-sm font-normal text-black">전화</h3>
+                                    <h3 className="text-13px] font-normal text-black">전화</h3>
                                 </div>
                             </a> :
                             <div className="flex-1 flex flex-col justify-center items-center py-1" style={{ opacity: 0.5 }}>
                                 <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-sm font-normal text-black">전화</h3>
+                                <h3 className="text-13px] font-normal text-black">전화</h3>
                             </div>}
                     </div>
                     <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-3">
@@ -118,14 +118,14 @@ export default function MarketInfo({ marketKey }) {
                                 <Image src={chevronDown} width={24} height={24} alt="아이콘" />
                             }
                             {timeClicked &&
-                                <div className="absolute z-[60] bottom-0 transform -translate-x-[10px] translate-y-full flex flex-col items-center w-[120px] py-2 bg-white rounded-[10px] shadow text-[15px] text-black font-normal ">
-                                    <div>월 0:00 - 0:00</div>
-                                    <div>화 0:00 - 0:00</div>
-                                    <div>수 0:00 - 0:00</div>
-                                    <div>목 0:00 - 0:00</div>
-                                    <div>금 0:00 - 0:00</div>
-                                    <div>토 0:00 - 0:00</div>
-                                    <div>일 0:00 - 0:00</div>
+                                <div className="absolute z-[60] bottom-0 transform -translate-x-[10px] translate-y-full flex flex-col items-center w-max p-2 bg-white rounded-[10px] shadow text-[15px] text-black font-normal ">
+                                    <div>월 00:00 - 00:00</div>
+                                    <div>화 00:00 - 00:00</div>
+                                    <div>수 00:00 - 00:00</div>
+                                    <div>목 00:00 - 00:00</div>
+                                    <div>금 00:00 - 00:00</div>
+                                    <div>토 00:00 - 00:00</div>
+                                    <div>일 00:00 - 00:00</div>
                                 </div>}
                         </div>
                         <div className="grow" />

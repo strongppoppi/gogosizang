@@ -14,11 +14,11 @@ export default function StoreRanking() {
     ];
 
     return (
-        <div className="w-11/12 flex flex-col items-center">
-            <h1 className="w-full text-lg font-medium text-black mb-2">인기 상점 Top 10</h1>
+        <div className="w-11/12 flex flex-col items-center space-y-2">
+            <h1 className="w-full text-[17px] font-medium text-black mb-2">인기 상점 Top 10</h1>
             {rankingData.map((store, index) => <StoreItem key={index} num={index + 1} storeName={store["점포명"]} category={store["분류"]} />)}
             <div className="flex flex-row items-center">
-                <h1 className="text-sm font-normal text-gray-600">더보기</h1>
+                <h1 className="text-[15px] font-normal text-gray-600">더보기</h1>
                 <Image src={chevronDown} width={24} height={24} alt="아이콘" />
             </div>
         </div>
@@ -27,10 +27,10 @@ export default function StoreRanking() {
 
 function StoreItem({ num, storeName, category }) {
     return (
-        <div className="w-full h-12 rounded-lg bg-gray-100 flex flex-row items-center mb-2">
-            <h1 className="text-xl font-medium text-gray-500 ml-4">{num}</h1>
-            <h1 className="text-base font-normal text-black grow mx-5">{storeName}</h1>
-            <h1 className="text-sm font-normal text-gray-600 mr-4">{category}</h1>
+        <div className="w-full h-12 rounded-lg bg-gray-100 flex flex-row items-center">
+            <h1 className="text-[21px] font-medium text-gray-500 ml-4">{num}</h1>
+            <h1 className="text-[15px] font-normal text-black grow mx-5">{storeName}</h1>
+            <h1 className="text-[13px] font-normal text-gray-600 mr-4">{category}</h1>
         </div>
     )
 }

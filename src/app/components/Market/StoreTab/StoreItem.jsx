@@ -49,8 +49,8 @@ export default function StoreItem({ marketKey, storeKey }) {
             <div className="w-full flex flex-col justify-start items-center my-4">
                 <StoreImage marketKey={marketKey} storeKey={storeKey} />
                 <div className="w-11/12 flex flex-row justify-start items-center mb-2.5">
-                    <h3 className="text-xl font-medium text-black mr-2">{storeData["점포명"]}</h3>
-                    <h3 className="text-xs font-normal text-gray-600">{storeData["취급품목"]}</h3>
+                    <h3 className="text-[21px] font-medium text-black mr-2">{storeData["점포명"]}</h3>
+                    <h3 className="text-[13px] font-normal text-gray-600">{storeData["취급품목"]}</h3>
                 </div>
                 <div className="w-11/12 flex flex-row justify-start items-center">
                     <Tag>맛있어요</Tag>
@@ -63,7 +63,7 @@ export default function StoreItem({ marketKey, storeKey }) {
 
 function Tag({ children }) {
     return (
-        <div className="rounded px-2.5 py-1 mr-2 bg-gray-200 text-base font-normal text-black">
+        <div className="rounded px-2.5 py-1 mr-2 bg-gray-200 text-[15px] font-normal text-black">
             {children}
         </div>
     )

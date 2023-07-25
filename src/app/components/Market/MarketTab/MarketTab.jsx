@@ -1,12 +1,21 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import StoreRanking from "./StoreRanking";
 
 export default function MarketTab({ marketKey }) {
-    const windowHeight = window.innerHeight;
+  const windowHeight = useRef(0);
 
-    return (
-        <div className="w-full flex flex-col items-center" style={{ height: windowHeight - 96 }}>
-            <StoreRanking />
-        </div>
+  useEffect(() => {
+    windowHeight.current = window.innerHeight;
+  }, []);
 
-    )
+  return (
+    <div
+      className="w-full flex flex-col items-center"
+      style={{ height: windowHeight - 96 }}
+    >
+      <StoreRanking />
+    </div>
+  );
 }

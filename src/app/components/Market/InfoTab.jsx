@@ -45,7 +45,7 @@ function ActiveTab({ children, onClick }) {
     return (
         <div
             onClick={onClick}
-            className="h-11 grow rounded-t-2xl z-40 flex justify-center items-center bg-white text-lg font-medium text-black pt-1.5"
+            className="h-11 grow rounded-t-2xl z-40 flex justify-center items-center bg-white text-[17px] font-medium text-black pt-1.5"
             style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}>
             {children}
         </div>
@@ -57,7 +57,7 @@ function InactiveTab({ children, onClick }) {
     return (
         <div
             onClick={onClick}
-            className="h-11 grow rounded-t-2xl flex justify-center items-center bg-gray-200 text-lg font-medium text-gray-600 pt-1.5"
+            className="h-11 grow rounded-t-2xl flex justify-center items-center bg-gray-200 text-[17px] font-medium text-gray-600 pt-1.5"
             style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}>
             {children}
         </div>

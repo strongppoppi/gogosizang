@@ -18,7 +18,7 @@ export default function SearchBar({ isSearchBarClicked, toggleSearchBar }) {
             }}
           >
             <Image src={icon} width={24} height={24} alt="아이콘" />
-            <span className="text-base font-normal text-black ml-2">
+            <span className="text-[15px] font-normal text-gray-500 ml-2">
               시장명·지역으로 검색
             </span>
           </button>

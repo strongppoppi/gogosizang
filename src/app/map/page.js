@@ -72,10 +72,9 @@ export default function MapPage() {
           naverMap={naverMap}
         />
       ) : (
-        <div className="w-11/12 absolute bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col">
+        <>
           <MarketModal marketKey={selectedMarket} />
-          <div className="flex flex-row justify-between mt-4">
-            <NearbyMarketBtn
+          <NearbyMarketBtn
               naverMap={naverMap}
               markers={markers}
               myCurrentLocation={myCurrentLocation}
@@ -85,8 +84,7 @@ export default function MapPage() {
               naverMap={naverMap}
               setMyCurrentLocation={setMyCurrentLocation}
             />
-          </div>
-        </div>
+        </>
       )}
     </div>
   );

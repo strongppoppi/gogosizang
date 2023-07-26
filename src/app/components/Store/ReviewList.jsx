@@ -1,9 +1,29 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { firebaseDatabase } from "../../../../firebase-config";
+import { ref, get } from "firebase/database";
 
 import starIcon from "/public/icons/star.png";
 import ReviewItem from "./ReviewItem";
 
-export default function ReviewList() {
+export default function ReviewList({ marketKey, storeKey }) {
+    const [reviews, setReviews] = useState(null);
+
+    const reviewRef = ref(firebaseDatabase, `reviews/${marketKey}/${storeKey}`);
+
+    useEffect(() => {
+        if (!reviews) {
+            get(reviewRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    setReviews(snapshot.val());
+                } else {
+                    setReviews({});
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    }, []);
 
     const tags = ["😍 존맛탱", "💳 카드가능", "✨ 위생적", "💰 가성비"];
 
@@ -25,6 +45,7 @@ export default function ReviewList() {
                     </div>
                 ))}
             </div>
+            <ReviewItem />
             <ReviewItem />
         </div>
     )

@@ -13,11 +13,18 @@ export default function StoreRanking() {
         { "점포명": "갈현동할머니 떡볶이", "분류": "분식" },
     ];
 
+    const onMoreClick = () => {
+
+    };
+
     return (
-        <div className="w-11/12 flex flex-col items-center space-y-2">
+        <div className="w-11/12 flex flex-col items-center space-y-2  mb-10">
             <h1 className="w-full text-[17px] font-medium text-black mb-2">인기 상점 Top 10</h1>
             {rankingData.map((store, index) => <StoreItem key={index} num={index + 1} storeName={store["점포명"]} category={store["분류"]} />)}
-            <div className="flex flex-row items-center">
+            <div
+                onClick={onMoreClick}
+                className="w-full h-12 rounded-lg bg-white border border-gray-200 flex flex-row justify-center items-center"
+                style={{ boxShadow: '0px 3px 8px 0px rgba(143, 149, 162, 0.25)' }}>
                 <h1 className="text-[15px] font-normal text-gray-600">더보기</h1>
                 <Image src={chevronDown} width={24} height={24} alt="아이콘" />
             </div>

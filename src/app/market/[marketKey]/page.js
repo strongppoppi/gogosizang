@@ -39,7 +39,7 @@ export default function MarketPage({ params }) {
           <>
             <StoreImage marketKey={marketKey} storeKey={selectedStore}/>
             <StoreInfo marketKey={marketKey} storeKey={selectedStore}/>
-            <ReviewList />
+            <ReviewList marketKey={marketKey} storeKey={selectedStore}/>
           </> :
           <>
             <MarketImage marketKey={marketKey} />

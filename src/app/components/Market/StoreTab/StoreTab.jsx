@@ -55,7 +55,7 @@ export default function StoreTab({ marketKey }) {
 
 
     return (
-        <div className="w-full flex flex-col items-center" style={{ height: windowHeight - 96 }}>
+        <div className="w-full flex flex-col items-center" style={{ height: windowHeight - 111 }}>
             <div className="w-11/12 flex flex-row justify-start items-center pt-0.5 pb-2">
                 <h3 className="text-[17px] font-medium text-black mr-4">상품 종류</h3>
                 <div id="dropdown-container" className="relative">

@@ -47,6 +47,9 @@ export default function EntireMap({ setNaverMap, setMyCurrentLocation }) {
         scaleControl: false,
         logoControl: false,
         mapDataControl: false,
+        logoControlOptions: {
+          position: naver.maps.Position.TOP_LEFT,
+        },
       });
       setNaverMap(mapRef);
     }

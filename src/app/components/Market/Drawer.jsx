@@ -1,117 +1,38 @@
 "use client";
 
+import { set } from 'animejs';
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function Drawer({ children }) {
-    const [visibleHeight, setVisibleHeight] = useState(70);
-    const [isDragging, setIsDragging] = useState(false);
+    const [visibleHeight, setVisibleHeight] = useState(32);
+    const [isOpen, setIsOpen] = useState(false);
     const dragRef = useRef(null);
-    const startDragY = useRef(0);
-    const windowHeight = useRef(70);
+    const maxHeight = useRef(32);
 
     useEffect(() => {
-        windowHeight.current = window.innerHeight;
+        maxHeight.current = window.innerHeight - 15;
+
+        dragRef.current.style.transition = "height 0.3s ease";
     }, []);
 
     // 클릭 시 드로어 열림/닫힘
-    const handleClick = () => {
-        if (visibleHeight == windowHeight.current) {
-            changeHeight(70);
-        } else if (visibleHeight == 70) {
-            changeHeight(windowHeight.current);
-        }
-    }
-
-    // PC 클릭 핸들러
-    const handleMouseDown = (event) => {
-        setIsDragging(true);
-        startDragY.current = event.clientY;
-    };
-
-    const handleMouseMove = (event) => {
-        if (isDragging) {
-            const offsetY = event.clientY - startDragY.current;
-            setVisibleHeight(Math.min(visibleHeight - offsetY, windowHeight.current));
-            startDragY.current = event.clientY;
-        }
-    };
-
-    const handleMouseUp = () => {
-        if (isDragging) {
-            if (visibleHeight > windowHeight.current / 2) {
-                changeHeight(windowHeight.current);
-            } else {
-                changeHeight(70);
-            }
-        }
-        setIsDragging(false);
-    };
-
-    // 모바일 터치 핸들러
-    const handleTouchStart = (event) => {
-        setIsDragging(true);
-        startDragY.current = event.touches[0].clientY;
-    };
-
-    const handleTouchMove = (event) => {
-        if (isDragging) {
-            const offsetY = event.touches[0].clientY - startDragY.current;
-            setVisibleHeight(visibleHeight - offsetY);
-            startDragY.current = event.touches[0].clientY;
-        }
-    };
-
-    const handleTouchEnd = () => {
-        if (isDragging) {
-            if (visibleHeight > windowHeight.current / 2) {
-                changeHeight(windowHeight.current);
-            } else {
-                changeHeight(70);
-            }
-        }
-        setIsDragging(false);
-    };
-
-    // 드로어에 애니메이션 효과 적용
-    const changeHeight = (height) => {
-        // 애니메이션 효과를 추가하기 위해 transition 속성 추가
-        dragRef.current.style.transition = "height 0.3s ease";
-
-        const intervalId = setInterval(() => {
-            setVisibleHeight(height);
-        }, 20);
-
-        setTimeout(() => {
-            clearInterval(intervalId);
-            // 애니메이션 종료 후에 다시 transition 속성 추가
-            dragRef.current.style.transition = "";
-        }, 300);
-    }
+    const handleClick = () => setIsOpen(!isOpen);
 
 
     return (
         <div
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            className="w-screen h-full absolute z-30"
+            ref={dragRef}
+            style={{ height: isOpen ? maxHeight.current : 32, boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
+            className="absolute z-10 bottom-0 w-full rounded-t-3xl bg-white flex flex-col items-center overflow-visible"
         >
             <div
-                ref={dragRef}
-                style={{ height: visibleHeight, boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
-                className="absolute bottom-0 w-full rounded-t-3xl bg-white flex flex-col items-center overflow-hidden"
+                onClick={handleClick}
+                className="w-full h-8 flex justify-center"
             >
-                <div onClick={handleClick}
-                    onMouseDown={handleMouseDown}
-                    onTouchStart={handleTouchStart}
-                    className="w-full h-8 flex justify-center"
-                >
-                    <div className="w-24 h-1 rounded-full bg-gray-200 mt-2 mb-7" />
-                </div>
-                <div className='w-full flex flex-col justify-start items-center overflow-y-scroll'>
-                    {children}
-                </div>
+                <div className="w-24 h-1 rounded-full bg-gray-200 mt-2 mb-7" />
+            </div>
+            <div className='w-full flex flex-col justify-start items-center overflow-y-scroll'>
+                {children}
             </div>
         </div>
     );

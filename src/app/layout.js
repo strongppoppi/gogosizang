@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
   const pathName = usePathname();
   const isHome = pathName === "/";
   const [isLoading, setIsLoading] = useState(isHome);
+  const showBottomTab = !pathName.startsWith("/market");
   const windowHeight = useRef(0);
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function RootLayout({ children }) {
             style={{ height: windowHeight.current }}
           >
             {children}
-            <BottomTab />
+            {showBottomTab && <BottomTab />}
           </div>
         )}
       </body>

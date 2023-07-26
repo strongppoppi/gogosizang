@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import anime from "animejs";
 
-import logo from "/public/brand/logo.png";
+import splash from "/public/brand/splash.png";
 
 export default function SplashScreen({ finishLoading }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -14,21 +14,13 @@ export default function SplashScreen({ finishLoading }) {
       complete: () => finishLoading(),
     });
 
-    loader
-      .add({
-        targets: "#logo",
-        delay: 0,
-        scale: 1,
-        duration: 500,
-        easing: "easeInOutExpo",
-      })
-      .add({
-        targets: "#logo",
-        delay: 0,
-        scale: 1.15,
-        duration: 500,
-        easing: "easeInOutExpo",
-      });
+    loader.add({
+      targets: "#logo",
+      delay: 0,
+      scale: 1,
+      duration: 1500,
+      easing: "easeInOutExpo",
+    });
   };
 
   useEffect(() => {
@@ -39,7 +31,13 @@ export default function SplashScreen({ finishLoading }) {
 
   return (
     <div className="flex flex-col h-screen justify-center items-center bg-main">
-      <Image src={logo} width={`100%`} height={`100%`} alt="로고" id="logo" />
+      <Image
+        src={splash}
+        width={`100%`}
+        height={`100%`}
+        alt="스플래시"
+        id="splash"
+      />
     </div>
   );
 }

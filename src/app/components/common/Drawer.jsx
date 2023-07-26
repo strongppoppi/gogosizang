@@ -1,11 +1,9 @@
 "use client";
 
-import { set } from 'animejs';
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function Drawer({ children }) {
-    const [visibleHeight, setVisibleHeight] = useState(32);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const dragRef = useRef(null);
     const maxHeight = useRef(32);
 

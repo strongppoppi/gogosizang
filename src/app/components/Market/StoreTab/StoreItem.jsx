@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import { firebaseDatabase, firebaseStorage } from "../../../../../firebase-config";
+import { firebaseDatabase } from "../../../../../firebase-config";
 import { ref, get } from "firebase/database";
 
-
-import Image from "next/image";
-
-import defaultImage from "public/images/defaultImage.png";
-import arrowIcon from "public/icons/curved_arrow_white.png";
 import StoreImage from "./StoreImage";
+import Link from "next/link";
 
-export default function StoreItem({ marketKey, storeKey }) {
+export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     const [storeData, setStoreData] = useState(null);
 
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
@@ -46,7 +42,9 @@ export default function StoreItem({ marketKey, storeKey }) {
 
     return (
         storeData ?
-            <div className="w-full flex flex-col justify-start items-center my-4">
+            <div
+                onClick={() => setSelectedStore(storeKey)}
+                className="w-full flex flex-col justify-start items-center my-4">
                 <StoreImage marketKey={marketKey} storeKey={storeKey} />
                 <div className="w-11/12 flex flex-row justify-start items-center mb-2.5">
                     <h3 className="text-[21px] font-medium text-black mr-2">{storeData["점포명"]}</h3>
@@ -56,7 +54,8 @@ export default function StoreItem({ marketKey, storeKey }) {
                     <Tag>맛있어요</Tag>
                     <Tag>가성비 좋아요</Tag>
                 </div>
-            </div > :
+            </div >
+            :
             skeleton
     );
 }

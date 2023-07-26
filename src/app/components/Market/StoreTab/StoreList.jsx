@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import StoreItem from "./StoreItem";
 
-export default function StoreList({ marketKey, storeKeys }) {
+export default function StoreList({ marketKey, storeKeys, setSelectedStore }) {
     const [items, setItems] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function StoreList({ marketKey, storeKeys }) {
             for (let i = items.length; i < Math.min(items.length + itemsPerLoad, storeKeys.length); i++) {
                 newItems.push(<div key={i} className='w-full flex flex-col items-center'>
                     {i !== 0 && <Line />}
-                    <StoreItem marketKey={marketKey} storeKey={storeKeys[i]} />
+                    <StoreItem marketKey={marketKey} storeKey={storeKeys[i]} setSelectedStore={setSelectedStore} />
                 </div>)
             }
             setItems(newItems);

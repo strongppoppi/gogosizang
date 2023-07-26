@@ -10,7 +10,7 @@ import chevronDown from "/public/icons/chevron_down_small.svg";
 import chevronUp from "/public/icons/chevron_up.svg";
 import Image from "next/image";
 
-export default function StoreTab({ marketKey }) {
+export default function StoreTab({ marketKey, setSelectedStore }) {
     const [stores, setStores] = useState(null);   // 목록에 표시될 상점들의 key 
     const [category, setCategory] = useState("전체 상품");
     const [dropdown, setDropdown] = useState(false);
@@ -86,7 +86,7 @@ export default function StoreTab({ marketKey }) {
             </div>
             {stores ?
                 stores.length > 0 ?
-                    <StoreList marketKey={marketKey} storeKeys={stores} /> :
+                    <StoreList marketKey={marketKey} storeKeys={stores} setSelectedStore={setSelectedStore} /> :
                     <div>상점 정보 없음</div>
                 :
                 <div>Loading {stores}</div>

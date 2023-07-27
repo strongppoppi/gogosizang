@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import StoreRanking from "./StoreRanking";
+import MarketContents from "./MarketContents";
 
 export default function MarketTab({ marketKey }) {
   const windowHeight = useRef(0);
@@ -16,6 +17,7 @@ export default function MarketTab({ marketKey }) {
       style={{ height: windowHeight - 96 }}
     >
       <StoreRanking />
+      <MarketContents />
     </div>
   );
 }

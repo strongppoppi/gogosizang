@@ -6,6 +6,11 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    extend: {
+      height: {
+        "screen": "100dvh",
+      }
+    },
     colors: {
       'white': '#ffffff',
       'gray': {
@@ -19,6 +24,7 @@ module.exports = {
         800: '#1B1F26',
       },
       'main': '#FF7455',
+      'sub': '#EBFF95',
       'positive': '#5DC08C',
       'yellow': '#ffD43D',
       'black': '#111213',

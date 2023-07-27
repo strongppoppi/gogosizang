@@ -113,9 +113,9 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                         <div
                             key={index}
                             onClick={() => onTagClick(content[1])}
-                            className={`w-max pl-2 pr-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-gray-200" : "bg-white"} border border-black mr-2 flex-none flex flex-row items-center`}>
+                            className={`w-max pl-2 pr-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-main border-main text-white" : "bg-white border-black text-black"} border mr-2 flex-none flex flex-row items-center`}>
                             <Image src={content[0]} width={20} height={20} alt="아이콘" />
-                            <h3 className="text-[15px] font-normal text-black ml-1">{content[1]}</h3>
+                            <h3 className="text-[15px] font-normal ml-1">{content[1]}</h3>
                         </div>
                     ))}
                 </div>

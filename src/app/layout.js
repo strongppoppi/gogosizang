@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
   const pathName = usePathname();
   const isHome = pathName === "/";
   const [isLoading, setIsLoading] = useState(isHome);
-  const showBottomTab = !pathName.startsWith("/market");
+  const showBottomTab = !pathName.startsWith("/market") && !pathName.startsWith("/editor");
   const windowHeight = useRef(0);
 
   useEffect(() => {

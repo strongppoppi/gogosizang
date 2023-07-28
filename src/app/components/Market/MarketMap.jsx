@@ -21,7 +21,7 @@ export default function MarketMap({ setNaverMap, marketKey }) {
             position: new naver.maps.LatLng(markets[marketKey].latitude, markets[marketKey].longitude),
             map: mapRef,
             icon: {
-                url: 'icons/marker_main.png',
+                url: '/icons/marker_main.png',
                 size: new naver.maps.Size(42, 52),
                 origin: new naver.maps.Point(0, 0),
             }

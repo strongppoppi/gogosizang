@@ -39,7 +39,7 @@ export default function SplashScreen({ finishLoading }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-main relative">
+    <div className="flex flex-col h-screen bg-main relative overflow-hidden">
       <div className="w-full flex flex-col items-center absolute top-[20%]">
         <h1 className="text-[17px] font-medium text-white">전통시장이 핫플이 되는 매직!</h1>
         <Image src={logo} width={`100%`} height={`100%`} alt="로고" id="logo" className="mb-[470px]" />

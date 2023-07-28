@@ -16,7 +16,7 @@ export default function MapPage() {
   const [beforeMarket, setBeforeMarket] = useState(null);
   const [myCurrentLocation, setMyCurrentLocation] = useState([]); // 내 위치 정보 불러오기
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
-
+  
   useEffect(() => {
     if (selectedMarket && selectedMarket != beforeMarket) {
 

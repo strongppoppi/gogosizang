@@ -9,7 +9,7 @@ import defaultImage from "/public/images/defaultImage.png";
 import arrowIcon from "public/icons/curved_arrow_white.png";
 
 
-export default function StoreImage({ marketKey, storeKey }) {
+export default function StoreImage({ marketKey, storeKey, setSelectedStore }) {
     const [image, setImage] = useState(null);
 
     const imageRef = ref(firebaseStorage, `stores/${marketKey}/${storeKey}`);
@@ -52,7 +52,7 @@ export default function StoreImage({ marketKey, storeKey }) {
                     className="object-cover"
                     alt="상점 이미지" />
                 <div className="w-11 h-11 rounded-lg bg-main absolute right-2.5 bottom-2.5 flex justify-center items-center">
-                    <Image src={arrowIcon} width={24} height={24} alt="아이콘" />
+                    <Image src={arrowIcon} width={24} height={24} alt="아이콘" onClick={() => setSelectedStore(storeKey)} />
                 </div>
             </div> :
             skeleton

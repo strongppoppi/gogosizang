@@ -62,7 +62,7 @@ export default function SearchResultModal({
         <div className="p-3 rounded-lg shadow-md flex flex-row justify-start items-center bg-white mb-4">
           <Image src={icon} width={24} height={24} alt="아이콘" />
           <input
-            className="text-base font-normal text-black ml-2 w-full"
+            className="text-[15px] font-normal text-black placeholder:text-gray-500 focus:outline-none ml-2 w-full"
             placeholder="시장명·지역으로 검색"
             type="text"
             value={searchTerm}

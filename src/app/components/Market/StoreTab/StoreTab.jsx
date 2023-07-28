@@ -89,7 +89,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
             get(storeNumberRef).then((snapshot) => {
                 if (snapshot.exists()) {
                     var storeNumber = snapshot.val();
-                    var fullKeys = Array.from({ length: storeNumber }, (_, index) => index + 1);
+                    var fullKeys = Array.from({ length: storeNumber }, (_, index) => index + 1);    // 수정
                     setStores(fullKeys);
                     allStores.current = fullKeys;
                 } else {
@@ -108,7 +108,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
         <div className="w-full flex flex-col items-center" style={{ height: windowHeight - 111 }}>
             <div className="w-11/12 flex flex-row justify-start items-center pt-0.5 pb-2">
                 <h3 className="w-max text-[17px] font-medium text-black mr-3 break-keep whitespace-nowrap">상품 종류</h3>
-                <div id="tag-container" className="flex flex-row flex-nowrap whitespace-nowrap overflow-x-scroll">
+                <div id="tag-container" className="flex flex-row flex-nowrap whitespace-nowrap overflow-x-scroll scroll-px-px scroll-pb-px" style={{ scrollbarWidth: 'thin' }}>
                     {tags.map((content, index) => (
                         <div
                             key={index}

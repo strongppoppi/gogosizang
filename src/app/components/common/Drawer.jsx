@@ -13,6 +13,10 @@ export default function Drawer({ children }) {
         dragRef.current.style.transition = "height 0.3s ease";
     }, []);
 
+    useEffect(() => {
+        setIsOpen(false);
+    }, [children]);
+
     // 클릭 시 드로어 열림/닫힘
     const handleClick = () => setIsOpen(!isOpen);
 

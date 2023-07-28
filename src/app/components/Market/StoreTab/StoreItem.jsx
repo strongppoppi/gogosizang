@@ -43,9 +43,8 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     return (
         storeData ?
             <div
-                onClick={() => setSelectedStore(storeKey)}
                 className="w-full flex flex-col justify-start items-center my-4">
-                <StoreImage marketKey={marketKey} storeKey={storeKey} />
+                <StoreImage marketKey={marketKey} storeKey={storeKey} setSelectedStore={setSelectedStore} />
                 <div className="w-11/12 flex flex-row justify-start items-center mb-2.5">
                     <h3 className="text-[21px] font-medium text-black mr-2">{storeData["점포명"]}</h3>
                     <h3 className="text-[13px] font-normal text-gray-600">{storeData["취급품목"]}</h3>

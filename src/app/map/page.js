@@ -9,6 +9,8 @@ import NearbyMarketBtn from "../components/Map/NearbyMarketBtn";
 import SearchBar from "../components/Map/SearchBar";
 import SearchResultModal from "../components/Map/SearchResultModal";
 
+import yeongcheonData from "/public/data/영천시장.json";
+
 export default function MapPage() {
   const [naverMap, setNaverMap] = useState(null); //네이버 지도 instance(?)
   const [markers, setMarkers] = useState({}); //현재 naverMap에 추가된 marker들
@@ -16,6 +18,30 @@ export default function MapPage() {
   const [beforeMarket, setBeforeMarket] = useState(null);
   const [myCurrentLocation, setMyCurrentLocation] = useState([]); // 내 위치 정보 불러오기
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
+
+  //영천시장.json 데이터 수정용 코드
+  // useEffect(() => {
+  //   var newData = [];
+  //   yeongcheonData.forEach(store => {
+  //     newData.push({
+  //       "연번": store["연번"],
+  //       "건물번호": store["건물번호"],
+  //       "주소": store["주소"],
+  //       "점포명": store["점포명"],
+  //       "대표자": store["대표자"],
+  //       "사업자등록번호": store["사업자등록번호"],
+  //       "연락처": store["연락처"],
+  //       "온누리": store["온누리"],
+  //       "제로페이가맹": store["제로페이가맹"],
+  //       "쿠팡가입점포": store["쿠팡가입점포"],
+  //       "놀장가입점포": store["놀장가입점포"],
+  //       "판매상품": store["판매상품"],
+  //       "취급품목": store["취급품목"],
+  //       "분류": store["분류"]
+  //     })
+  //   });
+  //   //console.log(newData);
+  // });
 
   useEffect(() => {
     if (selectedMarket && selectedMarket != beforeMarket) {

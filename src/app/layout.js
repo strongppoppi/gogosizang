@@ -46,8 +46,7 @@ export default function RootLayout({ children }) {
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (
           <div
-            className="flex flex-col"
-            style={{ height: windowHeight.current }}
+            className="flex flex-col h-screen"
           >
             {children}
             {showBottomTab && <BottomTab />}

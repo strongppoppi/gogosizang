@@ -5,11 +5,8 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function Drawer({ children }) {
     const [isOpen, setIsOpen] = useState(true);
     const dragRef = useRef(null);
-    const maxHeight = useRef(32);
 
     useEffect(() => {
-        maxHeight.current = window.innerHeight - 15;
-
         dragRef.current.style.transition = "height 0.3s ease";
     }, []);
 
@@ -20,12 +17,11 @@ export default function Drawer({ children }) {
     // 클릭 시 드로어 열림/닫힘
     const handleClick = () => setIsOpen(!isOpen);
 
-
     return (
         <div
             ref={dragRef}
-            style={{ height: isOpen ? maxHeight.current : 32, boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
-            className="absolute z-10 bottom-0 w-full rounded-t-3xl bg-white flex flex-col items-center overflow-visible"
+            style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}
+            className={`${isOpen ? "h-[calc(100dvh-15px)]" : "h-[32px]"} absolute z-10 bottom-0 w-full rounded-t-3xl bg-white flex flex-col items-center overflow-visible`}
         >
             <div
                 onClick={handleClick}

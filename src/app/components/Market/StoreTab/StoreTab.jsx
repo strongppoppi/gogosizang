@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { firebaseDatabase } from "../../../../../firebase-config";
-import { ref, get } from "firebase/database";
+import { ref, get, onValue } from "firebase/database";
 
 import StoreList from "./StoreList";
 
@@ -31,9 +31,8 @@ import riceIcon from "public/icons/rice.png";
 
 export default function StoreTab({ marketKey, setSelectedStore }) {
     const [stores, setStores] = useState(null);   // 목록에 표시될 상점들의 key 
-    const [category, setCategory] = useState("");
-    const windowHeight = window.innerHeight;
-    const allStores = useRef([]);
+    const [category, setCategory] = useState("전체");
+    const [categoryList, setCategoryList] = useState(null);     // { 분류: [상점키1, 상점키2, ...] }
 
     const tags = [
         [meatIcon, "고기"],
@@ -57,55 +56,65 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
         [tteokbokkiIcon, "분식"],
         [blanketIcon, "이불"],
         [riceIcon, "잡곡"],
+        [null, "기타"]
     ]
 
-    const storeNumberRef = ref(firebaseDatabase, `stores/${marketKey}/storeNumber`);
+    const categoryRef = ref(firebaseDatabase, `stores/${marketKey}/category`);
 
-    const handleDropdownClick = (item) => {
-        console.log(item, "필터링");
-        setCategory(item);
-        setDropdown(false);
-    };
+    useEffect(() => {
+        if (!categoryList) {
+            // get(categoryRef).then((snapshot) => {
+            //     if (snapshot.exists()) {
+            //         var categories = snapshot.val();
+            //         setStores(Object.values(categories["전체"]));
+            //         setCategoryList(categories);
+            //     } else {
+            //         console.log("카테고리 정보 없음");
+            //         setStores([]);
+            //     }
+            // }).catch((error) => {
+            //     console.log(error);
+            //     setStores([]);
+            // });
+
+            onValue(categoryRef,
+                (snapshot) => {
+                    if (snapshot.exists()) {
+                        var categories = snapshot.val();
+                        setStores(Object.values(categories["전체"]));
+                        setCategoryList(categories);
+                    } else {
+                        console.log("카테고리 정보 없음");
+                        setStores([]);
+                    }
+                },
+                { onlyOnce: true },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        }
+    }, []);
 
     const onTagClick = (name) => {
         if (category === name) {
-            setCategory("");
+            setCategory("전체");
         } else {
             setCategory(name);
         }
     }
 
     useEffect(() => {
-        if (category === "") {
-            setStores(allStores.current);
-        } else {
-            // 필터링
-            setStores([]);
+        if (categoryList) {
+            console.log("분류:", category, categoryList[category]);
+            var newStores = [...Object.values(categoryList[category])];
+            setStores(newStores);
         }
     }, [category]);
 
-    useEffect(() => {
-        if (!stores) {
-            get(storeNumberRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    var storeNumber = snapshot.val();
-                    var fullKeys = Array.from({ length: storeNumber }, (_, index) => index + 1);    // 수정
-                    setStores(fullKeys);
-                    allStores.current = fullKeys;
-                } else {
-                    console.log("상점 정보 없음");
-                    setStores([]);
-                }
-            }).catch((error) => {
-                console.log(error);
-                setStores([]);
-            });
-        }
-    }, []);
-
 
     return (
-        <div className="w-full flex flex-col items-center" style={{ height: windowHeight - 111 }}>
+        <div className="w-full flex flex-col items-center h-[calc(100vh-111px)]">
             <div className="w-11/12 flex flex-row justify-start items-center pt-0.5 pb-2">
                 <h3 className="w-max text-[17px] font-medium text-black mr-3 break-keep whitespace-nowrap">상품 종류</h3>
                 <div id="tag-container" className="flex flex-row flex-nowrap whitespace-nowrap overflow-x-scroll scroll-px-px scroll-pb-px" style={{ scrollbarWidth: 'thin' }}>
@@ -113,8 +122,8 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                         <div
                             key={index}
                             onClick={() => onTagClick(content[1])}
-                            className={`w-max pl-2 pr-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-main border-main text-white" : "bg-white border-black text-black"} border mr-2 flex-none flex flex-row items-center`}>
-                            <Image src={content[0]} width={20} height={20} alt="아이콘" />
+                            className={`w-max px-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-main border-main text-white" : "bg-white border-black text-black"} border mr-2 flex-none flex flex-row items-center`}>
+                            {content[0] && <Image src={content[0]} width={20} height={20} alt="아이콘" />}
                             <h3 className="text-[15px] font-normal ml-1">{content[1]}</h3>
                         </div>
                     ))}
@@ -125,7 +134,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                     <StoreList marketKey={marketKey} storeKeys={stores} setSelectedStore={setSelectedStore} /> :
                     <div>상점 정보 없음</div>
                 :
-                <div>Loading {stores}</div>
+                <div>Loading</div>
             }
         </div>
 

@@ -8,6 +8,7 @@ export default function StoreList({ marketKey, storeKeys, setSelectedStore }) {
     const [items, setItems] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [isInitializing, setIsInitializing] = useState(false);
     const itemsPerLoad = 10;
     const scrollRef = useRef(null);
 
@@ -27,21 +28,27 @@ export default function StoreList({ marketKey, storeKeys, setSelectedStore }) {
         }
     };
 
-    const handleScroll = () => {
-        if (scrollRef.current) {
-            const { clientHeight, scrollHeight, scrollTop } = scrollRef.current;
-            if (clientHeight + scrollTop + 1 >= scrollHeight) {
-                if (loadMore) setIsLoading(true);
-            }
-        }
-    };
-
     useEffect(() => {
         if (loadMore) loadItems();
+
+        const handleScroll = () => {
+            if (scrollRef.current) {
+                const { clientHeight, scrollHeight, scrollTop } = scrollRef.current;
+                if (clientHeight + scrollTop + 1 >= scrollHeight) {
+                    if (loadMore) setIsLoading(true);
+                }
+            }
+        };
 
         if (scrollRef.current) {
             scrollRef.current.addEventListener('scroll', handleScroll);
         }
+
+        return () => {
+            if (scrollRef.current) {
+                scrollRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -50,6 +57,20 @@ export default function StoreList({ marketKey, storeKeys, setSelectedStore }) {
             setIsLoading(false);
         }
     }, [isLoading]);
+
+    useEffect(() => {
+        if (items.length > 0) setIsInitializing(true);
+    }, [storeKeys]);
+
+    useEffect(() => {
+        if (isInitializing) {
+            setItems([]);
+            setLoadMore(true);
+            loadItems();
+            setIsInitializing(false);
+            console.log("isInitializing -", items, loadMore, isInitializing);
+        }
+    }, [isInitializing]);
 
 
     return (

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { firebaseDatabase } from "../../../../../firebase-config";
-import { ref, get } from "firebase/database";
+import { ref, get, onValue } from "firebase/database";
 
 import StoreImage from "./StoreImage";
-import Link from "next/link";
 
 export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     const [storeData, setStoreData] = useState(null);
@@ -11,19 +10,32 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
 
     useEffect(() => {
-        // database
         if (!storeData) {
-            get(storeRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    setStoreData(snapshot.val());
-                } else {
-                    console.log("No data available");
+            // get(storeRef).then((snapshot) => {
+            //     if (snapshot.exists()) {
+            //         setStoreData(snapshot.val());
+            //     } else {
+            //         console.log("No data available");
+            //     }
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+
+            onValue(storeRef,
+                (snapshot) => {
+                    if (snapshot.exists()) {
+                        setStoreData(snapshot.val());
+                    } else {
+                        console.log("No data available");
+                    }
+                },
+                { onlyOnce: true },
+                (error) => {
+                    console.log(error);
                 }
-            }).catch((error) => {
-                console.log(error);
-            });
+            );
         }
-    }, []);
+    }, [storeKey, storeRef]);
 
     var skeleton = (
         <div className="w-full flex flex-col justify-start items-center my-4 animate-pulse">

@@ -12,10 +12,12 @@ import InfoTab from "@/app/components/Market/InfoTab";
 import StoreImage from "@/app/components/Store/StoreImage";
 import StoreInfo from "@/app/components/Store/StoreInfo";
 import ReviewList from "@/app/components/Store/ReviewList";
+import PostReview from "@/app/components/Store/PostReview";
 
 import backIcon from "public/icons/arrow_left_black.png";
 import cancelIcon from "public/icons/x_black.png";
 import locationIcon from "public/icons/gps_white.png";
+
 
 
 
@@ -40,6 +42,7 @@ export default function MarketPage({ params }) {
             <StoreImage marketKey={marketKey} storeKey={selectedStore}/>
             <StoreInfo marketKey={marketKey} storeKey={selectedStore}/>
             <ReviewList marketKey={marketKey} storeKey={selectedStore}/>
+            <PostReview marketKey={marketKey} storeKey={selectedStore}/>
           </> :
           <>
             <MarketImage marketKey={marketKey} />

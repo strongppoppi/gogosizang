@@ -86,7 +86,7 @@ export default function StoreInfo({ marketKey, storeKey }) {
                                 <h3 className="text-13px] font-normal text-black">전화</h3>
                             </div>}
                     </div>
-                    <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-6">
+                    <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-4">
                         <Image src={giftcardIcon} width={24} height={24} alt="아이콘" />
                         <h3 className="text-[15px] font-normal text-black ml-2.5">상품권</h3>
                         <div className="w-px h-6 bg-gray-400 mx-3" />

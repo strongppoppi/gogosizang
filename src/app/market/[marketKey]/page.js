@@ -12,11 +12,12 @@ import InfoTab from "@/app/components/Market/InfoTab";
 import StoreImage from "@/app/components/Store/StoreImage";
 import StoreInfo from "@/app/components/Store/StoreInfo";
 import ReviewList from "@/app/components/Store/ReviewList";
-import PostReview from "@/app/components/Store/PostReview";
 
 import backIcon from "public/icons/arrow_left_black.png";
 import cancelIcon from "public/icons/x_black.png";
 import locationIcon from "public/icons/gps_white.png";
+import ReviewModal from "@/app/components/Store/ReviewModal";
+import ReviewPrompt from "@/app/components/Store/ReviewPrompt";
 
 
 
@@ -25,6 +26,7 @@ export default function MarketPage({ params }) {
   var marketKey = params.marketKey;
   const [naverMap, setNaverMap] = useState(null);
   const [selectedStore, setSelectedStore] = useState(null);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   useEffect(() => {
     // 상점 선택 시 마커 색상 변경 & 지도 위치 이동
@@ -36,13 +38,14 @@ export default function MarketPage({ params }) {
 
   return (
     <div className="h-full flex-col grow relative overflow-y-scroll">
+      {showReviewModal && <ReviewModal marketKey={marketKey} storeKey={selectedStore} setShowReviewModal={setShowReviewModal}/>}
       <Drawer>
         {selectedStore ? 
           <>
             <StoreImage marketKey={marketKey} storeKey={selectedStore}/>
             <StoreInfo marketKey={marketKey} storeKey={selectedStore}/>
+            <ReviewPrompt setShowReviewModal={setShowReviewModal}/>
             <ReviewList marketKey={marketKey} storeKey={selectedStore}/>
-            <PostReview marketKey={marketKey} storeKey={selectedStore}/>
           </> :
           <>
             <MarketImage marketKey={marketKey} />

@@ -81,7 +81,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                 (snapshot) => {
                     if (snapshot.exists()) {
                         var categories = snapshot.val();
-                        setStores(Object.values(categories["전체"]));
+                        setStores(categories["전체"]);
                         setCategoryList(categories);
                     } else {
                         console.log("카테고리 정보 없음");
@@ -107,7 +107,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
     useEffect(() => {
         if (categoryList) {
             console.log("분류:", category, categoryList[category]);
-            var newStores = [...Object.values(categoryList[category])];
+            var newStores = categoryList[category];
             setStores(newStores);
         }
     }, [category]);

@@ -3,15 +3,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function Drawer({ children }) {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const dragRef = useRef(null);
+    const scrollRef = useRef(null);
 
     useEffect(() => {
         dragRef.current.style.transition = "height 0.3s ease";
     }, []);
 
     useEffect(() => {
-        setIsOpen(false);
+        setIsOpen(true);
+
+        // 시장화면 <-> 상점화면 이동할 때 드로어 맨 위로 자동 스크롤
+        scrollRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     }, [children]);
 
     // 클릭 시 드로어 열림/닫힘
@@ -29,7 +36,7 @@ export default function Drawer({ children }) {
             >
                 <div className="w-24 h-1 rounded-full bg-gray-200 mt-2 mb-7" />
             </div>
-            <div className='w-full flex flex-col justify-start items-center overflow-y-scroll'>
+            <div ref={scrollRef} className='w-full flex flex-col justify-start items-center overflow-y-scroll'>
                 {children}
             </div>
         </div>

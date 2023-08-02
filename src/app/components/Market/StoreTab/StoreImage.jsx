@@ -12,7 +12,7 @@ import arrowIcon from "public/icons/curved_arrow_white.png";
 export default function StoreImage({ marketKey, storeKey, setSelectedStore }) {
     const [image, setImage] = useState(null);
 
-    const imageRef = ref(firebaseStorage, `stores/${marketKey}/${storeKey}`);
+    const imageRef = ref(firebaseStorage, `images/stores/${marketKey}/${storeKey}`);
 
     listAll(imageRef)
         .then((res) => {

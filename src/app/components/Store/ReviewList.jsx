@@ -45,8 +45,8 @@ export default function ReviewList({ marketKey, storeKey }) {
                     </div>
                 ))}
             </div>
-            <ReviewItem />
-            <ReviewItem />
+            {reviews &&
+                Object.values(reviews).map((review, index) => <ReviewItem key={index} review={review} />)}
         </div>
     )
 }

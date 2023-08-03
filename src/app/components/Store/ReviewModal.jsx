@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { firebaseDatabase, firebaseStorage } from "../../../../firebase-config";
-import { ref as databaseRef, set } from "firebase/database";
+import { ref as databaseRef, set, onValue } from "firebase/database";
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import backIcon from "public/icons/arrow_left_black.png";
 import yellowStar from "public/icons/rating_star_yellow.png";
 import greyStar from "public/icons/rating_star_grey.png";
 import addPhotoIcon from "public/icons/add_photo.png";
+import marketsJson from "public/data/markets.json";
 
 export default function ReviewModal({ marketKey, storeKey, setShowReviewModal }) {
+    const [storeName, setStoreName] = useState("");
     const [rating, setRating] = useState(0);
     const [text, setText] = useState("");
     const [images, setImages] = useState(null);
@@ -24,9 +26,21 @@ export default function ReviewModal({ marketKey, storeKey, setShowReviewModal })
     // 추후 로그인 기능 추가되면 수정
     const userId = "user";
 
-
+    // 상점 이름 불러오기
     useEffect(() => {
-        // marketKey, storeKey로 시장이름(json), 상점이름(firebase) 불러와서 표시하기
+        onValue(databaseRef(firebaseDatabase, `stores/${marketKey}/${storeKey}/점포명`),
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    setStoreName(snapshot.val());
+                } else {
+                    console.log("No data available");
+                }
+            },
+            { onlyOnce: true },
+            (error) => {
+                console.log(error);
+            }
+        );
     }, []);
 
     // 별점 입력하면 등록 버튼 활성화
@@ -49,19 +63,22 @@ export default function ReviewModal({ marketKey, storeKey, setShowReviewModal })
         const now = Date.now();
 
         // 이미지 업로드 (storage)
-        const uploadImagePromises = images.map(async (image, index) => {
-            const uploadResult = await uploadBytes(storageRef(firebaseStorage, `images/reviews/${userId}${now}${index}`), image);
-            const downloadURL = await getDownloadURL(uploadResult.ref);
-            return downloadURL;
-        });
-        const imageURLs = await Promise.all(uploadImagePromises);
+        var imageURLs = [];
+        if (images) {
+            const uploadImagePromises = images.map(async (image, index) => {
+                const uploadResult = await uploadBytes(storageRef(firebaseStorage, `images/reviews/${userId}${now}${index}`), image);
+                const downloadURL = await getDownloadURL(uploadResult.ref);
+                return downloadURL;
+            });
+            imageURLs = await Promise.all(uploadImagePromises);
+        }
 
         // 텍스트 업로드 (realtime database)
         set(databaseRef(firebaseDatabase, `reviews/${marketKey}/${storeKey}/${userId}${now}`), {
             'userId': userId,
             'date': now,
-            'marketName': '시장이름',
-            'storeName': '상점이름',
+            'marketName': marketsJson[marketKey]["mrktNm"],
+            'storeName': storeName,
             'rating': rating,
             'content': text,
             'imageUrl': imageURLs,
@@ -92,7 +109,7 @@ export default function ReviewModal({ marketKey, storeKey, setShowReviewModal })
                 className="absolute top-5 left-5 w-11 h-11 rounded-lg bg-white shadow-md flex justify-center items-center">
                 <Image src={backIcon} width={24} height={24} alt="아이콘" />
             </div>
-            <h1 className="text-base text-black font-bold mt-8 mb-14">상점이름</h1>
+            <h1 className="text-base text-black font-bold mt-8 mb-14">{storeName}</h1>
             <div className="w-11/12 h-[82px] mb-6 flex flex-col justify-around items-center border-y border-solid border-gray-200 p-2.5">
                 <h3 className="text-[15px] text-black font-normal">이 상점은 어떠셨나요?</h3>
                 <Rating rating={rating} setRating={setRating} />

@@ -103,7 +103,7 @@ export default function ReviewModal({ marketKey, storeKey, setShowReviewModal })
 
 
     return (
-        <div className="absolute z-[100] w-full h-screen bg-white flex flex-col items-center">
+        <div className="absolute z-[100] inset-0 bg-white flex flex-col items-center">
             <div
                 onClick={() => setShowReviewModal(false)}
                 className="absolute top-5 left-5 w-11 h-11 rounded-lg bg-white shadow-md flex justify-center items-center">

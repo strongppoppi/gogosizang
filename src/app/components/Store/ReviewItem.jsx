@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { firebaseDatabase } from "../../../../firebase-config";
 import { ref, onValue } from "firebase/database";
-import defaultProfile from "/public/images/default_profile.jpg";
+import defaultProfile from "/public/images/default_profile.png";
 import starIcon from "/public/icons/star.png";
 import bubble from "/public/images/speech_bubble.png";
 

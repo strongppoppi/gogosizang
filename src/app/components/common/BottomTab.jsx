@@ -10,6 +10,7 @@ import home_white from "/public/icons/homeIcon_white.png";
 import map_grey from "/public/icons/mapIcon_grey.png";
 import map_white from "/public/icons/mapIcon_white.png";
 import setting_grey from "/public/icons/settingIcon_grey.png";
+import setting_white from "/public/icons/settingIcon_white.png";
 
 export default function BottomTab() {
   const pathName = usePathname();
@@ -21,9 +22,8 @@ export default function BottomTab() {
           <Link href="/" className="grow justify-center items-center">
             <div className="flex-col justify-center items-center text-center space-y-1">
               <div
-                className={`${
-                  pathName === "/" ? "bg-main" : "bg-white"
-                } px-4 py-0.5 inline-flex align-middle rounded-lg`}
+                className={`${pathName === "/" ? "bg-main" : "bg-white"
+                  } px-4 py-0.5 inline-flex align-middle rounded-lg`}
               >
                 <Image
                   src={pathName === "/" ? home_white : home_grey}
@@ -34,9 +34,8 @@ export default function BottomTab() {
                 />
               </div>
               <h4
-                className={`${
-                  pathName === "/" ? "text-black" : "text-gray-500"
-                } text-base font-regular tracking-tight`}
+                className={`${pathName === "/" ? "text-black" : "text-gray-500"
+                  } text-base font-regular tracking-tight`}
               >
                 홈
               </h4>
@@ -45,9 +44,8 @@ export default function BottomTab() {
           <Link href="/map" className="grow justify-center items-center">
             <div className="flex-col justify-center items-center text-center space-y-1">
               <div
-                className={`${
-                  pathName === "/map" ? "bg-main" : "bg-white"
-                } px-4 py-0.5 inline-flex align-middle rounded-lg`}
+                className={`${pathName === "/map" ? "bg-main" : "bg-white"
+                  } px-4 py-0.5 inline-flex align-middle rounded-lg`}
               >
                 <Image
                   src={pathName === "/map" ? map_white : map_grey}
@@ -58,9 +56,8 @@ export default function BottomTab() {
                 />
               </div>
               <h4
-                className={`${
-                  pathName === "/map" ? "text-black" : "text-gray-500"
-                } text-base font-regular tracking-tight`}
+                className={`${pathName === "/map" ? "text-black" : "text-gray-500"
+                  } text-base font-regular tracking-tight`}
               >
                 시장찾기
               </h4>
@@ -69,12 +66,11 @@ export default function BottomTab() {
           <Link href="/mypage" className="grow justify-center items-center">
             <div className="flex-col justify-center items-center text-center space-y-1">
               <div
-                className={`${
-                  pathName === "/mypage" ? "bg-main" : "bg-white"
-                } px-4 py-0.5 inline-flex align-middle rounded-lg`}
+                className={`${pathName === "/mypage" ? "bg-main" : "bg-white"
+                  } px-4 py-0.5 inline-flex align-middle rounded-lg`}
               >
                 <Image
-                  src={pathName === "/mypage" ? setting_grey : setting_grey}
+                  src={pathName === "/mypage" ? setting_white : setting_grey}
                   width={25}
                   height={25}
                   alt="설정 아이콘"
@@ -82,9 +78,8 @@ export default function BottomTab() {
                 />
               </div>
               <h4
-                className={`${
-                  pathName === "/mypage" ? "text-black" : "text-gray-500"
-                } text-base font-regular tracking-tight`}
+                className={`${pathName === "/mypage" ? "text-black" : "text-gray-500"
+                  } text-base font-regular tracking-tight`}
               >
                 설정
               </h4>

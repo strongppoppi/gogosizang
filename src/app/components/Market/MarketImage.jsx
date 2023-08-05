@@ -11,7 +11,7 @@ import defaultImage from "/public/images/defaultImage.png";
 export default function MarketImage({ marketKey }) {
     const [image, setImage] = useState(null);
 
-    const imageRef = ref(firebaseStorage, `markets/${marketKey}`);
+    const imageRef = ref(firebaseStorage, `images/markets/${marketKey}`);
 
     listAll(imageRef)
         .then((res) => {

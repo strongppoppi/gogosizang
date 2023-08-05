@@ -6,7 +6,7 @@ import MarketTab from "./MarketTab/MarketTab";
 import StoreTab from "./StoreTab/StoreTab";
 
 
-export default function InfoTab({ marketKey }) {
+export default function InfoTab({ marketKey, setSelectedStore }) {
     const [leftTab, setLeftTab] = useState(true);
 
     const onLeftTabClick = () => {
@@ -34,7 +34,7 @@ export default function InfoTab({ marketKey }) {
             <div className="w-full h-auto bg-white pt-4" style={{ boxShadow: '0px -1px 10px rgba(17, 18, 19, 0.18)' }}>
                 {leftTab ?
                     <MarketTab marketKey={marketKey} /> :
-                    <StoreTab marketKey={marketKey} />}
+                    <StoreTab marketKey={marketKey} setSelectedStore={setSelectedStore} />}
             </div>
         </div>
     )

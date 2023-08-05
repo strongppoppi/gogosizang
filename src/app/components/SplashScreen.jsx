@@ -15,21 +15,13 @@ export default function SplashScreen({ finishLoading }) {
       complete: () => finishLoading(),
     });
 
-    loader
-      .add({
-        targets: "#logo",
-        delay: 0,
-        scale: 1,
-        duration: 500,
-        easing: "easeInOutExpo",
-      })
-      .add({
-        targets: "#logo",
-        delay: 0,
-        scale: 1.15,
-        duration: 500,
-        easing: "easeInOutExpo",
-      });
+    loader.add({
+      targets: "#logo",
+      delay: 0,
+      scale: 1,
+      duration: 1500,
+      easing: "easeInOutExpo",
+    });
   };
 
   useEffect(() => {
@@ -41,10 +33,24 @@ export default function SplashScreen({ finishLoading }) {
   return (
     <div className="flex flex-col h-screen bg-main relative overflow-hidden">
       <div className="w-full flex flex-col items-center absolute top-[20%]">
-        <h1 className="text-[17px] font-medium text-white">전통시장이 핫플이 되는 매직!</h1>
-        <Image src={logo} width={`100%`} height={`100%`} alt="로고" id="logo" className="mb-[470px]" />
+        <h1 className="text-[17px] font-medium text-white">
+          전통시장이 핫플이 되는 매직!
+        </h1>
+        <Image
+          src={logo}
+          width={`100%`}
+          height={`100%`}
+          alt="로고"
+          id="logo"
+          className="mb-[470px]"
+        />
       </div>
-      <Image src={splashImage} height={430} alt="이미지" className="absolute -bottom-10 right-0" />
+      <Image
+        src={splashImage}
+        height={430}
+        alt="이미지"
+        className="absolute -bottom-10 right-0"
+      />
     </div>
   );
 }

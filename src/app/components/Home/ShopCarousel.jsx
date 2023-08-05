@@ -1,15 +1,22 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "./customShopSwiper.css";
 
-import defaultImage from "/public/images/defaultImage.png";
 import ShopCard from "./ShopCard";
+import { fetchRankingData } from "@/app/constants/ranking";
 
 export default function ShopCarousel() {
+  const [rankingData, setRankingData] = useState([]);
+
+  useEffect(() => {
+    fetchRankingData({ rankingData, setRankingData });
+    console.log(rankingData);
+  }, [rankingData]);
+
   return (
     <div>
       <Swiper

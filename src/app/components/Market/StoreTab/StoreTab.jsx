@@ -137,6 +137,5 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                 <div>Loading</div>
             }
         </div>
-
     )
 }

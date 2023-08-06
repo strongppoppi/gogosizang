@@ -38,12 +38,12 @@ export default function StoreImage({ marketKey, storeKey, setSelectedStore }) {
 
     // 로딩 중 보여질 UI
     var skeleton = (
-        <div className="w-11/12 h-52 rounded-lg overflow-hidden relative mb-2.5 bg-gray-200 animate-pulse" />
+        <div className="w-full h-52 rounded-lg overflow-hidden relative mb-2.5 bg-gray-200 animate-pulse" />
     );
 
     return (
         image ?
-            <div className="w-11/12 h-52 rounded-lg overflow-hidden relative mb-2.5" >
+            <div className="w-full h-52 rounded-lg overflow-hidden relative mb-2.5" >
                 <Image
                     src={image}
                     placeholder="blur"

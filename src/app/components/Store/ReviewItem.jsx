@@ -8,16 +8,13 @@ import starIcon from "/public/icons/star.png";
 import bubble from "/public/images/speech_bubble.png";
 
 export default function ReviewItem({ review }) {
-    const [profileImage, setProfileImage] = useState(null);
+    const [profileImage, setProfileImage] = useState(defaultProfile);
 
     useEffect(() => {
-
         onValue(ref(firebaseDatabase, `users/${review["userId"]}/profileImage`),
             (snapshot) => {
                 if (snapshot.exists()) {
                     setProfileImage(snapshot.val());
-                } else {
-                    console.log("No data available");
                 }
             },
             { onlyOnce: true },
@@ -43,7 +40,7 @@ export default function ReviewItem({ review }) {
             <div className="w-11/12 h-0.5 bg-gray-200 mb-5" />
             <div className="w-full flex flex-row justify-start items-center px-[26px] mb-1">
                 <div id="profile" className="w-[34px] h-[34px] rounded-full overflow-hidden relative">
-                    <Image src={profileImage || defaultProfile} fill={true} alt="이미지" className="object-cover" />
+                    <Image src={profileImage} fill={true} alt="이미지" className="object-cover" />
                 </div>
                 <h3 className="grow text-[17px] font-medium text-black ml-2.5 mt-0.5">{review["userId"]}</h3>
             </div>

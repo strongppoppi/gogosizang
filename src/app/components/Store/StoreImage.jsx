@@ -10,7 +10,7 @@ import defaultImage from "/public/images/defaultImage.png";
 export default function StoreImage({ marketKey, storeKey }) {
     const [image, setImage] = useState(null);
 
-    const imageRef = ref(firebaseStorage, `stores/${marketKey}/${storeKey}`);
+    const imageRef = ref(firebaseStorage, `images/stores/${marketKey}/${storeKey}`);
 
     listAll(imageRef)
         .then((res) => {

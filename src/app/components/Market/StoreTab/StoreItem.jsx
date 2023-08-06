@@ -38,7 +38,7 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     }, [storeKey, storeRef]);
 
     var skeleton = (
-        <div className="w-full flex flex-col justify-start items-center my-4 animate-pulse">
+        <div className="w-full flex flex-col justify-start items-center py-4 animate-pulse">
             <div className="w-11/12 h-52 rounded-lg overflow-hidden relative mb-2.5 bg-gray-200" />
             <div className="w-11/12 flex flex-row justify-start items-center mb-2.5">
                 <div className="w-48 h-7 rounded-lg bg-gray-200" />
@@ -55,16 +55,17 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     return (
         storeData ?
             <div
-                className="w-full flex flex-col justify-start items-center my-4">
+                className="w-11/12 flex flex-col justify-start items-center pt-4 pb-5">
                 <StoreImage marketKey={marketKey} storeKey={storeKey} setSelectedStore={setSelectedStore} />
-                <div className="w-11/12 flex flex-row justify-start items-center mb-2.5">
+                <div className="w-full flex flex-row justify-start items-center mb-2.5">
                     <h3 className="text-[21px] font-medium text-black mr-2">{storeData["점포명"]}</h3>
                     <h3 className="text-[13px] font-normal text-gray-600 leading-[13px]">{storeData["취급품목"]}</h3>
                 </div>
-                <div className="w-11/12 flex flex-row justify-start items-center">
+                <div className="w-full flex flex-row justify-start items-center">
                     <Tag>맛있어요</Tag>
                     <Tag>가성비 좋아요</Tag>
                 </div>
+                {console.log("StoreItem", storeKey)}
             </div >
             :
             skeleton

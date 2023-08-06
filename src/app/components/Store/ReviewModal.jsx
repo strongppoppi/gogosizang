@@ -76,6 +76,14 @@ export default function ReviewModal({
 
     const now = Date.now();
 
+    const selectedTags = [
+      cardTag && "카드가능",
+      cheapTag && "가성비",
+      cleanTag && "위생적",
+      yummyTag && "존맛탱",
+      kindTag && "친절",
+    ].filter(Boolean);
+
     // 이미지 업로드 (storage)
     var imageURLs = [];
     if (images) {
@@ -104,13 +112,7 @@ export default function ReviewModal({
         rating: rating,
         content: text,
         imageUrl: imageURLs,
-        tags: [
-          cardTag && "카드가능",
-          cheapTag && "가성비",
-          cleanTag && "위생적",
-          yummyTag && "존맛탱",
-          kindTag && "친절",
-        ].filter(Boolean),
+        tags: selectedTags,
       }
     )
       .then(() => {
@@ -126,10 +128,39 @@ export default function ReviewModal({
     addRankingData({ marketName, storeName, rating, marketKey, storeKey });
 
     // tags - 태그 개수
+    onValue(
+      databaseRef(firebaseDatabase, `tags/${marketKey}/${storeKey}`),
+      (snapshot) => {
+        if (snapshot.exists()) {
+          var tags = snapshot.val();
+          var newTags = {};
+          for (const tag in tags) {
+            newTags[tag] = selectedTags.includes(tag) ? tags[tag] + 1 : tags[tag]
+          }
+          set(databaseRef(firebaseDatabase, `tags/${marketKey}/${storeKey}`), newTags);
+        } else {
+          var newTags = {
+            카드가능: 0,
+            가성비: 0,
+            위생적: 0,
+            존맛탱: 0,
+            친절: 0
+          };
+          for (const tag of selectedTags) {
+            newTags[tag] = 1;
+          }
+          set(databaseRef(firebaseDatabase, `tags/${marketKey}/${storeKey}`), newTags);
+        }
+      },
+      { onlyOnce: true },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   return (
-    <div className="absolute z-[100] inset-0 bg-white flex flex-col items-center">
+    <div className="absolute z-[100] inset-0 bg-white flex flex-col items-center overflow-y-scroll">
       <div
         onClick={() => setShowReviewModal(false)}
         className="absolute top-5 left-5 w-11 h-11 rounded-lg bg-white shadow-md flex justify-center items-center"
@@ -143,35 +174,35 @@ export default function ReviewModal({
         </h3>
         <Rating rating={rating} setRating={setRating} />
       </div>
-      <div className="w-11/12 h-[130px] mb-5 flex flex-col justify-center items-center border-y border-solid border-gray-200 p-2.5">
-        <h3 className="text-[15px] text-black font-normal">
+      <div className="w-11/12 h-auto mb-5 flex flex-col justify-center items-center border-y border-solid border-gray-200 p-2.5">
+        <h3 className="text-[15px] text-black font-normal mb-[15px]">
           특히 이런 점이 좋았어요!
         </h3>
-        <div className="w-11/12 flex flex-row justify-center flex-wrap">
-          <Tag state={cardTag} setState={setCardTag}>
-            카드가능
+        <div className="w-full flex flex-row-reverse justify-center flex-wrap-reverse gap-x-5 gap-y-[11px] mb-1">
+          <Tag state={kindTag} setState={setKindTag} >
+            친절
           </Tag>
-          <Tag state={cheapTag} setState={setCheapTag}>
-            가성비
-          </Tag>
-          <Tag state={cleanTag} setState={setCleanTag}>
-            위생적
-          </Tag>
-          <Tag state={yummyTag} setState={setYummyTag}>
+          <Tag state={yummyTag} setState={setYummyTag} >
             존맛탱
           </Tag>
-          <Tag state={kindTag} setState={setKindTag}>
-            친절
+          <Tag state={cleanTag} setState={setCleanTag} >
+            위생적
+          </Tag>
+          <Tag state={cheapTag} setState={setCheapTag} >
+            가성비
+          </Tag>
+          <Tag state={cardTag} setState={setCardTag} >
+            카드가능
           </Tag>
         </div>
       </div>
       <textarea
-        className="w-[350px] min-h-[103px] resize-none bg-gray-100 border border-gray-200 rounded-[15px] px-3 py-2.5"
+        className="w-11/12 min-h-[103px] resize-none bg-gray-100 border border-gray-200 rounded-[15px] px-3 py-2.5"
         placeholder="내용을 입력하세요 (선택)"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <div className="w-[350px] py-4 space-x-2.5 flex flex-row-reverse justify-start flex-nowrap overflow-x-visible">
+      <div className="w-11/12 py-4 space-x-2.5 flex flex-row-reverse justify-start flex-nowrap overflow-x-visible">
         <div className="w-[72px] h-[72px] shrink-0 ml-2.5 rounded-[15px] border border-gray-300 overflow-hidden">
           <label htmlFor="input-image" className="text-center align-middle">
             <div className="w-full h-full flex justify-center items-center">
@@ -210,9 +241,8 @@ export default function ReviewModal({
       <div className="grow" />
       <div
         onClick={handlePostClick}
-        className={`w-[330px] h-[50px] mb-5 rounded-[5px] text-center leading-[50px] text-[17px] font-medium ${
-          postAbled ? "bg-main text-white" : "bg-gray-200 text-gray-600"
-        }`}
+        className={`w-10/12 h-[50px] mb-5 rounded-[5px] text-center leading-[50px] text-[17px] font-medium ${postAbled ? "bg-main text-white" : "bg-gray-200 text-gray-600"
+          }`}
       >
         등록하기
       </div>
@@ -274,14 +304,10 @@ function Tag({ children, state, setState }) {
   return (
     <div
       onClick={() => setState(!state)}
-      className={`h-[30px] align-middle rounded px-2.5 mx-2.5 my-1.5 ${
-        state ? "bg-main" : "bg-gray-100"
-      }`}
+      className={`h-[30px] align-middle rounded px-2.5 ${state ? "bg-main" : "bg-gray-100"}`}
     >
       <h5
-        className={`text-[15px] leading-[30px] ${
-          state ? "font-medium text-white" : "font-normal text-gray-900"
-        }`}
+        className={`text-[15px] leading-[30px] ${state ? "font-medium text-white" : "font-normal text-gray-900"}`}
       >
         {`${emoji[children]} ${children}`}
       </h5>

@@ -7,7 +7,13 @@ import { useRouter } from "next/navigation";
 import nextIcon from "/public/icons/nextIcon.png";
 import backIcon from "/public/icons/backIcon.png";
 
-export default function ContentHeader({ headerText, subText, linkPath, back }) {
+export default function ContentHeader({
+  headerText,
+  subText,
+  linkPath,
+  back,
+  emoji,
+}) {
   const router = useRouter();
 
   return (
@@ -22,9 +28,12 @@ export default function ContentHeader({ headerText, subText, linkPath, back }) {
         <></>
       )}
       <div className="flex flex-row justify-between items-center">
-        <h2 className="text-black font-extrabold text-[1.6rem]">
-          {headerText}
-        </h2>
+        <div className="flex flex-row justify-start items-center gap-x-1">
+          <Image src={emoji} width={24} height={24} alt="emoji" />
+          <h2 className="text-black font-extrabold text-[1.6rem]">
+            {headerText}
+          </h2>
+        </div>
         {linkPath && (
           <Link href={linkPath}>
             <div className="flex flex-row justify-center items-center">

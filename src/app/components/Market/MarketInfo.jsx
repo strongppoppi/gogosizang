@@ -40,8 +40,8 @@ export default function MarketInfo({ marketKey }) {
     var subwayLine = 0;
     var station = "지하철역";
     var stationsDistance = "0m";
-    var openTime = "00:00";
-    var closeTime = "00:00";
+    var openTime = "07:00";
+    var closeTime = "21:00";
 
     // 홈페이지 주소 url 유효성 검사
     const isValidURL = (url) => {
@@ -120,13 +120,13 @@ export default function MarketInfo({ marketKey }) {
                             }
                             {timeClicked &&
                                 <div className="absolute z-[60] bottom-0 transform -translate-x-[10px] translate-y-full flex flex-col items-center w-max p-2 bg-white rounded-[10px] shadow text-[15px] text-black font-normal ">
-                                    <div>월 00:00 - 00:00</div>
-                                    <div>화 00:00 - 00:00</div>
-                                    <div>수 00:00 - 00:00</div>
-                                    <div>목 00:00 - 00:00</div>
-                                    <div>금 00:00 - 00:00</div>
-                                    <div>토 00:00 - 00:00</div>
-                                    <div>일 00:00 - 00:00</div>
+                                    <div>월 07:00 - 21:00</div>
+                                    <div>화 07:00 - 21:00</div>
+                                    <div>수 07:00 - 21:00</div>
+                                    <div>목 07:00 - 21:00</div>
+                                    <div>금 07:00 - 21:00</div>
+                                    <div>토 07:00 - 21:00</div>
+                                    <div>일 07:00 - 21:00</div>
                                 </div>}
                         </div>
                         <div className="grow" />

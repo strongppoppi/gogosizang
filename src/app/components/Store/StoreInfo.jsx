@@ -18,23 +18,21 @@ export default function StoreInfo({ marketKey, storeKey }) {
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
 
     useEffect(() => {
-        if (!storeData) {
-            get(storeRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    var data = snapshot.val();
-                    setStoreData(data);
-                    var newList = [];
-                    if (data["제로페이가맹"] == 1) newList.push("제로페이");
-                    if (data["온누리"] == 1) newList.push("온누리상품권");
-                    setGiftcard(newList);
-                } else {
-                    console.log("No data available");
-                }
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
-    }, []);
+        get(storeRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                var data = snapshot.val();
+                setStoreData(data);
+                var newList = [];
+                if (data["제로페이가맹"] == 1) newList.push("제로페이");
+                if (data["온누리"] == 1) newList.push("온누리상품권");
+                setGiftcard(newList);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [storeKey]);
 
     // 파베에서 불러오거나 따로 구해야 하는 데이터
     var subwayLine = 0;

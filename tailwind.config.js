@@ -9,7 +9,10 @@ module.exports = {
     extend: {
       height: {
         "screen": "100dvh",
-      }
+      },
+      boxShadow: {
+        DEFAULT: "0px 2px 4px 0px rgba(0, 0, 0, 0.20)",
+      },
     },
     colors: {
       'white': '#ffffff',

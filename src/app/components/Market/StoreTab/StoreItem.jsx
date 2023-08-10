@@ -65,7 +65,6 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
                     <Tag>맛있어요</Tag>
                     <Tag>가성비 좋아요</Tag>
                 </div>
-                {console.log("StoreItem", storeKey)}
             </div >
             :
             skeleton

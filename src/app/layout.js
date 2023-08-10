@@ -3,14 +3,15 @@
 import "./globals.css";
 import React, { useState, useEffect, useRef } from "react";
 import Script from "next/script";
-import localFont from "next/font/local";
+import { Noto_Sans_KR } from "next/font/google";
 import { usePathname } from "next/navigation";
 
 import SplashScreen from "./components/SplashScreen";
 import BottomTab from "./components/common/BottomTab";
 
-export const Pretendard = localFont({
-  src: "../../public/fonts/PretendardVariable.woff2",
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 const metadata = {
@@ -22,7 +23,8 @@ export default function RootLayout({ children }) {
   const pathName = usePathname();
   const isHome = pathName === "/";
   const [isLoading, setIsLoading] = useState(isHome);
-  const showBottomTab = !pathName.startsWith("/market") && !pathName.startsWith("/editor");
+  const showBottomTab =
+    !pathName.startsWith("/market") && !pathName.startsWith("/editor");
   const windowHeight = useRef(0);
 
   useEffect(() => {
@@ -41,13 +43,11 @@ export default function RootLayout({ children }) {
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
       </head>
-      <body className={Pretendard.className}>
+      <body className={notoSansKr.className}>
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (
-          <div
-            className="flex flex-col h-screen"
-          >
+          <div className="flex flex-col h-screen">
             {children}
             {showBottomTab && <BottomTab />}
           </div>

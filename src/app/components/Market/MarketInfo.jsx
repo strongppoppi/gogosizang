@@ -6,8 +6,10 @@ import { ref, get } from "firebase/database";
 import Image from "next/image";
 
 import markerIcon from "/public/icons/marker_grey.png";
-import computerIcon from "/public/icons/computer.svg";
-import phoneIcon from "/public/icons/phonecall.svg";
+import computerIconBlack from "/public/icons/computer_black.svg";
+import computerIconGrey from "/public/icons/computer_grey.svg";
+import phoneIconBlack from "/public/icons/phone_black.svg";
+import phoneIconGrey from "/public/icons/phone_grey.svg";
 import clockIcon from "/public/icons/clock.svg";
 import carIcon from "/public/icons/car.svg";
 import chevronDown from "/public/icons/chevron_down_small.svg";
@@ -40,7 +42,6 @@ export default function MarketInfo({ marketKey }) {
     var stationsDistance = "0m";
     var openTime = "00:00";
     var closeTime = "00:00";
-    var freeParking = true;
 
     // 홈페이지 주소 url 유효성 검사
     const isValidURL = (url) => {
@@ -86,25 +87,25 @@ export default function MarketInfo({ marketKey }) {
                             <a href={marketApiData.homepageUrl} target="_blank" rel="noopener noreferrer"
                                 className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center pt-1">
-                                    <Image src={computerIcon} width={24} height={24} alt="아이콘" />
+                                    <Image src={computerIconBlack} width={24} height={24} alt="아이콘" />
                                     <h3 className="text-[13px] font-normal text-black">홈페이지</h3>
                                 </div>
                             </a> :
-                            <div className="flex-1 flex flex-col justify-center items-center pt-1" style={{ opacity: 0.5 }}>
-                                <Image src={computerIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-13px] font-normal text-black">홈페이지</h3>
+                            <div className="flex-1 flex flex-col justify-center items-center pt-1">
+                                <Image src={computerIconGrey} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-13px] font-normal text-gray-300">홈페이지</h3>
                             </div>}
                         <div className="w-px h-full bg-gray-200" />
                         {marketApiData.phoneNumber !== "" ?
                             <a href={`tel:${marketApiData.phoneNumber}`} className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center pt-1">
-                                    <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
+                                    <Image src={phoneIconBlack} width={24} height={24} alt="아이콘" />
                                     <h3 className="text-13px] font-normal text-black">전화</h3>
                                 </div>
                             </a> :
-                            <div className="flex-1 flex flex-col justify-center items-center pt-1" style={{ opacity: 0.5 }}>
-                                <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-13px] font-normal text-black">전화</h3>
+                            <div className="flex-1 flex flex-col justify-center items-center pt-1">
+                                <Image src={phoneIconGrey} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-13px] font-normal text-gray-300">전화</h3>
                             </div>}
                     </div>
                     <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-3">

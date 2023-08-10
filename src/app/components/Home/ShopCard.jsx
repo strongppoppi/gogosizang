@@ -1,22 +1,31 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { getStoreImage } from "@/app/constants/storeInfo";
 
 import defaultImage from "/public/images/defaultImage.png";
 import marketIcon from "/public/icons/marketIcon.png";
 import pinIcon from "/public/icons/pinIcon.png";
 
-export default function ShopCard({ imagePath, name, market }) {
+export default function ShopCard({ name, market, marketKey, storeKey }) {
+  const [imageUrl, setImageUrl] = useState(null);
+
   const imageStyle = {
     borderRadius: "1rem",
+    objectFit: "cover",
   };
+
+  useEffect(() => {
+    getStoreImage(marketKey, storeKey, setImageUrl);
+  }, []);
 
   return (
     <Link href="/">
-      <div className="relative">
+      <div className="relative w-[12.5rem] h-[12.5rem]">
         <Image
-          src={defaultImage}
-          width={225}
-          height={225}
+          src={imageUrl === null ? defaultImage : imageUrl}
+          fill
           alt="인기 상점 사진"
           style={imageStyle}
           className="filter brightness-50"

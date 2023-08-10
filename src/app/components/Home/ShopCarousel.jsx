@@ -26,31 +26,14 @@ export default function ShopCarousel() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        <SwiperSlide>
-          <div className="block">
-            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="block">
-            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="block">
-            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="block">
-            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="block">
-            <ShopCard name="영천동 할머니 떡볶이" market="영천시장" />
-          </div>
-        </SwiperSlide>
+        {rankingData &&
+          rankingData.map((data) => (
+            <SwiperSlide key={data.storeId}>
+              <div className="block">
+                <ShopCard name={data.storeName} market={data.marketName} />
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

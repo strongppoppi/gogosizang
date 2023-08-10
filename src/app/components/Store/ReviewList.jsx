@@ -25,65 +25,60 @@ export default function ReviewList({ marketKey, storeKey }) {
     }
 
     useEffect(() => {
-        if (!reviews) {
-            onValue(reviewRef,
-                (snapshot) => {
-                    if (snapshot.exists()) {
-                        const data = snapshot.val();
-                        const array = Object.values(data);
-                        array.sort((a, b) => (b.date - a.date));
-                        setReviews(array);
-                    } else {
-                        setReviews({});
-                    }
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
-        }
-    }, [reviews]);
-
-    useEffect(() => {
-        if (!tags) {
-            get(tagRef).then((snapshot) => {
+        onValue(reviewRef,
+            (snapshot) => {
                 if (snapshot.exists()) {
-                    var tagData = snapshot.val();
-                    console.log(tagData);
-                    var tagList = [];
-                    for (const tag in tagData) {
-                        if (tagData[tag] > 0) tagList.push(tag)
-                    }
-                    tagList.sort((a, b) => tagData[b] - tagData[a]);
-                    setTags(tagList.map(tag => tagEmoji[tag]));
+                    const data = snapshot.val();
+                    const array = Object.values(data);
+                    array.sort((a, b) => (b.date - a.date));
+                    setReviews(array);
                 } else {
-                    setTags([]);
+                    setReviews([]);
                 }
-            }).catch((error) => {
+            },
+            (error) => {
                 console.log(error);
-            });
-        }
-    }, [tags]);
+            }
+        );
+    }, [storeKey]);
 
     useEffect(() => {
-        if (!rating) {
-            onValue(ratingRef,
-                (snapshot) => {
-                    if (snapshot.exists()) {
-                        const data = snapshot.val();
-                        console.log(data);
-                        setRating(parseFloat((data.totalStars / data.count).toFixed(1)));
-                        setCount(data.count);
-                    } else {
-                        setRating(" - ");
-                    }
-                },
-                (error) => {
-                    console.log(error);
+        get(tagRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                var tagData = snapshot.val();
+                console.log(tagData);
+                var tagList = [];
+                for (const tag in tagData) {
+                    if (tagData[tag] > 0) tagList.push(tag)
                 }
-            );
-        }
-    }, [rating]);
+                tagList.sort((a, b) => tagData[b] - tagData[a]);
+                setTags(tagList.map(tag => tagEmoji[tag]));
+            } else {
+                setTags([]);
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [storeKey]);
+
+    useEffect(() => {
+        onValue(ratingRef,
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    console.log(data);
+                    setRating(parseFloat((data.totalStars / data.count).toFixed(1)));
+                    setCount(data.count);
+                } else {
+                    setRating(" - ");
+                    setCount(0);
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    }, [storeKey]);
 
     return (
         <div className="w-full flex flex-col items-center">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { firebaseStorage } from "../../../../firebase-config";
 import Image from "next/image";
@@ -12,27 +12,29 @@ export default function StoreImage({ marketKey, storeKey }) {
 
     const imageRef = ref(firebaseStorage, `images/stores/${marketKey}/${storeKey}`);
 
-    listAll(imageRef)
-        .then((res) => {
-            return res.items;
-        })
-        .then((list) => {
-            if (list.length === 0) {
-                setImage(defaultImage);
-            } else {
-                const itemRef = list[0];
-                getDownloadURL(itemRef)
-                    .then((url) => {
-                        setImage(url);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    useEffect(() => {
+        listAll(imageRef)
+            .then((res) => {
+                return res.items;
+            })
+            .then((list) => {
+                if (list.length === 0) {
+                    setImage(defaultImage);
+                } else {
+                    const itemRef = list[0];
+                    getDownloadURL(itemRef)
+                        .then((url) => {
+                            setImage(url);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [storeKey]);
 
     // 로딩 중 보여질 UI
     var skeleton = (

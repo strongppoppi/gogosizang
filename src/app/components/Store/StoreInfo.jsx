@@ -7,7 +7,8 @@ import Image from "next/image";
 
 import marketIcon from "/public/icons/market_main.png";
 import markerIcon from "/public/icons/marker_grey.png";
-import phoneIcon from "/public/icons/phonecall.svg";
+import phoneIconBlack from "/public/icons/phone_black.svg";
+import phoneIconGrey from "/public/icons/phone_grey.svg";
 import giftcardIcon from "/public/icons/giftcard_grey.png";
 
 export default function StoreInfo({ marketKey, storeKey }) {
@@ -17,23 +18,21 @@ export default function StoreInfo({ marketKey, storeKey }) {
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
 
     useEffect(() => {
-        if (!storeData) {
-            get(storeRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    var data = snapshot.val();
-                    setStoreData(data);
-                    var newList = [];
-                    if (data["제로페이가맹"] == 1) newList.push("제로페이");
-                    if (data["온누리"] == 1) newList.push("온누리상품권");
-                    setGiftcard(newList);
-                } else {
-                    console.log("No data available");
-                }
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
-    }, []);
+        get(storeRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                var data = snapshot.val();
+                setStoreData(data);
+                var newList = [];
+                if (data["제로페이가맹"] == 1) newList.push("제로페이");
+                if (data["온누리"] == 1) newList.push("온누리상품권");
+                setGiftcard(newList);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [storeKey]);
 
     // 파베에서 불러오거나 따로 구해야 하는 데이터
     var subwayLine = 0;
@@ -77,13 +76,13 @@ export default function StoreInfo({ marketKey, storeKey }) {
                         {storeData.phoneNumber !== "" ?
                             <a href={`tel:${storeData.phoneNumber}`} className="flex-1 flex justify-center items-center">
                                 <div className="w-full flex flex-col justify-center items-center pt-1">
-                                    <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
+                                    <Image src={phoneIconBlack} width={24} height={24} alt="아이콘" />
                                     <h3 className="text-13px] font-normal text-black">전화</h3>
                                 </div>
                             </a> :
-                            <div className="w-full flex flex-col justify-center items-center pt-1.5" style={{ opacity: 0.5 }}>
-                                <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-13px] font-normal text-black">전화</h3>
+                            <div className="w-full flex flex-col justify-center items-center pt-1.5">
+                                <Image src={phoneIconGrey} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-13px] font-normal text-gray-300">전화</h3>
                             </div>}
                     </div>
                     <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-4">

@@ -1,12 +1,14 @@
 "use client";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import markets from "public/data/markets.json";
 
-export default function MarketMap({ setNaverMap, marketKey }) {
+export default function MarketMap({ setNaverMap, marketKey, selectedStore }) {
+    const [marketMarker, setMarketMarker] = useState(null);
+    var mapRef = useRef(null);
 
     useEffect(() => {
-        var mapRef = new naver.maps.Map("map", {
+        mapRef.current = new naver.maps.Map("map", {
             center: new naver.maps.LatLng(markets[marketKey].latitude, markets[marketKey].longitude),
             zoomControl: false,
             scaleControl: false,
@@ -19,7 +21,7 @@ export default function MarketMap({ setNaverMap, marketKey }) {
 
         var marker = new naver.maps.Marker({
             position: new naver.maps.LatLng(markets[marketKey].latitude, markets[marketKey].longitude),
-            map: mapRef,
+            map: mapRef.current,
             icon: {
                 url: '/icons/marker_main.png',
                 size: new naver.maps.Size(42, 52),
@@ -27,8 +29,19 @@ export default function MarketMap({ setNaverMap, marketKey }) {
             }
         });
 
-        setNaverMap(mapRef);
+        setNaverMap(mapRef.current);
+        setMarketMarker(marker);
     }, [setNaverMap]);
+
+    useEffect(() => {
+        if (marketMarker) {
+            if (selectedStore) {
+                marketMarker.setMap(null);
+            } else {
+                marketMarker.setMap(mapRef.current);
+            }
+        }
+    }, [selectedStore, marketMarker]);
 
     return <div id="map" className="w-full h-full"></div>;
 }

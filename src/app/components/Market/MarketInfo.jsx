@@ -6,8 +6,10 @@ import { ref, get } from "firebase/database";
 import Image from "next/image";
 
 import markerIcon from "/public/icons/marker_grey.png";
-import computerIcon from "/public/icons/computer.svg";
-import phoneIcon from "/public/icons/phonecall.svg";
+import computerIconBlack from "/public/icons/computer_black.svg";
+import computerIconGrey from "/public/icons/computer_grey.svg";
+import phoneIconBlack from "/public/icons/phone_black.svg";
+import phoneIconGrey from "/public/icons/phone_grey.svg";
 import clockIcon from "/public/icons/clock.svg";
 import carIcon from "/public/icons/car.svg";
 import chevronDown from "/public/icons/chevron_down_small.svg";
@@ -38,9 +40,8 @@ export default function MarketInfo({ marketKey }) {
     var subwayLine = 0;
     var station = "지하철역";
     var stationsDistance = "0m";
-    var openTime = "00:00";
-    var closeTime = "00:00";
-    var freeParking = true;
+    var openTime = "07:00";
+    var closeTime = "21:00";
 
     // 홈페이지 주소 url 유효성 검사
     const isValidURL = (url) => {
@@ -86,25 +87,25 @@ export default function MarketInfo({ marketKey }) {
                             <a href={marketApiData.homepageUrl} target="_blank" rel="noopener noreferrer"
                                 className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center pt-1">
-                                    <Image src={computerIcon} width={24} height={24} alt="아이콘" />
+                                    <Image src={computerIconBlack} width={24} height={24} alt="아이콘" />
                                     <h3 className="text-[13px] font-normal text-black">홈페이지</h3>
                                 </div>
                             </a> :
-                            <div className="flex-1 flex flex-col justify-center items-center pt-1" style={{ opacity: 0.5 }}>
-                                <Image src={computerIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-13px] font-normal text-black">홈페이지</h3>
+                            <div className="flex-1 flex flex-col justify-center items-center pt-1">
+                                <Image src={computerIconGrey} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-13px] font-normal text-gray-300">홈페이지</h3>
                             </div>}
                         <div className="w-px h-full bg-gray-200" />
                         {marketApiData.phoneNumber !== "" ?
                             <a href={`tel:${marketApiData.phoneNumber}`} className="flex-1 flex justify-center items-center">
                                 <div className="flex-1 flex flex-col justify-center items-center pt-1">
-                                    <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
+                                    <Image src={phoneIconBlack} width={24} height={24} alt="아이콘" />
                                     <h3 className="text-13px] font-normal text-black">전화</h3>
                                 </div>
                             </a> :
-                            <div className="flex-1 flex flex-col justify-center items-center pt-1" style={{ opacity: 0.5 }}>
-                                <Image src={phoneIcon} width={24} height={24} alt="아이콘" />
-                                <h3 className="text-13px] font-normal text-black">전화</h3>
+                            <div className="flex-1 flex flex-col justify-center items-center pt-1">
+                                <Image src={phoneIconGrey} width={24} height={24} alt="아이콘" />
+                                <h3 className="text-13px] font-normal text-gray-300">전화</h3>
                             </div>}
                     </div>
                     <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-3">
@@ -119,13 +120,13 @@ export default function MarketInfo({ marketKey }) {
                             }
                             {timeClicked &&
                                 <div className="absolute z-[60] bottom-0 transform -translate-x-[10px] translate-y-full flex flex-col items-center w-max p-2 bg-white rounded-[10px] shadow text-[15px] text-black font-normal ">
-                                    <div>월 00:00 - 00:00</div>
-                                    <div>화 00:00 - 00:00</div>
-                                    <div>수 00:00 - 00:00</div>
-                                    <div>목 00:00 - 00:00</div>
-                                    <div>금 00:00 - 00:00</div>
-                                    <div>토 00:00 - 00:00</div>
-                                    <div>일 00:00 - 00:00</div>
+                                    <div>월 07:00 - 21:00</div>
+                                    <div>화 07:00 - 21:00</div>
+                                    <div>수 07:00 - 21:00</div>
+                                    <div>목 07:00 - 21:00</div>
+                                    <div>금 07:00 - 21:00</div>
+                                    <div>토 07:00 - 21:00</div>
+                                    <div>일 07:00 - 21:00</div>
                                 </div>}
                         </div>
                         <div className="grow" />

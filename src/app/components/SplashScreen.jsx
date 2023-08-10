@@ -5,7 +5,7 @@ import Image from "next/image";
 import anime from "animejs";
 
 import logo from "/public/brand/logo.png";
-import splashImage from "/public/brand/splash.png";
+import splashImage from "/public/brand/splash-image.png";
 
 export default function SplashScreen({ finishLoading }) {
   const [isMounted, setIsMounted] = useState(false);

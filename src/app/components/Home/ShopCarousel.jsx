@@ -14,8 +14,26 @@ export default function ShopCarousel() {
 
   useEffect(() => {
     fetchRankingData({ rankingData, setRankingData });
-    console.log(rankingData);
-  }, [rankingData]);
+  }, []);
+
+  const generateSwiperSlides = () => {
+    if (!rankingData) {
+      return null;
+    }
+
+    return rankingData.map((data) => (
+      <SwiperSlide key={data.storeId}>
+        <div className="block">
+          <ShopCard
+            name={data.storeName}
+            market={data.marketName}
+            marketKey={data.marketId}
+            storeKey={data.storeId}
+          />
+        </div>
+      </SwiperSlide>
+    ));
+  };
 
   return (
     <div>
@@ -26,14 +44,7 @@ export default function ShopCarousel() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {rankingData &&
-          rankingData.map((data) => (
-            <SwiperSlide key={data.storeId}>
-              <div className="block">
-                <ShopCard name={data.storeName} market={data.marketName} />
-              </div>
-            </SwiperSlide>
-          ))}
+        {generateSwiperSlides()}
       </Swiper>
     </div>
   );

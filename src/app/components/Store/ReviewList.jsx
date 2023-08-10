@@ -29,7 +29,10 @@ export default function ReviewList({ marketKey, storeKey }) {
             onValue(reviewRef,
                 (snapshot) => {
                     if (snapshot.exists()) {
-                        setReviews(snapshot.val());
+                        const data = snapshot.val();
+                        const array = Object.values(data);
+                        array.sort((a, b) => (b.date - a.date));
+                        setReviews(array);
                     } else {
                         setReviews({});
                     }
@@ -101,7 +104,7 @@ export default function ReviewList({ marketKey, storeKey }) {
                 ))}
             </div>
             {reviews &&
-                Object.values(reviews).map((review, index) => <ReviewItem key={index} review={review} />)}
+                reviews.map((review, index) => <ReviewItem key={index} review={review} />)}
         </div>
     )
 }

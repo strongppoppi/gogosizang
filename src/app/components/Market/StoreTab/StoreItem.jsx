@@ -4,23 +4,23 @@ import { ref, get, onValue } from "firebase/database";
 
 import StoreImage from "./StoreImage";
 
+const tagIcon = {
+    가성비: "가성비 좋아요👍🏼",
+    위생적: "위생적✨",
+    존맛탱: "존맛탱🍽",
+    친절: "친절해요😊",
+    카드가능: "카드 가능💳"
+}
+
 export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
     const [storeData, setStoreData] = useState(null);
+    const [tags, setTags] = useState(null);
 
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
+    const tagRef = ref(firebaseDatabase, `tags/${marketKey}/${storeKey}`);
 
     useEffect(() => {
         if (!storeData) {
-            // get(storeRef).then((snapshot) => {
-            //     if (snapshot.exists()) {
-            //         setStoreData(snapshot.val());
-            //     } else {
-            //         console.log("No data available");
-            //     }
-            // }).catch((error) => {
-            //     console.log(error);
-            // });
-
             onValue(storeRef,
                 (snapshot) => {
                     if (snapshot.exists()) {
@@ -36,6 +36,28 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
             );
         }
     }, [storeKey, storeRef]);
+
+    useEffect(() => {
+        if (!tags) {
+            onValue(tagRef,
+                (snapshot) => {
+                    if (snapshot.exists()) {
+                        const tagData = snapshot.val();
+                        const array = Object.keys(tagData).filter(tag => tagData[tag] > 0);
+                        array.sort((a, b) => tagData[b] - tagData[a]);
+                        setTags(array.slice(0, 2));
+                    } else {
+                        setTags([]);
+                    }
+                },
+                { onlyOnce: true },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        }
+    }, [storeKey, tags]);
+
 
     var skeleton = (
         <div className="w-full flex flex-col justify-start items-center py-4 animate-pulse">
@@ -61,10 +83,13 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
                     <h3 className="text-[21px] font-medium text-black mr-2">{storeData["점포명"]}</h3>
                     <h3 className="text-[13px] font-normal text-gray-600 leading-[13px]">{storeData["취급품목"]}</h3>
                 </div>
-                <div className="w-full flex flex-row justify-start items-center">
-                    <Tag>맛있어요</Tag>
-                    <Tag>가성비 좋아요</Tag>
-                </div>
+                {tags &&
+                    <div className="w-full flex flex-row justify-start items-center">
+                        {tags.map((tag, index) => (
+                            <Tag key={index}>{tagIcon[tag]}</Tag>
+                        ))}
+                    </div>
+                }
             </div >
             :
             skeleton
@@ -73,7 +98,7 @@ export default function StoreItem({ marketKey, storeKey, setSelectedStore }) {
 
 function Tag({ children }) {
     return (
-        <div className="rounded px-2.5 py-1 mr-2 bg-gray-200 text-[15px] font-normal text-black">
+        <div className="rounded px-2.5 py-1 mr-2 bg-gray-100 text-[15px] font-normal text-black">
             {children}
         </div>
     )

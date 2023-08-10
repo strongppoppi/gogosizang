@@ -7,27 +7,27 @@ import { ref, get, onValue } from "firebase/database";
 import StoreList from "./StoreList";
 
 import Image from "next/image";
-import meatIcon from "public/icons/meat.png";
-import appleIcon from "public/icons/apple.png";
-import tteokIcon from "public/icons/tteok.png";
-import chickenIcon from "public/icons/chicken.png";
-import fishIcon from "public/icons/fish.png";
-import dumplingIcon from "public/icons/dumpling.png";
-import cosmeticsIcon from "public/icons/cosmetics.png";
-import clothsIcon from "public/icons/cloths.png";
-import restaurantIcon from "public/icons/restaurant.png";
-import eggIcon from "public/icons/egg.png";
-import medicineIcon from "public/icons/medicine.png";
-import hotdogIcon from "public/icons/hotdog.png";
-import cameraIcon from "public/icons/camera.png";
-import breadIcon from "public/icons/bread.png";
-import jeonIcon from "public/icons/jeon.png";
-import dogIcon from "public/icons/dog.png";
-import shoesIcon from "public/icons/shoes.png";
-import insamIcon from "public/icons/insam.png";
-import tteokbokkiIcon from "public/icons/tteokbokki.png";
-import blanketIcon from "public/icons/blanket.png";
-import riceIcon from "public/icons/rice.png";
+import meatIcon from "public/icons/meat.svg";
+import appleIcon from "public/icons/apple.svg";
+import tteokIcon from "public/icons/tteok.svg";
+import chickenIcon from "public/icons/chicken.svg";
+import fishIcon from "public/icons/fish.svg";
+import dumplingIcon from "public/icons/dumpling.svg";
+import cosmeticsIcon from "public/icons/cosmetics.svg";
+import clothesIcon from "public/icons/clothes.svg";
+import restaurantIcon from "public/icons/restaurant.svg";
+import eggIcon from "public/icons/egg.svg";
+import medicineIcon from "public/icons/medicine.svg";
+import hotdogIcon from "public/icons/hotdog.svg";
+import cameraIcon from "public/icons/camera.svg";
+import breadIcon from "public/icons/bread.svg";
+import jeonIcon from "public/icons/jeon.svg";
+import dogIcon from "public/icons/dog.svg";
+import shoesIcon from "public/icons/shoes.svg";
+import insamIcon from "public/icons/insam.svg";
+import tteokbokkiIcon from "public/icons/tteokbokki.svg";
+import blanketIcon from "public/icons/blanket.svg";
+import riceIcon from "public/icons/rice.svg";
 
 export default function StoreTab({ marketKey, setSelectedStore }) {
     const [stores, setStores] = useState(null);   // 목록에 표시될 상점들의 key 
@@ -42,7 +42,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
         [fishIcon, "생선"],
         [dumplingIcon, "만두"],
         [cosmeticsIcon, "화장품"],
-        [clothsIcon, "옷"],
+        [clothesIcon, "옷"],
         [restaurantIcon, "식당"],
         [eggIcon, "반찬"],
         [medicineIcon, "약국"],
@@ -122,7 +122,7 @@ export default function StoreTab({ marketKey, setSelectedStore }) {
                         <div
                             key={index}
                             onClick={() => onTagClick(content[1])}
-                            className={`w-max px-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-main border-main text-white" : "bg-white border-black text-black"} border mr-2 flex-none flex flex-row items-center`}>
+                            className={`w-max px-2.5 py-1.5 rounded-full ${content[1] === category ? "bg-main border-main text-white" : "bg-white border-black text-black"} border mr-2 flex-none flex flex-row items-center box-border`}>
                             {content[0] && <Image src={content[0]} width={20} height={20} alt="아이콘" />}
                             <h3 className="text-[15px] font-normal ml-1">{content[1]}</h3>
                         </div>

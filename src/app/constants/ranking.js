@@ -55,7 +55,15 @@ export function fetchRankingData({ rankingData, setRankingData }) {
               const averageRating = Number(
                 innerData.totalStars / innerData.count
               );
-              newDataArray.push({ marketId, storeId, averageRating });
+              const marketName = innerData.marketName;
+              const storeName = innerData.storeName;
+              newDataArray.push({
+                marketId,
+                storeId,
+                averageRating,
+                marketName,
+                storeName,
+              });
             });
 
             setRankingData(newDataArray);

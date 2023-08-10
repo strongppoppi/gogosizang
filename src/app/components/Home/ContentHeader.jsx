@@ -30,7 +30,7 @@ export default function ContentHeader({
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row justify-start items-center gap-x-1">
           <Image src={emoji} width={24} height={24} alt="emoji" />
-          <h2 className="text-black font-extrabold text-[1.6rem]">
+          <h2 className="text-black font-bold text-[1.35rem] tracking-tighter">
             {headerText}
           </h2>
         </div>
@@ -43,7 +43,9 @@ export default function ContentHeader({
           </Link>
         )}
       </div>
-      <h4 className="text-gray-800 font-regular text-sm">{subText}</h4>
+      <h4 className="text-gray-800 font-regular text-sm tracking-tighter">
+        {subText}
+      </h4>
     </div>
   );
 }

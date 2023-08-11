@@ -43,7 +43,9 @@ export default function StoreImage({ marketKey, storeKey, setSelectedStore }) {
 
     return (
         image ?
-            <div className="w-full h-52 rounded-lg overflow-hidden relative mb-2.5" >
+            <div
+                onClick={() => setSelectedStore(storeKey)}
+                className="w-full h-52 rounded-lg overflow-hidden relative mb-2.5" >
                 <Image
                     src={image}
                     placeholder="blur"
@@ -52,7 +54,7 @@ export default function StoreImage({ marketKey, storeKey, setSelectedStore }) {
                     className="object-cover"
                     alt="상점 이미지" />
                 <div className="w-11 h-11 rounded-lg bg-main absolute right-2.5 bottom-2.5 flex justify-center items-center">
-                    <Image src={arrowIcon} width={24} height={24} alt="아이콘" onClick={() => setSelectedStore(storeKey)} />
+                    <Image src={arrowIcon} width={24} height={24} alt="아이콘" />
                 </div>
             </div> :
             skeleton

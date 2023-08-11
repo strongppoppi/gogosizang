@@ -34,7 +34,7 @@ export default function Popular() {
   };
 
   return (
-    <div className="flex-col grow overflow-y-scroll px-4 bg-gray-100">
+    <div className="flex-col grow overflow-y-scroll px-4 bg-gray-100 pb-[5.625rem]">
       <ContentHeader
         headerText="오늘의 인기 상점"
         subText="나도 인기 상품 즐겨보기"
@@ -42,7 +42,6 @@ export default function Popular() {
         emoji={fireEmoji}
       />
       {generateDetailedShopCard()}
-      <div className="flex grow h-[90px] bg-white" />
     </div>
   );
 }

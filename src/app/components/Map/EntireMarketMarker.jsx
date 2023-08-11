@@ -23,7 +23,7 @@ export default function EntireMarketMarker({ naverMap, markers, setMarkers, setS
                         position: new naver.maps.LatLng(market.latitude, market.longitude),
                         map: naverMap,
                         icon: {
-                            content: "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
+                            content: "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' class='overflow-hidden' />",
                             size: new naver.maps.Size(31.5, 39),
                             origin: new naver.maps.Point(15.75, 0),
                         }

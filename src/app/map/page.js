@@ -23,14 +23,14 @@ export default function MapPage() {
       // 선택한 마커 검은색으로
       if (beforeMarket) {
         markers[beforeMarket].setIcon({
-          content: "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
+          content: "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' class='min-w-[31.5px] min-h-[39px] overflow-hidden' />",
           size: new naver.maps.Size(31.5, 39),
           origin: new naver.maps.Point(15.75, 0),
         });
       }
 
       markers[selectedMarket].setIcon({
-        content: "<img src='icons/marker_black.svg' width='31.5' height='39' alt='시장 마커' />",
+        content: "<img src='icons/marker_black.svg' width='31.5' height='39' alt='시장 마커' class='overflow-hidden' />",
         size: new naver.maps.Size(31.5, 39),
         origin: new naver.maps.Point(15.75, 0),
       });

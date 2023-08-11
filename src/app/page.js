@@ -9,7 +9,7 @@ import ShopCarousel from "./components/Home/ShopCarousel";
 
 export default function Home() {
   return (
-    <div className="flex-col grow overflow-y-scroll bg-gray-100">
+    <div className="flex-col grow overflow-y-scroll bg-gray-100 pb-[90px]">
       <div className="flex-col grow px-4">
         <ContentHeader
           headerText="오늘의 인기 상점"
@@ -38,7 +38,6 @@ export default function Home() {
         />
         <FestivalCarousel />
       </div>
-      <div className="flex grow mt-[7rem]" />
     </div>
   );
 }

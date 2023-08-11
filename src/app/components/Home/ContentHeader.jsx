@@ -30,7 +30,7 @@ export default function ContentHeader({
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row justify-start items-center gap-x-1">
           <Image src={emoji} width={24} height={24} alt="emoji" />
-          <h2 className="text-black font-bold text-[1.35rem] tracking-tighter">
+          <h2 className="text-black font-bold text-[1.35rem] tracking-tightest">
             {headerText}
           </h2>
         </div>

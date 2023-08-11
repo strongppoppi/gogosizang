@@ -15,9 +15,38 @@ import carIcon from "/public/icons/car.svg";
 import chevronDown from "/public/icons/chevron_down_small.svg";
 import chevronUp from "/public/icons/chevron_up.svg";
 
+import stationData from "/public/data/station_coordinate.json";
+import { calculateDistance } from "@/app/constants/distance";
+
+const subwayColor = {
+    "1호선": "#0052A4",
+    "2호선": "#00A84D",
+    "3호선": "#EF7C1C",
+    "4호선": "#00A5DE",
+    "5호선": "#996CAC",
+    "6호선": "#CD7C2F",
+    "7호선": "#747F00",
+    "8호선": "#E6186C",
+    "9호선": "#BDB092",
+    "경강선": "#003DA5",
+    "경의중앙선": "#77C4A3",
+    "경춘선": "#0C8E72",
+    "공항철도": "#0090D2",
+    "김포도시철도": "#AD8605",
+    "서해선": "#81A914",
+    "수인분당선": "#F5A200",
+    "신분당선": "#D4003B",
+    "용인경전철": "#509F22",
+    "우이신설경전철": "#B7C452",
+    "의정부경전철": "#FDA600",
+    "인천1호선": "#7CA8D5",
+    "인천2호선": "#ED8B00",
+}
+
 
 export default function MarketInfo({ marketKey }) {
     const [marketApiData, setMarketApiData] = useState(null);
+    const [nearestStation, setNearestStation] = useState(null);
     const [timeClicked, setTimeClicked] = useState(false);
 
     const apiDataRef = ref(firebaseDatabase, `market_api/${marketKey}`);
@@ -26,7 +55,10 @@ export default function MarketInfo({ marketKey }) {
         if (!marketApiData) {
             get(apiDataRef).then((snapshot) => {
                 if (snapshot.exists()) {
-                    setMarketApiData(snapshot.val());
+                    const marketData = snapshot.val();
+                    const station = findNearestStation(marketData.latitude, marketData.longitude);
+                    setNearestStation(station);
+                    setMarketApiData(marketData);
                 } else {
                     console.log("No data available");
                 }
@@ -34,14 +66,29 @@ export default function MarketInfo({ marketKey }) {
                 console.log(error);
             });
         }
+        // subwayColor[nearestStation.line]
     }, []);
 
     // 파베에서 불러오거나 따로 구해야 하는 데이터
-    var subwayLine = 0;
-    var station = "지하철역";
-    var stationsDistance = "0m";
     var openTime = "07:00";
     var closeTime = "21:00";
+
+    // 가장 가까운 지하철역 정보 & 거리(m)
+    const findNearestStation = (lat, lon) => {
+        var nearest = null;
+        var minDistance = Infinity;
+
+        for (const station of stationData) {
+            var distance = calculateDistance(lat, lon, station.lat, station.lng);
+            if (distance < minDistance) {
+                nearest = station;
+                minDistance = distance;
+            }
+        }
+        nearest.distance = minDistance;
+
+        return nearest;
+    }
 
     // 홈페이지 주소 url 유효성 검사
     const isValidURL = (url) => {
@@ -94,10 +141,10 @@ export default function MarketInfo({ marketKey }) {
                         <h4 className="text-[15px] font-normal text-black ml-0.5">{marketApiData.rdnmadr || marketApiData.lnmadr}</h4>
                     </div>
                     <div className="flex flex-row items-center mb-5">
-                        <div className="h-[22px] rounded-full px-2 bg-main text-[13px] font-normal text-white leading-[22px] ml-6">
-                            {`${subwayLine}호선`}
+                        <div className={`h-[22px] rounded-full px-2 text-[13px] font-normal text-white leading-[22px] ml-6`} style={{ backgroundColor: subwayColor[nearestStation.line] }}>
+                            {nearestStation.line}
                         </div>
-                        <h4 className="text-[13px] font-normal text-gray-700 leading-[22px] ml-[5px]">{`${station}(으)로부터 ${stationsDistance}`}</h4>
+                        <h4 className="text-[13px] font-normal text-gray-700 leading-[22px] ml-[5px]">{`${nearestStation.name}역으로부터 ${nearestStation.distance.toFixed(0)}m`}</h4>
                     </div>
                     <div className="w-full h-14 mb-4 flex flex-row border-y border-solid border-gray-200">
                         {isValidURL(marketApiData.homepageUrl) ?

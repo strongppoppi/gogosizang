@@ -13,18 +13,19 @@ import Image from "next/image";
 import { addRankingData } from "@/app/constants/ranking";
 
 import backIcon from "public/icons/arrow_left_black.png";
-import yellowStar from "public/icons/rating_star_yellow.png";
-import greyStar from "public/icons/rating_star_grey.png";
+import yellowStar from "public/icons/star_yellow.svg";
+import greyStar from "public/icons/star_grey.svg";
 import addPhotoIcon from "public/icons/add_photo.png";
 import marketsJson from "public/data/markets.json";
 
 export default function ReviewModal({
   marketKey,
   storeKey,
-  setShowReviewModal,
+  firstRating,
+  resetRating,
 }) {
   const [storeName, setStoreName] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(firstRating);
   const [text, setText] = useState("");
   const [images, setImages] = useState(null);
   const [cardTag, setCardTag] = useState(false);
@@ -35,7 +36,7 @@ export default function ReviewModal({
   const [postAbled, setPostAbled] = useState(false);
 
   // 추후 로그인 기능 추가되면 수정
-  const userId = "user";
+  const userId = "심효훈";
 
   // 상점 이름 불러오기
   useEffect(() => {
@@ -117,7 +118,7 @@ export default function ReviewModal({
     )
       .then(() => {
         console.log("리뷰 등록 완료");
-        setShowReviewModal(false);
+        resetRating();
       })
       .catch((error) => {
         console.log("리뷰 등록 실패", error);
@@ -162,12 +163,12 @@ export default function ReviewModal({
   return (
     <div className="absolute z-[100] inset-0 bg-white flex flex-col items-center overflow-y-scroll">
       <div
-        onClick={() => setShowReviewModal(false)}
+        onClick={resetRating}
         className="absolute top-5 left-5 w-11 h-11 rounded-lg bg-white shadow-md flex justify-center items-center"
       >
         <Image src={backIcon} width={24} height={24} alt="아이콘" />
       </div>
-      <h1 className="text-base text-black font-bold mt-8 mb-14">{storeName}</h1>
+      <h1 className="text-base text-black font-bold leading-[19px] mt-8 mb-14">{storeName}</h1>
       <div className="w-11/12 h-[82px] mb-6 flex flex-col justify-around items-center border-y border-solid border-gray-200 p-2.5">
         <h3 className="text-[15px] text-black font-normal">
           이 상점은 어떠셨나요?

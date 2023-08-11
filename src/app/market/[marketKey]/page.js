@@ -51,7 +51,7 @@ export default function MarketPage({ params }) {
   const [naverMap, setNaverMap] = useState(null);
   const [storeMarkers, setStoreMarkers] = useState({});
   const [selectedStore, setSelectedStore] = useState(null);
-  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [firstRating, setFirstRating] = useState(0);
 
   useEffect(() => {
     if (selectedStore) {  // 상점 선택 -> 지도에 모든 상점 마커 추가
@@ -114,13 +114,13 @@ export default function MarketPage({ params }) {
 
   return (
     <div className="h-full flex-col grow relative overflow-y-scroll">
-      {showReviewModal && <ReviewModal marketKey={marketKey} storeKey={selectedStore} setShowReviewModal={setShowReviewModal}/>}
+      {firstRating > 0 && <ReviewModal marketKey={marketKey} storeKey={selectedStore} firstRating={firstRating} resetRating={() => {setFirstRating(0)}}/>}
       <Drawer>
         {selectedStore ? 
           <>
             <StoreImage marketKey={marketKey} storeKey={selectedStore}/>
             <StoreInfo marketKey={marketKey} storeKey={selectedStore}/>
-            <ReviewPrompt setShowReviewModal={setShowReviewModal}/>
+            <ReviewPrompt firstRating={firstRating} setFirstRating={setFirstRating}/>
             <ReviewList marketKey={marketKey} storeKey={selectedStore}/>
           </> :
           <>

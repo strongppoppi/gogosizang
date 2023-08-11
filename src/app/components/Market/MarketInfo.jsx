@@ -53,6 +53,23 @@ export default function MarketInfo({ marketKey }) {
         }
     };
 
+    // 영업중/영업종료
+    const isOpen = (openTime, closeTime) => {
+        const now = new Date();
+        const open = parseTimeString(openTime);
+        const close = parseTimeString(closeTime);
+        return open <= now && now <= close;
+    }
+
+    const parseTimeString = (timeString) => {
+        const [hours, minutes] = timeString.split(':');
+        const date = new Date();
+        date.setHours(parseInt(hours, 10));
+        date.setMinutes(parseInt(minutes, 10));
+        date.setSeconds(0);
+        return date;
+    }
+
     // 로딩 중 보여질 UI
     var skeleton = (
         <div className="w-11/12">
@@ -120,17 +137,20 @@ export default function MarketInfo({ marketKey }) {
                             }
                             {timeClicked &&
                                 <div className="absolute z-[60] bottom-0 transform -translate-x-[10px] translate-y-full flex flex-col items-center w-max p-2 bg-white rounded-[10px] shadow text-[15px] text-black font-normal ">
-                                    <div>월 07:00 - 21:00</div>
-                                    <div>화 07:00 - 21:00</div>
-                                    <div>수 07:00 - 21:00</div>
-                                    <div>목 07:00 - 21:00</div>
-                                    <div>금 07:00 - 21:00</div>
-                                    <div>토 07:00 - 21:00</div>
-                                    <div>일 07:00 - 21:00</div>
+                                    <div>월 {openTime} - {closeTime}</div>
+                                    <div>화 {openTime} - {closeTime}</div>
+                                    <div>수 {openTime} - {closeTime}</div>
+                                    <div>목 {openTime} - {closeTime}</div>
+                                    <div>금 {openTime} - {closeTime}</div>
+                                    <div>토 {openTime} - {closeTime}</div>
+                                    <div>일 {openTime} - {closeTime}</div>
                                 </div>}
                         </div>
                         <div className="grow" />
-                        <div className="rounded px-2.5 py-1 bg-positive text-[13px] font-normal text-white">영업중</div>
+                        {isOpen(openTime, closeTime) ?
+                            <div className="rounded px-2.5 py-1 bg-positive text-[13px] font-normal text-white">영업중</div> :
+                            <div className="rounded px-2.5 py-1 bg-gray-500 text-[13px] font-normal text-white">영업종료</div>
+                        }
                     </div>
                     <div className="h-12 flex flex-row items-center px-3 rounded-lg bg-gray-100 mb-6">
                         <Image src={carIcon} width={24} height={24} alt="아이콘" />

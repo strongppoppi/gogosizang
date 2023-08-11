@@ -5,7 +5,7 @@ import { firebaseDatabase } from "../../../../firebase-config";
 import { ref, get } from "firebase/database";
 import Image from "next/image";
 
-import markerIcon from "/public/icons/marker_grey.png";
+import pinIcon from "/public/icons/pin_grey.svg";
 import computerIconBlack from "/public/icons/computer_black.svg";
 import computerIconGrey from "/public/icons/computer_grey.svg";
 import phoneIconBlack from "/public/icons/phone_black.svg";
@@ -73,14 +73,14 @@ export default function MarketInfo({ marketKey }) {
                 <div className="w-11/12">
                     <h1 className="text-[25px] font-bold text-black mb-3">{marketApiData.mrktNm}</h1>
                     <div className="flex flex-row items-center mb-2">
-                        <Image src={markerIcon} alt="아이콘" width={24} height={24} />
+                        <Image src={pinIcon} alt="아이콘" width={24} height={24} />
                         <h4 className="text-[15px] font-normal text-black ml-0.5">{marketApiData.rdnmadr || marketApiData.lnmadr}</h4>
                     </div>
                     <div className="flex flex-row items-center mb-5">
-                        <div className="rounded-full px-2 py-0.5 bg-main text-[13px] font-normal text-white ml-6">
+                        <div className="h-[22px] rounded-full px-2 bg-main text-[13px] font-normal text-white leading-[22px] ml-6">
                             {`${subwayLine}호선`}
                         </div>
-                        <h4 className="text-[13px] font-normal text-gray-700 ml-1">{`${station}(으)로부터 ${stationsDistance}`}</h4>
+                        <h4 className="text-[13px] font-normal text-gray-700 leading-[22px] ml-[5px]">{`${station}(으)로부터 ${stationsDistance}`}</h4>
                     </div>
                     <div className="w-full h-14 mb-4 flex flex-row border-y border-solid border-gray-200">
                         {isValidURL(marketApiData.homepageUrl) ?

@@ -16,7 +16,7 @@ export default function BottomTab() {
   const pathName = usePathname();
 
   return (
-    <div className="absolute bottom-[-90px] left-0 w-full bg-white z-20 h-[180px]">
+    <div className="absolute bottom-0 left-0 w-full bg-white z-20">
       <footer>
         <div className="flex flex-row justify-around border-t-2 py-4">
           <Link href="/" className="grow justify-center items-center">

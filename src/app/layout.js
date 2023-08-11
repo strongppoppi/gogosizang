@@ -34,6 +34,7 @@ export default function RootLayout({ children }) {
     // 초기 뷰포트 높이 값 설정
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
+    document.documentElement.requestFullscreen();
 
     // 리사이즈 이벤트 핸들러 등록
     const handleResize = () => {

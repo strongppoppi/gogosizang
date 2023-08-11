@@ -23,16 +23,16 @@ export default function MapPage() {
       // 선택한 마커 검은색으로
       if (beforeMarket) {
         markers[beforeMarket].setIcon({
-          url: "icons/marker_main.png",
-          size: new naver.maps.Size(42, 52),
-          origin: new naver.maps.Point(0, 0),
+          content: "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
+          size: new naver.maps.Size(31.5, 39),
+          origin: new naver.maps.Point(15.75, 0),
         });
       }
 
       markers[selectedMarket].setIcon({
-        url: "icons/marker_black.png",
-        size: new naver.maps.Size(42, 52),
-        origin: new naver.maps.Point(0, 0),
+        content: "<img src='icons/marker_black.svg' width='31.5' height='39' alt='시장 마커' />",
+        size: new naver.maps.Size(31.5, 39),
+        origin: new naver.maps.Point(15.75, 0),
       });
 
       // 선택한 마커 위치로 이동

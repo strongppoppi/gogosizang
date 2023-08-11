@@ -44,9 +44,9 @@ export default function MyPage() {
   )
 
   return (
-    <div className="grow flex flex-col bg-gray-100 overflow-y-scroll">
-      <LoggedOut />
-      <div className="w-full h-[14px] bg-gray-200"/>
+    <div className="grow flex flex-col bg-gray-100 pb-[90px] overflow-y-scroll">
+      <LoggedIn />
+      <div className="w-full h-[14px] bg-gray-200 shrink-0"/>
       <div className="w-full p-5 flex flex-col space-y-3">
         <div className="w-full h-11 rounded-[10px] bg-white px-4 text-[15px] text-black font-normal leading-[44px]">
           알림 설정

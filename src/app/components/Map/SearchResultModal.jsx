@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import marketsLocation from "/public/data/markets.json";
-import icon from "/public/icons/search_grey.png";
+import icon from "/public/icons/search_grey.svg";
 import backIcon from "/public/icons/backIcon.png";
 import pinIcon from "/public/icons/pinIcon-500.png";
 
@@ -59,7 +59,7 @@ export default function SearchResultModal({
             <Image src={backIcon} width={18} height={16} alt="뒤로가기 버튼" />
           </button>
         </div>
-        <div className="p-3 rounded-lg shadow-md flex flex-row justify-start items-center bg-white mb-4">
+        <div className="p-3 rounded-lg shadow flex flex-row justify-start items-center bg-white mb-4">
           <Image src={icon} width={24} height={24} alt="아이콘" />
           <input
             className="text-[15px] font-normal text-black placeholder:text-gray-500 focus:outline-none ml-2 w-full"

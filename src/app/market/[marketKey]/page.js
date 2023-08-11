@@ -22,28 +22,27 @@ import locationIcon from "public/icons/gps_white.png";
 import yeongcheonStores from "public/data/yeongcheonData.json";
 
 const iconPath = {
-    "고기": "/icons/meat.png",
-    "야채·과일": "/icons/apple.png",
-    "떡": "/icons/tteok.png",
-    "치킨": "/icons/chicken.png",
-    "생선": "/icons/fish.png",
-    "만두": "/icons/dumpling.png",
-    "화장품": "/icons/cosmetics.png",
-    "옷": "/icons/cloths.png",
-    "식당": "/icons/restaurant.png",
-    "반찬": "/icons/egg.png",
-    "약국": "/icons/medicine.png",
-    "핫도그": "/icons/hotdog.png",
-    "사진관": "/icons/camera.png",
-    "빵": "/icons/bread.png",
-    "전": "/icons/jeon.png",
-    "애견용품": "/icons/dog.png",
-    "신발": "/icons/shoes.png",
-    "약재": "/icons/insam.png",
-    "분식": "/icons/tteokbokki.png",
-    "이불": "/icons/blanket.png",
-    "잡곡": "/icons/rice.png",
-    "기타": "",
+    "고기": "/icons/meat.svg",
+    "야채·과일": "/icons/apple.svg",
+    "떡": "/icons/tteok.svg",
+    "치킨": "/icons/chicken.svg",
+    "생선": "/icons/fish.svg",
+    "만두": "/icons/dumpling.svg",
+    "화장품": "/icons/cosmetics.svg",
+    "옷": "/icons/clothes.svg",
+    "식당": "/icons/restaurant.svg",
+    "반찬": "/icons/egg.svg",
+    "약국": "/icons/medicine.svg",
+    "핫도그": "/icons/hotdog.svg",
+    "사진관": "/icons/camera.svg",
+    "빵": "/icons/bread.svg",
+    "전": "/icons/jeon.svg",
+    "애견용품": "/icons/dog.svg",
+    "신발": "/icons/shoes.svg",
+    "약재": "/icons/insam.svg",
+    "분식": "/icons/tteokbokki.svg",
+    "이불": "/icons/blanket.svg",
+    "잡곡": "/icons/rice.svg",
 }
 
 
@@ -58,23 +57,47 @@ export default function MarketPage({ params }) {
     if (selectedStore) {  // 상점 선택 -> 지도에 모든 상점 마커 추가
       for (const [key, marker] of Object.entries(storeMarkers)) {
         if (key == selectedStore) { // 선택한 상점 마커 (black)
-          marker.setIcon({
-            content: [
-              '<div class="w-max h-[30px] bg-black rounded-lg flex flex-row items-center px-[7px]" shadow overflow-hidden>',
-              `<img src='${iconPath[yeongcheonStores[key]["분류"]]}' width='20' height='20' alt="상점 아이콘" />`,
-              `<span class="text-[13px] text-white font-normal whitespace-pre break-keep ml-1">${yeongcheonStores[key]["점포명"]}</span>`,
-              '</div>',
-            ].join(''),
-          })
+          marker.setIcon(
+            yeongcheonStores[key]["분류"] == "기타" ?
+              { 
+                content: [
+                  '<div class="w-max h-[30px] bg-black rounded-lg flex flex-row items-center px-[7px]" shadow overflow-hidden>',
+                  `<span class="text-[13px] text-white font-normal whitespace-pre break-keep">${yeongcheonStores[key]["점포명"]}</span>`,
+                  '</div>',
+                ].join(''),
+                anchor: new naver.maps.Point((13 * yeongcheonStores[key]["점포명"].length + 14) / 2, 15)
+              } :
+              { 
+                content: [
+                  '<div class="w-max h-[30px] bg-black rounded-lg flex flex-row items-center px-[7px]" shadow overflow-hidden>',
+                  `<img src='${iconPath[yeongcheonStores[key]["분류"].split(", ")[0]]}' width='20' height='20' alt="상점 아이콘" />`,
+                  `<span class="text-[13px] text-white font-normal whitespace-pre break-keep ml-1">${yeongcheonStores[key]["점포명"]}</span>`,
+                  '</div>',
+                ].join(''),
+                anchor: new naver.maps.Point((13 * yeongcheonStores[key]["점포명"].length + 38) / 2, 15)
+              }
+          )
         } else {  // 선택하지 않은 상점 마커 (white)
-          marker.setIcon({
-            content: [
-              '<div class="w-max h-[30px] bg-white rounded-lg border border-gray-300 flex flex-row items-center px-[7px]" shadow overflow-hidden>',
-              `<img src='${iconPath[yeongcheonStores[key]["분류"]]}' width='20' height='20' alt="상점 아이콘" />`,
-              `<span class="text-[13px] text-black font-normal whitespace-pre break-keep ml-1">${yeongcheonStores[key]["점포명"]}</span>`,
-              '</div>',
-            ].join(''),
-          })
+          marker.setIcon(
+            yeongcheonStores[key]["분류"] == "기타" ?
+              { 
+                content: [
+                  '<div class="w-max h-[30px] bg-white rounded-lg border border-gray-300 flex flex-row items-center px-[7px]" shadow overflow-hidden>',
+                  `<span class="text-[13px] text-black font-normal whitespace-pre break-keep">${yeongcheonStores[key]["점포명"]}</span>`,
+                  '</div>',
+                ].join(''),
+                anchor: new naver.maps.Point((13 * yeongcheonStores[key]["점포명"].length + 14) / 2, 15)
+              } :
+              { 
+                content: [
+                  '<div class="w-max h-[30px] bg-white rounded-lg border border-gray-300 flex flex-row items-center px-[7px]" shadow overflow-hidden>',
+                  `<img src='${iconPath[yeongcheonStores[key]["분류"].split(", ")[0]]}' width='20' height='20' alt="상점 아이콘" />`,
+                  `<span class="text-[13px] text-black font-normal whitespace-pre break-keep ml-1">${yeongcheonStores[key]["점포명"]}</span>`,
+                  '</div>',
+                ].join(''),
+                anchor: new naver.maps.Point((13 * yeongcheonStores[key]["점포명"].length + 38) / 2, 15)
+              }
+          )
         }
         marker.setMap(naverMap);  
       }

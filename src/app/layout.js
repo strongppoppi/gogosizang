@@ -25,19 +25,15 @@ export default function RootLayout({ children }) {
   const [isLoading, setIsLoading] = useState(isHome);
   const showBottomTab =
     !pathName.startsWith("/market") && !pathName.startsWith("/editor");
-  const windowHeight = useRef(0);
 
   useEffect(() => {
     if (isLoading) return;
   }, [isLoading]);
 
-  useEffect(() => {
-    windowHeight.current = window.innerHeight;
-  }, []);
-
   return (
     <html lang="kr">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
         <Script
           strategy="beforeInteractive"
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}

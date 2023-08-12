@@ -10,7 +10,7 @@ export default function ContentCard({ bgImage, title, contentId }) {
 
   return (
     <Link href={`/editor/${contentId}`}>
-      <div className="flex flex-col justify-start items-center text-left rounded-2xl overflow-hidden drop-shadow-md">
+      <div className="flex flex-col justify-start items-center text-left rounded-2xl overflow-hidden drop-shadow-md ">
         <div className="relative w-full h-[9.5rem]">
           <Image
             src={bgImage === "" ? defaultImage : bgImage}

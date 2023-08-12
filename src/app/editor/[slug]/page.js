@@ -20,7 +20,7 @@ export default function Page({ params }) {
     <div className="flex-col grow overflow-y-scroll relative pb-12">
       <div id="background-image" className="w-full h-[450px] relative">
         <Image
-          src={defaultImage}
+          src={contentData.backgroundImage}
           fill={true}
           alt="콘텐츠 사진"
           className="object-cover"
@@ -40,7 +40,11 @@ export default function Page({ params }) {
           <div className="flex flex-row items-center">
             <div className="w-[34px] h-[34px] rounded-full relative overflow-hidden">
               <Image
-                src={defaultImage}
+                src={
+                  contentData.editorImage === ""
+                    ? defaultImage
+                    : contentData.editorImage
+                }
                 fill={true}
                 alt="프로필 이미지"
                 className="object-cover"
@@ -95,29 +99,28 @@ export default function Page({ params }) {
       </div>
       <CurationItem
         storeId={contentData.storeOne}
-        imageOne={contentData.storeOneImageOne}
-        imageTwo={contentData.storeOneImageTwo}
+        imageOne={contentData.storeOneImageUrlOne}
+        imageTwo={contentData.storeOneImageUrlTwo}
         content={contentData.storeOneContent}
       />
       <CurationItem
         storeId={contentData.storeTwo}
-        imageOne={contentData.storeTwoImageOne}
-        imageTwo={contentData.storeTwoImageTwo}
+        imageOne={contentData.storeTwoImageUrlOne}
+        imageTwo={contentData.storeTwoImageUrlTwo}
         content={contentData.storeTwoContent}
       />
       <CurationItem
         storeId={contentData.storeThree}
-        imageOne={contentData.storeThreeImageOne}
-        imageTwo={contentData.storeThreeImageTwo}
+        imageOne={contentData.storeThreeImageUrlOne}
+        imageTwo={contentData.storeThreeImageUrlTwo}
         content={contentData.storeThreeContent}
       />
       <CurationItem
         storeId={contentData.storeFour}
-        imageOne={contentData.storeFourImageOne}
-        imageTwo={contentData.storeFourImageTwo}
+        imageOne={contentData.storeFourImageUrlOne}
+        imageTwo={contentData.storeFourImageUrlTwo}
         content={contentData.storeFourContent}
       />
-      <MapButton />
     </div>
   );
 }

@@ -7,55 +7,80 @@ import { ref, get, onValue } from "firebase/database";
 import StoreList from "./StoreList";
 
 import Image from "next/image";
-import meatIcon from "/public/icons/meat.svg";
-import appleIcon from "/public/icons/apple.svg";
-import tteokIcon from "/public/icons/tteok.svg";
-import chickenIcon from "/public/icons/chicken.svg";
-import fishIcon from "/public/icons/fish.svg";
-import dumplingIcon from "/public/icons/dumpling.svg";
-import cosmeticsIcon from "/public/icons/cosmetics.svg";
-import clothesIcon from "/public/icons/clothes.svg";
-import restaurantIcon from "/public/icons/restaurant.svg";
-import eggIcon from "/public/icons/egg.svg";
-import medicineIcon from "/public/icons/medicine.svg";
-import hotdogIcon from "/public/icons/hotdog.svg";
-import cameraIcon from "/public/icons/camera.svg";
-import breadIcon from "/public/icons/bread.svg";
-import jeonIcon from "/public/icons/jeon.svg";
-import dogIcon from "/public/icons/dog.svg";
-import shoesIcon from "/public/icons/shoes.svg";
-import insamIcon from "/public/icons/insam.svg";
-import tteokbokkiIcon from "/public/icons/tteokbokki.svg";
-import blanketIcon from "/public/icons/blanket.svg";
-import riceIcon from "/public/icons/rice.svg";
+// import meatIcon from "/public/icons/meat.svg";
+// import appleIcon from "/public/icons/apple.svg";
+// import tteokIcon from "/public/icons/tteok.svg";
+// import chickenIcon from "/public/icons/chicken.svg";
+// import fishIcon from "/public/icons/fish.svg";
+// import dumplingIcon from "/public/icons/dumpling.svg";
+// import cosmeticsIcon from "/public/icons/cosmetics.svg";
+// import clothesIcon from "/public/icons/clothes.svg";
+// import restaurantIcon from "/public/icons/restaurant.svg";
+// import eggIcon from "/public/icons/egg.svg";
+// import medicineIcon from "/public/icons/medicine.svg";
+// import hotdogIcon from "/public/icons/hotdog.svg";
+// import cameraIcon from "/public/icons/camera.svg";
+// import breadIcon from "/public/icons/bread.svg";
+// import jeonIcon from "/public/icons/jeon.svg";
+// import dogIcon from "/public/icons/dog.svg";
+// import shoesIcon from "/public/icons/shoes.svg";
+// import insamIcon from "/public/icons/insam.svg";
+// import tteokbokkiIcon from "/public/icons/tteokbokki.svg";
+// import blanketIcon from "/public/icons/blanket.svg";
+// import riceIcon from "/public/icons/rice.svg";
 
 export default function StoreTab({ marketKey, setSelectedStore }) {
     const [stores, setStores] = useState(null);   // 목록에 표시될 상점들의 key 
     const [category, setCategory] = useState("전체");
     const [categoryList, setCategoryList] = useState(null);     // { 분류: [상점키1, 상점키2, ...] }
 
+    // const tags = [
+    //     [meatIcon, "고기"],
+    //     [appleIcon, "야채·과일"],
+    //     [tteokIcon, "떡"],
+    //     [chickenIcon, "치킨"],
+    //     [fishIcon, "생선"],
+    //     [dumplingIcon, "만두"],
+    //     [cosmeticsIcon, "화장품"],
+    //     [clothesIcon, "옷"],
+    //     [restaurantIcon, "식당"],
+    //     [eggIcon, "반찬"],
+    //     [medicineIcon, "약국"],
+    //     [hotdogIcon, "핫도그"],
+    //     [cameraIcon, "사진관"],
+    //     [breadIcon, "빵"],
+    //     [jeonIcon, "전"],
+    //     [dogIcon, "애견용품"],
+    //     [shoesIcon, "신발"],
+    //     [insamIcon, "약재"],
+    //     [tteokbokkiIcon, "분식"],
+    //     [blanketIcon, "이불"],
+    //     [riceIcon, "잡곡"],
+    //     [null, "기타"]
+    // ]
+
     const tags = [
-        [meatIcon, "고기"],
-        [appleIcon, "야채·과일"],
-        [tteokIcon, "떡"],
-        [chickenIcon, "치킨"],
-        [fishIcon, "생선"],
-        [dumplingIcon, "만두"],
-        [cosmeticsIcon, "화장품"],
-        [clothesIcon, "옷"],
-        [restaurantIcon, "식당"],
-        [eggIcon, "반찬"],
-        [medicineIcon, "약국"],
-        [hotdogIcon, "핫도그"],
-        [cameraIcon, "사진관"],
-        [breadIcon, "빵"],
-        [jeonIcon, "전"],
-        [dogIcon, "애견용품"],
-        [shoesIcon, "신발"],
-        [insamIcon, "약재"],
-        [tteokbokkiIcon, "분식"],
-        [blanketIcon, "이불"],
-        [riceIcon, "잡곡"],
+        ["/icons/meat.svg", "고기"],
+        ["/icons/apple.svg", "야채·과일"],
+        ["/icons/tteok.svg", "떡"],
+        ["/icons/chicken.svg", "치킨"],
+        ["/icons/fish.svg", "생선"],
+        ["/icons/dumpling.svg", "만두"],
+        ["/icons/cosmetics.svg", "화장품"],
+        ["/icons/clothes.svg", "옷"],
+        ["/icons/restaurant.svg", "식당"],
+        ["/icons/egg.svg", "반찬"],
+        ["/icons/medicine.svg", "약국"],
+        ["/icons/hotdog.svg", "핫도그"],
+        ["/icons/camera.svg", "사진관"],
+        ["/icons/bread.svg", "빵"],
+        ["/icons/jeon.svg", "전"],
+        ["/icons/dog.svg", "애견용품"],
+        ["/icons/shoes.svg", "신발"],
+        ["/icons/insam.svg", "약재"],
+        ["/icons/tteokbokki.svg", "분식"],
+        ["/icons/blanket.svg", "이불"],
+        ["/icons/rice.svg", "잡곡"],
         [null, "기타"]
     ]
 

@@ -25,7 +25,7 @@ export default function ReviewItem({ review }) {
     }, []);
 
     // 텍스트 리뷰가 없다면 목록에 표시하지 않음
-    if (review["content"] == "" && review["imageUrl"] == undefined) return;
+    // if (review["content"] == "" && review["imageUrl"] == undefined) return;
 
     const tagEmoji = {
         '카드가능': '카드가능💳',

@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import ContentCard from "./ContentCard";
+import defaultImage from "/public/images/defaultImage.png";
 
 import "swiper/css";
 import "./ContentCarousel.css";
@@ -12,19 +13,19 @@ export default function MarketContents() {
                 slidesPerView={"auto"}
                 spaceBetween={15}>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
             </Swiper>
             <div className="w-[calc(100vw-40px)] h-px mx-5 mt-[5px] mb-5 bg-gray-300" />
@@ -33,19 +34,19 @@ export default function MarketContents() {
                 slidesPerView={"auto"}
                 spaceBetween={15}>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
             </Swiper>
             <div className="w-[calc(100vw-40px)] h-px mx-5 mt-[5px] mb-5 bg-gray-300" />
@@ -54,19 +55,19 @@ export default function MarketContents() {
                 slidesPerView={"auto"}
                 spaceBetween={15}>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <ContentCard />
+                    <ContentCard imageUrl={defaultImage} title="영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!" />
                 </SwiperSlide>
             </Swiper>
         </div>

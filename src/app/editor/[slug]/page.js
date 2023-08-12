@@ -3,8 +3,9 @@ import Link from "next/link";
 
 import defaultImage from "/public/images/defaultImage.png";
 import bubble from "/public/images/speech_bubble.png";
-import backIcon from "/public/icons/arrow_left_white.png";
-import uploadIcon from "/public/icons/upload_white.png";
+import backIcon from "/public/icons/arrow_left_white.svg";
+import scrapIcon from "/public/icons/bookmark_white.svg";
+import uploadIcon from "/public/icons/upload_white.svg";
 import data from "/public/data/editorContents.json";
 
 import CurationItem from "@/app/components/Editor/CurationItem";
@@ -27,12 +28,19 @@ export default function Page({ params }) {
         />
         <div className="absolute w-full h-full bg-black opacity-60" />
         <Link href="/" className="absolute top-5 left-5">
-          <Image src={backIcon} width={24} height={24} alt="뒤로가기 아이콘" />
+          <Image src={backIcon} width={32} height={32} alt="뒤로가기 아이콘" />
         </Link>
         <Image
+          src={scrapIcon}
+          width={32}
+          height={32}
+          alt="스크랩 아이콘"
+          className="absolute top-5 right-[72px]"
+        />
+        <Image
           src={uploadIcon}
-          width={24}
-          height={24}
+          width={32}
+          height={32}
           alt="공유하기 아이콘"
           className="absolute top-5 right-5"
         />

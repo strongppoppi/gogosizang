@@ -9,17 +9,19 @@ export function getStoreInfo(marketKey, storeKey) {
     firebaseDatabase,
     `stores/${marketKey}/${storeKey}`
   );
-  get(storeRef)
+  return get(storeRef) // return 문 추가
     .then((data) => {
       if (data.exists()) {
         console.log(data.val());
         return data.val();
       } else {
         console.log("No Data Available");
+        return null;
       }
     })
     .catch((error) => {
       console.log(error);
+      return null;
     });
 }
 

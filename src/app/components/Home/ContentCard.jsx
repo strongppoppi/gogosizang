@@ -10,7 +10,7 @@ export default function ContentCard({ bgImage, title, contentId }) {
 
   return (
     <Link href={`/editor/${contentId}`}>
-      <div className="flex flex-col justify-start items-center text-left rounded-2xl overflow-hidden drop-shadow-md">
+      <div className="flex flex-col justify-start items-center text-left rounded-2xl overflow-hidden drop-shadow-md ">
         <div className="relative w-full h-[9.5rem]">
           <Image
             src={bgImage === "" ? defaultImage : bgImage}
@@ -20,7 +20,9 @@ export default function ContentCard({ bgImage, title, contentId }) {
           />
         </div>
         <div className="w-full px-2 py-2 bg-white">
-          <h4 className="text-black font-regular tracking-tight">{title}</h4>
+          <h4 className="text-black font-regular tracking-tight">
+            <span dangerouslySetInnerHTML={{ __html: title }} />
+          </h4>
         </div>
       </div>
     </Link>

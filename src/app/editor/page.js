@@ -18,6 +18,7 @@ export default function Editor() {
         return (
           <DetailedContentCard
             key={key}
+            contentId={content.contentId}
             bgImage={content.backgroundImage}
             title={content.title}
             editorName={content.editorName}

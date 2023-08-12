@@ -7,10 +7,12 @@ import Link from "next/link";
 import defaultImage from "/public/images/defaultImage.png";
 import rightIcon from "/public/icons/chevron_right_grey.png";
 
-export default function DetailedContentCard({}) {
-  const [imageUrl, setImageUrl] = useState(null);
-  const [profileImageUrl, setProfileImageUrl] = useState(null);
-
+export default function DetailedContentCard({
+  bgImage,
+  title,
+  editorName,
+  editorImage,
+}) {
   const imageStyle = {
     objectFit: "cover",
   };
@@ -22,7 +24,7 @@ export default function DetailedContentCard({}) {
       <div className="w-full flex flex-col justify-between rounded-2xl overflow-hidden mb-8 drop-shadow-md">
         <div className="relative w-full h-[11rem]">
           <Image
-            src={imageUrl === null ? defaultImage : imageUrl}
+            src={bgImage === "" ? defaultImage : bgImage}
             fill
             alt="인기 상점 사진"
             style={imageStyle}
@@ -32,21 +34,19 @@ export default function DetailedContentCard({}) {
           <div className="flex flex-col justify-start gap-y-1 px-4 py-3">
             <div className="flex flex-row justify-start items-center">
               <h4 className="text-lg font-medium text-black leading-6">
-                요즘 힙한 사람들이 가는 을지로 시장 속 맛집은 어디?
+                {title}
               </h4>
             </div>
             <div className="flex flex-row justify-start items-center gap-x-2">
               <div className="relative w-[1.5rem] h-[1.5rem] rounded-[100%] overflow-hidden">
                 <Image
-                  src={
-                    profileImageUrl === null ? defaultImage : profileImageUrl
-                  }
+                  src={editorImage === "" ? defaultImage : editorImage}
                   fill
                   alt="프로필 사진"
                 />
               </div>
               <h5 className="text-sm font-normal text-gray-600">
-                가무시 에디터
+                {editorName}
               </h5>
             </div>
           </div>

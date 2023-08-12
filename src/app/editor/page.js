@@ -1,6 +1,7 @@
 import ContentHeader from "../components/Home/ContentHeader";
 import DetailedContentCard from "../components/Home/DetailedContentCard";
 
+import data from "/public/data/editorContents.json";
 import smileEmoji from "public/images/emoji_smile.png";
 
 export default function Editor() {
@@ -12,7 +13,18 @@ export default function Editor() {
         back={true}
         emoji={smileEmoji}
       />
-      <DetailedContentCard />
+      {Object.keys(data).map((key) => {
+        const content = data[key];
+        return (
+          <DetailedContentCard
+            key={key}
+            bgImage={content.backgroundImage}
+            title={content.title}
+            editorName={content.editorName}
+            editorImage={content.editorImage}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function ShopCard({ name, market, marketKey, storeKey }) {
   }, []);
 
   return (
-    <Link href="/">
+    <Link href={`/market/${marketKey}`}>
       <div className="flex flex-col justify-start items-center w-[12.5rem] overflow-hidden rounded-2xl drop-shadow-md mb-1">
         <div className="relative w-full h-[8.5rem]">
           <Image

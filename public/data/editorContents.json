@@ -2,7 +2,7 @@
   "1": {
     "contentId": 1,
     "backgroundImage": "https://i.ibb.co/1JRrFk5/1-bg-Image.jpg",
-    "title": "영천시장에서 🍧무더위를 날리는 방법 5가지!",
+    "title": "영천시장에서 <strong class='text-main'>🍧무더위를 날리는 방법</strong> 5가지!",
     "subTitle": "이번 여름 정말 덥죠? 여름 무더위, 정답은 영천시장에 있습니다!",
     "editorName": "오리",
     "editorImage": "https://i.ibb.co/SwY000q/image.jpg",
@@ -27,7 +27,7 @@
   "2": {
     "contentId": 2,
     "backgroundImage": "https://i.ibb.co/1qrHCsy/2-bg-Image.png",
-    "title": "비 오는 날, 전통시장은 이렇게 즐기세요!",
+    "title": "<strong class='text-main'>비 오는 날</strong>, 전통시장은 이렇게 즐기세요!",
     "subTitle": "비가 오는 날, 전통시장은 훨씬 더 즐거워 진답니다!",
     "editorName": "먹짱이",
     "editorImage": "https://i.ibb.co/12Pbc6z/image.png",
@@ -51,11 +51,11 @@
   },
   "3": {
     "contentId": 3,
-    "backgroundImage": "",
-    "title": "알뜰싱싱 과일가게 대공개 자취생도 부담없어!",
+    "backgroundImage": "https://i.ibb.co/drd0fDc/3-bg-Image.png",
+    "title": "감탄밖에 안 나오는 <strong class='text-main'>레전드 떡볶이 맛집 list</strong>",
     "subTitle": "영천시장이 자취생의 비타민을 책임질게요.",
-    "editorName": "진",
-    "editorImage": "",
+    "editorName": "가무시",
+    "editorImage": "https://i.ibb.co/HrjSdPH/image.png",
     "saying": "비타민 섭취 잘 하고 있나요? 너무 비싼 과일 값 때문에 잘 못 먹고 있다면.... 영천 시장에서 과일 쇼핑을 추천합니다!",
     "storeOne": 124,
     "storeOneImageUrlOne": "",
@@ -77,7 +77,7 @@
   "4": {
     "contentId": 4,
     "backgroundImage": "https://i.ibb.co/Wcn35dk/4-bg-Image.png",
-    "title": "알뜰싱싱 과일가게 대공개 자취생도 부담없어!",
+    "title": "알뜰싱싱 과일가게대공개 <strong class='text-main'>자취생도 부담없어!</strong> ",
     "subTitle": "영천시장이 자취생의 비타민을 책임질게요.",
     "editorName": "지니",
     "editorImage": "https://i.ibb.co/jfWm4vv/image.png",

@@ -12,6 +12,7 @@ export default function DetailedContentCard({
   title,
   editorName,
   editorImage,
+  contentId,
 }) {
   const imageStyle = {
     objectFit: "cover",
@@ -20,7 +21,7 @@ export default function DetailedContentCard({
   useEffect(() => {}, []);
 
   return (
-    <Link href={`/`}>
+    <Link href={`/editor/${contentId}`}>
       <div className="w-full flex flex-col justify-between rounded-2xl overflow-hidden mb-8 drop-shadow-md">
         <div className="relative w-full h-[11rem]">
           <Image
@@ -34,7 +35,7 @@ export default function DetailedContentCard({
           <div className="flex flex-col justify-start gap-y-1 px-4 py-3">
             <div className="flex flex-row justify-start items-center">
               <h4 className="text-lg font-medium text-black leading-6">
-                {title}
+                <span dangerouslySetInnerHTML={{ __html: title }} />
               </h4>
             </div>
             <div className="flex flex-row justify-start items-center gap-x-2">
@@ -46,7 +47,7 @@ export default function DetailedContentCard({
                 />
               </div>
               <h5 className="text-sm font-normal text-gray-600">
-                {editorName}
+                {editorName} 에디터
               </h5>
             </div>
           </div>

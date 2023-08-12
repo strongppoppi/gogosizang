@@ -55,7 +55,7 @@ export default function Page({ params }) {
             </h5>
           </div>
           <div className="text-[25px] font-bold text-white leading-8 mt-2 mb-5 break-keep">
-            {contentData.title}
+            <span dangerouslySetInnerHTML={{ __html: contentData.title }} />
           </div>
           <h3 className="text-[13px] font-normal text-white">
             {contentData.subTitle}

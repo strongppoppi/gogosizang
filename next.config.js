@@ -5,6 +5,7 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "i.ibb.co",
       "lh3.googleusercontent.com",
+      "culture.seoul.go.kr",
     ],
   },
 };

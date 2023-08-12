@@ -30,10 +30,14 @@ export default function MarketMap({ setNaverMap, marketKey, selectedStore }) {
       ),
       map: mapRef.current,
       icon: {
-        url: "/icons/marker_main.png",
-        size: new naver.maps.Size(42, 52),
-        origin: new naver.maps.Point(0, 0),
-      },
+        content: [
+          "<div class='w-max h-max overflow-visible'>",
+          "<img src='/icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
+          "</div>"
+        ].join(""),
+        size: new naver.maps.Size(31.5, 39),
+        origin: new naver.maps.Point(15.75, 0),
+      }
     });
 
     setNaverMap(mapRef.current);

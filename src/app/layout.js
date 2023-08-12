@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Script from "next/script";
 import { Noto_Sans_KR } from "next/font/google";
 import { usePathname } from "next/navigation";
+import localFont from "next/font/local";
 
 import SplashScreen from "./components/SplashScreen";
 import BottomTab from "./components/common/BottomTab";
@@ -12,6 +13,10 @@ import BottomTab from "./components/common/BottomTab";
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
+});
+
+const Pretendard = localFont({
+  src: "../../public/fonts/PretendardVariable.woff2",
 });
 
 const metadata = {
@@ -42,7 +47,7 @@ export default function RootLayout({ children }) {
           src={`https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
         />
       </head>
-      <body className={notoSansKr.className}>
+      <body className={Pretendard.className}>
         {isLoading && isHome ? (
           <SplashScreen finishLoading={() => setIsLoading(false)} />
         ) : (

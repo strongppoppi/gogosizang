@@ -11,11 +11,17 @@ import phoneIconBlack from "/public/icons/phone_black.svg";
 import phoneIconGrey from "/public/icons/phone_grey.svg";
 import giftcardIcon from "/public/icons/giftcard_grey.png";
 
+import yeongcheonData from "/public/data/yeongcheonData.json";
+import { findNearestStation } from "@/app/constants/station";
+
+
 export default function StoreInfo({ marketKey, storeKey }) {
     const [storeData, setStoreData] = useState(null);
     const [giftcard, setGiftcard] = useState([]);
 
     const storeRef = ref(firebaseDatabase, `stores/${marketKey}/${storeKey}`);
+
+    const nearestStation = findNearestStation(yeongcheonData[storeKey]["위도"], yeongcheonData[storeKey]["경도"]);
 
     useEffect(() => {
         get(storeRef).then((snapshot) => {
@@ -62,15 +68,16 @@ export default function StoreInfo({ marketKey, storeKey }) {
                         <h1 className="text-[25px] font-bold text-black">{storeData["점포명"]}</h1>
                         <h5 className="text-[13px] font-normal text-gray-600">{storeData["취급품목"]}</h5>
                     </div>
-                    <div className="flex flex-row items-center mb-2">
-                        <Image src={markerIcon} alt="아이콘" width={24} height={24} />
-                        <h4 className="text-[15px] font-normal text-black ml-0.5">{storeData["주소"]}</h4>
-                    </div>
+                    {storeData["주소"] &&
+                        <div className="flex flex-row items-center mb-2">
+                            <Image src={markerIcon} alt="아이콘" width={24} height={24} />
+                            <h4 className="text-[15px] font-normal text-black ml-0.5">{storeData["주소"]}</h4>
+                        </div>}
                     <div className="flex flex-row items-center mb-5">
-                        <div className="rounded-full px-2 py-0.5 bg-main text-[13px] font-normal text-white ml-6">
-                            {`${subwayLine}호선`}
+                        <div className="rounded-full px-2 py-0.5 text-[13px] font-normal text-white ml-6" style={{ backgroundColor: nearestStation.color }}>
+                            {nearestStation.line}
                         </div>
-                        <h4 className="text-[13px] font-normal text-gray-700 ml-1">{`${station}(으)로부터 ${stationsDistance}`}</h4>
+                        <h4 className="text-[13px] font-normal text-gray-700 ml-1">{`${nearestStation.name}역으로부터 ${nearestStation.distance.toFixed(0)}m`}</h4>
                     </div>
                     <div className="w-full h-14 mb-4 flex flex-row border-y border-solid border-gray-200">
                         {storeData.phoneNumber !== "" ?

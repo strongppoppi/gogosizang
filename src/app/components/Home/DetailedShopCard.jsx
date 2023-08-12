@@ -19,9 +19,13 @@ export default function DetailedShopCard({
   const [imageUrl, setImageUrl] = useState(null);
   const [tagData, setTagData] = useState(null);
 
+  // 이미지 스타일: cover; 채우면서, 자르기
   const imageStyle = {
     objectFit: "cover",
   };
+
+  // 평점 반올림 소숫점 한 자리수까지
+  const roundedRating = Math.round(rating * 10) / 10;
 
   useEffect(() => {
     getStoreImage(marketKey, storeKey, setImageUrl);
@@ -53,7 +57,9 @@ export default function DetailedShopCard({
                   width={32}
                   height={32}
                 />
-                <h4 className="text-xl font-bold text-black">{rating}</h4>
+                <h4 className="text-xl font-bold text-black">
+                  {roundedRating}
+                </h4>
               </div>
               <div className="flex flex-row justify-start items-center gap-x-1">
                 {tagData && tagData[0] && (

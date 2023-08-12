@@ -51,7 +51,7 @@ export default function Page({ params }) {
               />
             </div>
             <h5 className="text-[15px] font-normal text-white ml-2.5">
-              {contentData.editorName}'s Pick!
+              {contentData.editorName}&apos;s Pick!
             </h5>
           </div>
           <div className="text-[25px] font-bold text-white leading-8 mt-2 mb-5 break-keep">

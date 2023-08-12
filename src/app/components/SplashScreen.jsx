@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import anime from "animejs";
 
-import logo from "/public/brand/logo.png";
-import splashImage from "/public/brand/splash-image.png";
+import logo from "/public/brand/logo.svg";
+import splashImage from "/public/brand/splash-image.svg";
 
 export default function SplashScreen({ finishLoading }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -38,8 +38,8 @@ export default function SplashScreen({ finishLoading }) {
         </h1>
         <Image
           src={logo}
-          width={`100%`}
-          height={`100%`}
+          width={302}
+          height={124}
           alt="로고"
           id="logo"
           className="mb-[470px]"
@@ -47,9 +47,10 @@ export default function SplashScreen({ finishLoading }) {
       </div>
       <Image
         src={splashImage}
-        height={430}
+        width={467}
+        height={540}
         alt="이미지"
-        className="absolute -bottom-10 right-0"
+        className="absolute -bottom-[90px] -right-[80px]"
       />
     </div>
   );

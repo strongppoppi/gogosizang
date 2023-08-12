@@ -2,12 +2,15 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
+import { calculateDistance } from "@/app/constants/distance";
+
 import marketsLocation from "/public/data/markets.json";
 import icon from "/public/icons/search_grey.svg";
 import backIcon from "/public/icons/backIcon.png";
 import pinIcon from "/public/icons/pinIcon-500.png";
 
 export default function SearchResultModal({
+  myCurrentLocation,
   toggleSearchBar,
   setSelectedMarket,
   naverMap,
@@ -34,6 +37,23 @@ export default function SearchResultModal({
     toggleSearchBar();
   };
 
+  const measureDistance = (data) => {
+    console.log(myCurrentLocation);
+    let newData = data.map((res) => ({
+      ...res,
+      dist: Math.floor(
+        calculateDistance(
+          myCurrentLocation[0],
+          myCurrentLocation[1],
+          res.latitude,
+          res.longitude
+        ) / 1000
+      ),
+    }));
+    console.log(newData);
+    return newData;
+  };
+
   useEffect(() => {
     // 검색 결과 반환 함수
     const handleSearch = async () => {
@@ -45,7 +65,9 @@ export default function SearchResultModal({
         item.mrktNm.includes(searchTerm)
       );
       const newData = data.slice(0, 4);
-      setSearchedData(newData);
+      console.log(newData);
+      const dataWithDistance = measureDistance(newData);
+      setSearchedData(dataWithDistance);
     };
 
     handleSearch();
@@ -102,7 +124,7 @@ export default function SearchResultModal({
                     </p>
                   </div>
                   <p className="text-gray-700 text-sm font-regular tracking-tight">
-                    11km
+                    {item.dist}km
                   </p>
                 </div>
               </div>

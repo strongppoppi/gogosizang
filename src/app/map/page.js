@@ -16,31 +16,28 @@ export default function MapPage() {
   const [beforeMarket, setBeforeMarket] = useState(null);
   const [myCurrentLocation, setMyCurrentLocation] = useState([]); // 내 위치 정보 불러오기
   const [isSearchBarClicked, setIsSearchBarClicked] = useState(false);
-  
+
   useEffect(() => {
     if (selectedMarket && selectedMarket != beforeMarket) {
-
       // 선택한 마커 검은색으로
       if (beforeMarket) {
         markers[beforeMarket].setIcon({
-          content: 
-            [
-              "<div class='w-max h-max overflow-visible'>",
-              "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
-              "</div>"
-            ].join(""),
+          content: [
+            "<div class='w-max h-max overflow-visible'>",
+            "<img src='icons/marker_main.svg' width='31.5' height='39' alt='시장 마커' />",
+            "</div>",
+          ].join(""),
           size: new naver.maps.Size(31.5, 39),
           origin: new naver.maps.Point(15.75, 0),
         });
       }
 
       markers[selectedMarket].setIcon({
-        content: 
-          [
-              "<div class='w-max h-max overflow-visible'>",
-              "<img src='icons/marker_black.svg' width='31.5' height='39' alt='시장 마커' />",
-              "</div>"
-          ].join(""),
+        content: [
+          "<div class='w-max h-max overflow-visible'>",
+          "<img src='icons/marker_black.svg' width='31.5' height='39' alt='시장 마커' />",
+          "</div>",
+        ].join(""),
         size: new naver.maps.Size(31.5, 39),
         origin: new naver.maps.Point(15.75, 0),
       });
@@ -77,6 +74,7 @@ export default function MapPage() {
       />
       {isSearchBarClicked ? (
         <SearchResultModal
+          myCurrentLocation={myCurrentLocation}
           toggleSearchBar={toggleSearchBar}
           setSelectedMarket={setSelectedMarket}
           naverMap={naverMap}
@@ -85,15 +83,15 @@ export default function MapPage() {
         <>
           <MarketModal marketKey={selectedMarket} />
           <NearbyMarketBtn
-              naverMap={naverMap}
-              markers={markers}
-              myCurrentLocation={myCurrentLocation}
-              setSelectedMarket={setSelectedMarket}
-            />
-            <MyLocationBtn
-              naverMap={naverMap}
-              setMyCurrentLocation={setMyCurrentLocation}
-            />
+            naverMap={naverMap}
+            markers={markers}
+            myCurrentLocation={myCurrentLocation}
+            setSelectedMarket={setSelectedMarket}
+          />
+          <MyLocationBtn
+            naverMap={naverMap}
+            setMyCurrentLocation={setMyCurrentLocation}
+          />
         </>
       )}
     </div>

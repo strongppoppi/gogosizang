@@ -29,7 +29,7 @@ module.exports = {
       main: "#FF7455",
       sub: "#EBFF95",
       positive: "#5DC08C",
-      yellow: "#ffD43D",
+      yellow: "#EBFF95",
       black: "#111213",
     },
   },

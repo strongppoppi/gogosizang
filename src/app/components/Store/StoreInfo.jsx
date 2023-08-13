@@ -63,10 +63,10 @@ export default function StoreInfo({ marketKey, storeKey }) {
         <>
             {storeData ?
                 <div className="w-11/12">
-                    <div className="flex flex-row items-center space-x-1 mb-3">
-                        <Image src={marketIcon} width={24} height={24} alt="아이콘" />
-                        <h1 className="text-[25px] font-bold text-black">{storeData["점포명"]}</h1>
-                        <h5 className="text-[13px] font-normal text-gray-600">{storeData["취급품목"]}</h5>
+                    <div className="flex flex-row justify-start items-start space-x-1 mb-3">
+                        <Image src={marketIcon} width={24} height={24} alt="아이콘" className="my-[7px]" />
+                        <h1 className="text-[25px] font-bold text-black leading-[38px] break-keep">{storeData["점포명"]}</h1>
+                        <h5 className="text-[13px] font-normal text-gray-600 self-center break-keep">{storeData["분류"]}</h5>
                     </div>
                     {storeData["주소"] &&
                         <div className="flex flex-row items-center mb-2">

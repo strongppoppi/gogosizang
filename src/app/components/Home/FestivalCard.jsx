@@ -19,7 +19,9 @@ export default function FestivalCard({ imageUrl, title, place }) {
           />
         </div>
         <div className="w-full flex flex-col justify-start items-start gap-y-1 px-3 py-4 bg-white">
-          <h4 className="text-black font-bold text-xl text-left">{title}</h4>
+          <h4 className="text-black font-bold text-xl text-left line-clamp-1">
+            {title}
+          </h4>
           <h6 className="text-black font-base text-sm">{place}</h6>
         </div>
       </div>

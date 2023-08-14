@@ -33,7 +33,9 @@ export default function ShopCard({ name, market, marketKey, storeKey }) {
         <div className="flex flex-col py-2.5 px-4 space-y-0.5 w-full bg-white">
           <div className="flex flex-row justify-start items-center space-x-1.5">
             <Image src={marketIcon} width={18} height={18} alt="상점 아이콘" />
-            <h4 className="text-base font-medium text-black">{name}</h4>
+            <h4 className="text-base font-medium text-black line-clamp-1">
+              {name}
+            </h4>
           </div>
           <div className="flex flex-row justify-start items-center space-x-1.5">
             <Image src={pinIcon} width={18} height={18} alt="상점 아이콘" />
